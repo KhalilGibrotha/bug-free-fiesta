@@ -1,0 +1,21 @@
+name: 'Confluence Publisher'
+description: 'Publishes Markdown docs to Confluence.'
+runs:
+  using: 'composite'
+  steps:
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.x'
+    - name: Install dependencies
+      run: |
+        pip install requests PyYAML python-frontmatter jinja2 markdown-it-py mdit-py-plugins
+      shell: bash
+    - name: Run publisher script
+      run: python entrypoint.py
+      shell: bash
+      env:
+        CONFLUENCE_URL: ${{ env.CONFLUENCE_URL }}
+        CONFLUENCE_USER: ${{ env.CONFLUENCE_USER }}
+        CONFLUENCE_API_TOKEN: ${{ env.CONFLUENCE_API_TOKEN }}
+        GITHUB_WORKSPACE: ${{ github.workspace }}
