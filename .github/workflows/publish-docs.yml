@@ -1,0 +1,27 @@
+name: Publish Docs to Confluence
+
+on:
+  push:
+    branches:
+      - main # Or whatever your primary branch is
+      - feature/* # Optional: include feature branches if needed
+      - feature/** # Optional: include nested feature branches if needed
+      - feature/*/* # Optional: include nested feature branches if needed
+      - develop # Optional: include develop branch if needed
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Linting Workflow
+        uses: KhalilGibrotha/redesigned-guacamole@develop
+
+      - name: Run Confluence Publisher
+        uses: ./.github/actions/confluence-publisher # Use our local action
+        env:
+          CONFLUENCE_URL: ${{ secrets.CONFLUENCE_URL }} # Make sure this secret is defined in your repository/organization settings
+          CONFLUENCE_USER: ${{ secrets.CONFLUENCE_USER }} # Ensure this secret exists in your repository/organization settings
+          CONFLUENCE_API_TOKEN: ${{ secrets.CONFLUENCE_API_TOKEN }} # Ensure this secret exists in your repository/organization settings
