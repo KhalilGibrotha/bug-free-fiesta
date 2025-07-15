@@ -1,0 +1,5 @@
+requests
+PyYAML
+python-frontmatter
+markdown-it-py
+mdit-py-plugins
