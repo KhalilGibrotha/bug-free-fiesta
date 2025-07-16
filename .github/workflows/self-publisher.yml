@@ -1,5 +1,5 @@
 # .github/workflows/test-publisher.yml
-name: Test Reusable Publisher
+name: Automated Test CI and Documentation CD
 
 # Trigger on pull requests made to this repository
 on:
