@@ -22,6 +22,7 @@ except KeyError as e:
     sys.exit(f"🛑 FATAL: Missing required environment variable: {e}. Please check your workflow 'env' block.")
 
 # --- Function Definitions ---
+# --- Function to Find Source Files ---
 
 def find_all_source_files(start_path):
     """Finds all potential source files (.md, .j2, .jinja) in the repository."""
@@ -48,6 +49,8 @@ def find_all_source_files(start_path):
     print(f"✅ Scan complete. Found {len(source_files)} potential source files.")
     return source_files
 
+# --- Function to Render Jinja2 Templates ---
+
 def render_jinja_template(content, metadata, file_path):
     """Renders a markdown content string with Jinja2, supporting variables and macros."""
     # This function remains the same as before, no changes needed here.
@@ -70,6 +73,8 @@ def render_jinja_template(content, metadata, file_path):
         print(f"❌ Error rendering Jinja template for {file_path}: {e}")
         return None
 
+# --- Function to Convert Markdown to Confluence XHTML ---
+
 def convert_md_to_confluence_xhtml(md_content, image_folder_path):
     """Converts rendered Markdown to Confluence XHTML and finds images."""
     # This function remains the same as before.
@@ -86,51 +91,88 @@ def convert_md_to_confluence_xhtml(md_content, image_folder_path):
     print(f"🖼️ Found {len(image_files_to_upload)} images to upload.")
     return html_output, image_files_to_upload
 
+# --- Function to Find Existing Confluence Page ---
+
+def set_editor_version(page_id):
+    """
+    Ensures the page is set to use the new Confluence editor (v2).
+    """
+    print(f"  -> Setting editor to 'v2' for page ID: {page_id}")
+    property_url = f"{CONFLUENCE_URL}/rest/api/content/{page_id}/property/editor"
+    
+    # Check if the property already exists
+    response = requests.get(property_url, auth=(CONFLUENCE_USER, CONFLUENCE_API_TOKEN))
+    
+    current_version = 1
+    if response.status_code == 200:
+        # Property exists, we need to increment its version number to update it
+        current_version = response.json()['version']['number'] + 1
+
+    property_data = {
+        "key": "editor",
+        "value": "v2",
+        "version": { "number": current_version }
+    }
+
+    # Use PUT to create or update the property
+    update_response = requests.put(
+        property_url, 
+        json=property_data, 
+        auth=(CONFLUENCE_USER, CONFLUENCE_API_TOKEN)
+    )
+    
+    if update_response.status_code == 200:
+        print("  -> Successfully set editor version.")
+    else:
+        # It's not critical if this fails, so we just print a warning
+        print(f"  -> WARNING: Could not set editor version. Status: {update_response.status_code}, Response: {update_response.text}")
+
+# --- Main Publishing Function ---
+
 def publish_to_confluence(metadata, content, images):
-    """Publishes the content to Confluence, creating or updating a page."""
-    # This function remains the same as before.
+    """Publishes the content to Confluence and sets the editor version."""
     space = metadata['space']
     title = metadata['title']
     parent_page_id = metadata.get('parentPageId')
+
+ # Find existing page ID and version
     page_id, version = find_confluence_page(space, title)
-    page_data = {"type": "page", "title": title, "space": {"key": space}, "body": {"storage": {"value": content, "representation": "storage"}}}
+    
+    page_data = {
+        "type": "page",
+        "title": title,
+        "space": {"key": space},
+        "body": {"storage": {"value": content, "representation": "storage"}}
+    }
+    
+    auth_tuple = (CONFLUENCE_USER, CONFLUENCE_API_TOKEN)
+    headers = {"Content-Type": "application/json"}
+
     if page_id:
         print(f"⬆️ Updating page ID: {page_id}")
         page_data["id"] = page_id
         page_data["version"] = {"number": version + 1}
         url = f"{CONFLUENCE_URL}/rest/api/content/{page_id}"
-        response = requests.put(url, json=page_data, headers={"Content-Type": "application/json"}, auth=(CONFLUENCE_USER, CONFLUENCE_API_TOKEN))
+        response = requests.put(url, json=page_data, headers=headers, auth=auth_tuple)
     else:
         print(f"✨ Creating new page under parent ID: {parent_page_id}")
         if parent_page_id:
             page_data["ancestors"] = [{"id": parent_page_id}]
         url = f"{CONFLUENCE_URL}/rest/api/content"
-        response = requests.post(url, json=page_data, headers={"Content-Type": "application/json"}, auth=(CONFLUENCE_USER, CONFLUENCE_API_TOKEN))
+        response = requests.post(url, json=page_data, headers=headers, auth=auth_tuple)
+
     response.raise_for_status()
     new_page_info = response.json()
+    new_page_id = new_page_info['id']
     print(f"✅ Successfully published page: {new_page_info['_links']['webui']}")
-    if images:
-        upload_images(new_page_info['id'], images)
 
-def find_confluence_page(space, title):
-    """Finds a Confluence page by title in a given space."""
-    print(f"  -> Searching for page with title '{title}' in space '{space}'...")
-    url = f"{CONFLUENCE_URL}/rest/api/content"
-    params = {"spaceKey": space, "title": title, "expand": "version"}
+    # Call the new function to set the editor property
+    set_editor_version(new_page_id)
+
+    if images:
+        upload_images(new_page_id, images)
     
-    # The typo was here:
-    response = requests.get(url, headers={"Accept": "application/json"}, auth=(CONFLUENCE_USER, CONFLUENCE_API_TOKEN), params=params)
-    
-    response.raise_for_status()
-    results = response.json().get("results", [])
-    if results:
-        page_id = results[0]['id']
-        version = results[0]['version']['number']
-        print(f"  -> Found existing page. ID: {page_id}, Version: {version}")
-        return page_id, version
-    
-    print("  -> Page not found. A new page will be created.")
-    return None, None
+# --- Helper Functions ---
 
 def upload_images(page_id, images):
     """Uploads a list of image files to a Confluence page."""
