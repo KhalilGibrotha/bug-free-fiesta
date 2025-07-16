@@ -15,7 +15,7 @@ Now I am updating the document to make sure that it updates correctly!
 ## Architecture Diagram
 
 Here is the main diagram:
-![The overall architecture of the new feature.](./architecture_diagram.webp)
-
+![The overall architecture of the new feature.](.docs/architecture_diagram.webp)
+![The overall architecture of the new feature.](.docs/architecture_diagram.png)
 ## Status
 The current status of the project is **{{ project_status }}**.
