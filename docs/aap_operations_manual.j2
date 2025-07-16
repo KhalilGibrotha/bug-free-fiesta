@@ -1,0 +1,120 @@
+{% import 'macros.j2' as macros %}
+---
+title: "Ansible Automation Platform (AAP) Operations Manual"
+confluenceSpace: "AH"
+parentPageId: "1343742" # The ID of the parent page in Confluence
+imageFolder: "docs/images"
+varsFile: "docs/vars.yaml"
+---
+
+# {{ ORGANIZATION_NAME }} Operations Manual
+## 1. Introduction
+### 1.1 Purpose
+This document outlines the operational procedures, maintenance guidelines, and governance structure for {{ ORGANIZATION_NAME }}'s Ansible Automation Platform (AAP) infrastructure.
+
+### 1.2 Scope
+This manual applies to all automation operations within {{ SUB_ORGANIZATION_NAME }}, including job execution, security policies, access management, and compliance.
+
+### 1.3 Audience
+- **Platform Engineers** – Responsible for maintaining and optimizing automation workflows.
+- **Platform Operators** – Execute automation workflows as per the defined policies.
+- **Platform Administrators** – Manage access control, execution policies, and troubleshooting.
+- **Security & Compliance Teams** – Ensure adherence to compliance standards.
+
+---
+
+## 2. Platform Overview
+### 2.1 Environment & Infrastructure
+- **Environment Type**: {{ ENVIRONMENT_TYPE }}
+- **Primary Objectives**: {{ MAIN_OBJECTIVES }}
+- **Supported OS Versions**: 
+  - **RHEL**: {{ RHEL_VERSIONS | join(', ') }}
+  - **Windows**: {{ WINDOWS_VERSIONS | join(', ') }}
+- **Ansible Automation Platform Version**: {{ AAP_VERSION }}
+- **Red Hat Satellite Version**: {{ SATELLITE_VERSION }}
+
+### 2.2 Infrastructure Components
+- **Identity Management System**: {{ IDENTITY_MANAGEMENT_SYSTEM }}
+- **RBAC Provider**: {{ AAP_RBAC_PROVIDER }}
+- **Load Balancer**: {{ AAP_LOAD_BALANCER }}
+- **Inventory Management**: {{ AAP_INVENTORY_MANAGEMENT }}
+- **Credential Storage**: {{ AAP_CREDENTIAL_STORAGE }}
+
+---
+
+## 3. Operational Procedures
+### 3.1 Job Execution Policies
+- **Policy**: {{ AAP_JOB_EXECUTION_POLICY }}
+- Only approved job templates are executed.
+- Jobs are logged and audited for compliance.
+
+### 3.2 Maintenance Schedule
+- **Routine Maintenance**: Every {{ AAP_COMPLIANCE_AUDIT_FREQUENCY }}.
+- **Patching**: Managed through {{ AAP_INVENTORY_MANAGEMENT }}.
+
+### 3.3 Security & Compliance
+- **Compliance Standards**: {{ AAP_SECURITY_AND_COMPLIANCE | join(', ') }}
+- **Audit Frequency**: {{ AAP_COMPLIANCE_AUDIT_FREQUENCY }}
+- **Monitoring & Logging**: {{ AAP_INTEGRATION_POINTS | join(', ') }}
+
+---
+
+## 4. Technology Stack
+### 4.1 Infrastructure
+- **Network Technologies**: {{ AAP_NETWORK_TECH | join(', ') }}
+- **Security Technologies**: {{ AAP_SECURITY_TECH | join(', ') }}
+- **Compute Technologies**: {{ AAP_COMPUTE_TECH | join(', ') }}
+
+### 4.2 Configuration & Deployment
+- **Configuration Management**: {{ AAP_CONFIG_MANAGEMENT_TECH | join(', ') }}
+- **Storage Systems**: {{ AAP_STORAGE_TECH | join(', ') }}
+- **Identity & Access Management**: {{ AAP_IAM_TECH | join(', ') }}
+
+### 4.3 Monitoring & Logging
+- **Service Management Tools**: {{ AAP_SERVICE_MGMT_TECH | join(', ') }}
+- **Containerization Platforms**: {{ AAP_CONTAINERIZATION_TECH | join(', ') }}
+- **Application Management**: {{ AAP_APPLICATION_MGMT_TECH | join(', ') }}
+
+---
+
+## 5. Performance Metrics & Governance
+### 5.1 Key Metrics
+Performance of AAP is tracked using the following key metrics:
+- **Automation Coverage**: {{ AAP_METRICS | join(', ') }}
+
+### 5.2 Governance Model
+- **Role-Based Access Control (RBAC)** is enforced via {{ AAP_RBAC_PROVIDER }}.
+- **Platform Admins** manage high-level configuration and access.
+- **Operators** are limited to executing approved job templates.
+
+### 5.3 Approval Workflow
+- **Changes impacting security, compliance, or architecture require approval from the Principal Engineer.**
+- **Minor updates can be approved by Platform Engineers or Administrators.**
+
+---
+
+## 6. Roles & Responsibilities
+| Role | Responsibilities | Decision Authority |
+|------|----------------|--------------------|
+| **Principal Engineer** | Define governance, approve procedures, ensure compliance. | Final authority on governance & security. |
+| **AAP Engineer** | Implement configurations, troubleshoot job execution issues. | Executes within defined governance. |
+| **Platform Administrator** | Manage platform-wide settings, user access, and security. | Admin control over infrastructure. |
+| **Platform Operator** | Execute approved workflows, report issues. | Limited execution authority. |
+| **Platform Auditor** | Monitor compliance, review security adherence. | Read-only audit access. |
+
+---
+
+## 7. Change Management & Audit
+### 7.1 Change Control Process
+- All modifications follow a structured **change request** process.
+- Requests are reviewed based on their impact on:
+  - **Security**
+  - **Compliance**
+  - **Operational Stability**
+
+### 7.2 Compliance Auditing
+- **Audit Schedule**: {{ AAP_COMPLIANCE_AUDIT_FREQUENCY }}.
+- **Audited By**: {{ AAP_RBAC_PROVIDER }} security teams.
+- **Logged & Monitored By**: {{ AAP_INTEGRATION_POINTS | join(', ') }}.
+
+---
