@@ -36,7 +36,7 @@ permissions:
   # checks: write
 
 jobs:
-  test_the_reusable_workflow:
+  ci_cd_pipeline:
     uses: KhalilGibrotha/redesigned-guacamole/.github/workflows/ci.yml@main
     with:
       branch_name: ${{ github.ref_name }}
