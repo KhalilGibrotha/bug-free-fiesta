@@ -1,12 +1,6 @@
 name: Publish Docs to Confluence
 
 on:
-  push:
-    branches:
-      - main
-      - develop
-      - 'feature/**'
-      - 'feature/*'
   workflow_call:
     # 💡 2. Define the secrets this workflow expects to receive from the caller.
     secrets:
