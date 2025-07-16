@@ -137,17 +137,35 @@ def find_confluence_page(space, title):
     
     print("  -> Page not found. A new page will be created.")
     return None, None
+
 def upload_images(page_id, images):
     """Uploads a list of image files to a Confluence page."""
-    # This function remains the same as before.
+    print(f"  -> Uploading {len(images)} image(s) to page ID: {page_id}")
     url = f"{CONFLUENCE_URL}/rest/api/content/{page_id}/child/attachment"
-    headers = {"X-Atlassian-Token": "no-check"}
+    headers = {"X-Atlassian-Token": "no-check"} # Required for attachment uploads
+
     for image_path in images:
         file_name = os.path.basename(image_path)
-        with open(image_path, 'rb') as f:
-            files = {'file': (file_name, f)}
-            response = requests.post(url, headers=headers, auth=(CONFLUENCE_USER, CONFLUENCE_API_TOKEN), files=files)
-            response.raise_for_status()
+        print(f"    -> Preparing to upload: {file_name}")
+
+        try:
+            # Explicitly set the content type for the image
+            content_type = 'image/png' # Defaulting to PNG, can be improved later if needed
+            with open(image_path, 'rb') as f:
+                # The 'files' dictionary needs three parts: name, file object, and content type
+                files = {'file': (file_name, f, content_type)}
+
+                # Using the correct auth variables
+                response = requests.post(url, headers=headers, auth=(CONFLUENCE_USER, CONFLUENCE_API_TOKEN), files=files)
+                response.raise_for_status()
+
+            print(f"    ✅ Successfully uploaded {file_name}")
+
+        except Exception as e:
+            print(f"    ❌ Failed to upload {file_name}: {e}")
+            # Continue to the next image even if one fails
+            continue
+
 
 # --- Main Execution ---
 
