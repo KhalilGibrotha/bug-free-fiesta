@@ -44,11 +44,8 @@ def find_all_source_files(start_path):
 
         for file in files:
             if file.endswith(('.md', '.j2', '.jinja')):
-                # Skip macros files as they are for template inclusion, not publishing
-                if (file == 'macros.j2' or 
-                    file.endswith('macros.j2') or 
-                    'macros' in file.lower() or
-                    file.startswith('_')):  # Also skip files starting with underscore (common convention for includes)
+                # Skip macros or include files (conventionally prefixed with an underscore)
+                if 'macros' in file.lower() or file.startswith('_'):
                     print(f"   -> Skipping include/macros file: {file}")
                     continue
                 source_files.append(os.path.join(root, file))
