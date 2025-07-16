@@ -26,7 +26,7 @@ on:
 jobs:
   test_the_reusable_workflow:
     # This job calls the *other* workflow file in this same repo
-    uses: KhaloloGibrotha/redesigned-guacamole/.github/workflows/ci.yml
+    uses: KhalilGibrotha/redesigned-guacamole/.github/workflows/ci.yml
 
     # It passes the secrets needed for the test run
     secrets:
