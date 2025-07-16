@@ -19,12 +19,11 @@ jobs:
         with:
           python-version: '3.x'
 
-      - name: Install dependencies
-        run: pip install -r ./.github/actions/confluence-publisher/requirements.txt
-
-      # In publish-docs.yml, before "Install dependencies"
       - name: Create build directory
         run: mkdir -p build
+      
+      - name: Install dependencies
+        run: pip install -r ./.github/actions/confluence-publisher/requirements.txt
 
       - name: Run Python script
         run: python ./.github/actions/confluence-publisher/entrypoint.py
