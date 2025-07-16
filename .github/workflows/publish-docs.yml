@@ -4,10 +4,8 @@ on:
   push:
     branches:
       - main # Or whatever your primary branch is
-      - feature/* # Optional: include feature branches if needed
       - feature/** # Optional: include nested feature branches if needed
-      - feature/*/* # Optional: include nested feature branches if needed
-      - develop # Optional: include develop branch if needed
+      - feature/** # Optional: include nested feature branches if needed
 permissions:
   contents: write
 
@@ -17,6 +15,15 @@ jobs:
     steps:
       - name: Check out repository
         uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.x'
+
+      - name: Install dependencies
+        run: |
+          pip install requests pyyaml python-frontmatter jinja2 markdown-it-py mdit-py-plugins
 
       - name: Run Confluence Publisher
         uses: ./.github/actions/confluence-publisher # Use an explicit version tag or commit SHA
