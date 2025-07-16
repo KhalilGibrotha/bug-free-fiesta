@@ -49,7 +49,7 @@ def find_all_source_files(start_path):
     print(f"✅ Scan complete. Found {len(source_files)} potential source files.")
     return source_files
 
-# --- Function to Render Jinja2 Templates ---
+
 
 def render_jinja_template(content, metadata, file_path):
     """Renders a markdown content string with Jinja2, supporting variables and macros."""
@@ -92,6 +92,31 @@ def convert_md_to_confluence_xhtml(md_content, image_folder_path):
     return html_output, image_files_to_upload
 
 # --- Function to Find Existing Confluence Page ---
+
+def find_confluence_page(space, title):
+    """Finds a Confluence page by title in a given space."""
+    print(f"  -> Searching for page with title '{title}' in space '{space}'...")
+    url = f"{CONFLUENCE_URL}/rest/api/content"
+    params = {"spaceKey": space, "title": title, "expand": "version"}
+    
+    auth_tuple = (CONFLUENCE_USER, CONFLUENCE_API_TOKEN)
+    headers = {"Accept": "application/json"}
+    
+    response = requests.get(url, headers=headers, auth=auth_tuple, params=params)
+    response.raise_for_status()
+    
+    results = response.json().get("results", [])
+    if results:
+        page_id = results[0]['id']
+        version = results[0]['version']['number']
+        print(f"  -> Found existing page. ID: {page_id}, Version: {version}")
+        return page_id, version
+    
+    print("  -> Page not found. A new page will be created.")
+    return None, None
+
+
+# --- Set the Editor Version ---
 
 def set_editor_version(page_id):
     """
