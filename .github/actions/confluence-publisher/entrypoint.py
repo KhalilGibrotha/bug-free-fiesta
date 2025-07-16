@@ -219,54 +219,53 @@ def upload_images(page_id, images):
     print("✅ All images uploaded.")
 
 
+# In entrypoint.py
+
 def main():
+    # This initial check is GOOD. If credentials are missing, we should stop immediately.
     if not all([CONFLUENCE_URL, CONFLUENCE_USER, CONFLUENCE_API_TOKEN]):
-        sys.exit("🛑 Missing required Confluence credentials...")
+        sys.exit("🛑 Missing required Confluence credentials. Set CONFLUENCE_URL, CONFLUENCE_USER, and CONFLUENCE_API_TOKEN secrets.")
 
-    # 1. BUILD STEP: Render templates into the ./build directory
-    build_from_templates()
-
-    # 2. PUBLISH STEP: Scan ./build and existing repo files for .md files to publish
     print("--- PUBLISH STEP ---")
-    
-    # Scan both the repo root and the new build directory
     files_to_process = find_markdown_files(GITHUB_WORKSPACE)
-    build_dir_path = os.path.join(GITHUB_WORKSPACE, 'build')
-    if os.path.exists(build_dir_path):
-        files_to_process.extend(find_markdown_files(build_dir_path))
 
+    if not files_to_process:
+        print("✅ No Markdown files found to process.")
+        return # Exit gracefully if there's nothing to do
+
+    # This loop will now continue even if one file fails
     for file_path in files_to_process:
-        # Check if the file is in the templates dir and skip it
-        if 'docs/templates' in file_path:
-            continue
-            
+        # 💡 Wrap each file's processing in its own try/except block
         try:
+            print(f"\n--- Processing: {os.path.basename(file_path)} ---")
+
             with open(file_path, 'r', encoding='utf-8') as f:
                 post = frontmatter.load(f)
 
-            # ... (the rest of the loop is the same as before)
-            # ... It will now correctly process files from both the main repo and the /build dir
-            
-            required_keys = ['confluenceSpace', 'parentPageId', 'title']
-            if not all(key in post.metadata for key in required_keys):
-                print(f"⏭️ Skipping {os.path.basename(file_path)}: missing required front matter.")
-                continue
-            
-            print(f"\n--- Processing: {os.path.basename(file_path)} ---")
+            # Check for required metadata. If missing, skip this file.
+            required_keys = ['confluenceSpace', 'title']
+            if 'confluence' not in post.metadata or not all(key in post.metadata['confluence'] for key in required_keys):
+                print(f"⏭️ Skipping: File does not have the required 'confluence' YAML front matter block with 'title' and 'space'.")
+                continue # Move to the next file
 
-            # We use post.content here, which excludes the YAML header
+            confluence_meta = post.metadata['confluence']
+
+            # Render Jinja template from the file's content (the part after the YAML)
             rendered_content = render_jinja_template(post.content, post.metadata, file_path)
             if rendered_content is None:
+                # Error was already printed in the render function, so just skip.
                 continue
 
-            image_folder = post.metadata.get('imageFolder')
+            image_folder = confluence_meta.get('imageFolder')
             confluence_xhtml, images_to_upload = convert_md_to_confluence_xhtml(rendered_content, image_folder)
 
-            publish_to_confluence(post.metadata, confluence_xhtml, images_to_upload)
+            # Pass the specific confluence metadata to the publisher
+            publish_to_confluence(confluence_meta, confluence_xhtml, images_to_upload)
 
         except Exception as e:
-            print(f"❌ Error processing {file_path}: {e}")
-            continue
+            # If ANY error occurs for this file, print it and continue
+            print(f"❌ An error occurred while processing {os.path.basename(file_path)}: {e}")
+            print("    Moving to the next file...")
+            continue # This is the key!
 
-if __name__ == "__main__":
-    main()
+    print("\n✅ All files processed.")
