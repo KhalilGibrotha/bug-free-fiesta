@@ -1,6 +1,7 @@
 requests
 PyYAML
 python-frontmatter
-markdown-it-py
 jinja2
+markdown-it-py
 mdit-py-plugins
+linkify-it-py
