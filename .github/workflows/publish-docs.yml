@@ -3,11 +3,9 @@ name: Publish Docs to Confluence
 on:
   push:
     branches:
-      - main # Or whatever your primary branch is
-      - feature/** # Optional: include nested feature branches if needed
-      - feature/** # Optional: include nested feature branches if needed
-permissions:
-  contents: write
+      - main
+      - 'feature/**'
+      - 'feature/*'
 
 jobs:
   publish:
@@ -16,9 +14,17 @@ jobs:
       - name: Check out repository
         uses: actions/checkout@v4
 
-      - name: Run Confluence Publisher
-        uses: ./.github/actions/confluence-publisher # Use an explicit version tag or commit SHA
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.x'
+
+      - name: Install dependencies
+        run: pip install -r ./.github/actions/confluence-publisher/requirements.txt
+
+      - name: Run Python script
+        run: python ./.github/actions/confluence-publisher/entrypoint.py
         env:
-          CONFLUENCE_URL: ${{ secrets.CONFLUENCE_URL }} # Make sure this secret is defined in your repository/organization settings
-          CONFLUENCE_USER: ${{ secrets.CONFLUENCE_USER }} # Ensure this secret exists in your repository/organization settings
-          CONFLUENCE_API_TOKEN: ${{ secrets.CONFLUENCE_API_TOKEN }} # Ensure this secret exists in your repository/organization settings
+          CONFLUENCE_URL: ${{ secrets.CONFLUENCE_URL }}
+          CONFLUENCE_USER: ${{ secrets.CONFLUENCE_USER }}
+          CONFLUENCE_API_TOKEN: ${{ secrets.CONFLUENCE_API_TOKEN }}
