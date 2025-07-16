@@ -1,4 +1,4 @@
-# .github/workflows/test-publisher.yml
+# .github/workflows/test-workflow.yml
 name: Automated Test CI and Documentation CD
 
 # Trigger on pull requests made to this repository

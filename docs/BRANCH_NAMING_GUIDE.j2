@@ -9,9 +9,9 @@ confluence:
   space: "AH" # Renamed from confluenceSpace
   parentPageId: "123456789" # Optional: for creating pages under a parent
   imageFolder: "docs/images" # Optional: for finding images
-------
+---
 
-{% import './docs/macros/macros.j2' as macros %}
+{% import './docs/macros.j2' as macros %}
 
 # 🌿 Branch Naming Guide
 
@@ -120,7 +120,11 @@ When the pipeline runs, you'll see debug output in the "Quick Validation" job th
 
 ## 👥 **Team Guidelines**
 
-### For Your Dev Who Uses "ft" 
+### For Feature Development
+- Use `feature/` or `ft/` prefixes for new features
+- Keep names descriptive and concise
+- Use dashes to separate words
+
 ✅ **These will work perfectly:**
 - `ft/new-feature`
 - `ft/user-dashboard`
