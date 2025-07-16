@@ -25,11 +25,11 @@ on:
 
 jobs:
   test_the_reusable_workflow:
-    # This job calls the *other* workflow file in this same repo
-    uses: KhalilGibrotha/redesigned-guacamole/.github/workflows/ci.yml@main
-
-    # It passes the secrets needed for the test run
-    secrets:
-      CONFLUENCE_URL: ${{ secrets.CONFLUENCE_URL }}
-      CONFLUENCE_USER: ${{ secrets.CONFLUENCE_USER }}
-      CONFLUENCE_API_TOKEN: ${{ secrets.CONFLUENCE_API_TOKEN }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Call reusable workflow
+        uses: KhalilGibrotha/redesigned-guacamole/.github/workflows/ci.yml@main
+        secrets:
+          CONFLUENCE_URL: ${{ secrets.CONFLUENCE_URL }}
+          CONFLUENCE_USER: ${{ secrets.CONFLUENCE_USER }}
+          CONFLUENCE_API_TOKEN: ${{ secrets.CONFLUENCE_API_TOKEN }}
