@@ -26,6 +26,8 @@ on:
 jobs:
   test_the_reusable_workflow:
     uses: KhalilGibrotha/redesigned-guacamole/.github/workflows/ci.yml@main
+    with:
+      branch_name: ${{ github.ref_name }}
     secrets:
       CONFLUENCE_URL: ${{ secrets.CONFLUENCE_URL }}
       CONFLUENCE_USER: ${{ secrets.CONFLUENCE_USER }}
