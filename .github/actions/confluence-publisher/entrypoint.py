@@ -24,34 +24,28 @@ except KeyError as e:
 # --- Function Definitions ---
 
 def find_all_source_files(start_path):
-    print("\n🔍 Scanning for all source files...")
+    """Finds all potential source files (.md, .j2, .jinja) in the repository."""
+    print("🔍 Scanning for all source files...")
     source_files = []
     
-    # Let's see what's in the workspace directory
-    print(f"   -> Listing contents of start_path ('{start_path}'):")
-    try:
-        for item in os.listdir(start_path):
-            print(f"     - {item}")
-    except Exception as e:
-        print(f"     -> Could not list directory: {e}")
+    # Define folders to exclude, relative to the start_path
+    exclude_dirs = [
+        os.path.join(start_path, 'docs', 'templates'),
+        os.path.join(start_path, 'docs', 'macros'),
+        os.path.join(start_path, '.github') # Good practice to exclude this too
+    ]
+    print(f"   -> Excluding directories: {exclude_dirs}")
 
-    # The action's own path, to be excluded
-    action_dir = os.path.join(start_path, '.github', 'actions')
-    print(f"   -> Will exclude files found in: {action_dir}")
+    for root, _, files in os.walk(start_path):
+        # Check if the current root directory is in our exclusion list
+        if any(root.startswith(excluded_dir) for excluded_dir in exclude_dirs):
+            continue # Skip this directory and all its subdirectories
 
-    for root, dirs, files in os.walk(start_path):
-        # Exclude the action's own directory to avoid loops
-        if root.startswith(action_dir):
-            continue
-        
-        print(f"   -> Traversing directory: {root}")
         for file in files:
             if file.endswith(('.md', '.j2', '.jinja')):
-                full_path = os.path.join(root, file)
-                print(f"     -> Found potential source file: {file}")
-                source_files.append(full_path)
+                source_files.append(os.path.join(root, file))
 
-    print(f"\n✅ Scan complete. Found {len(source_files)} total files.")
+    print(f"✅ Scan complete. Found {len(source_files)} potential source files.")
     return source_files
 
 def render_jinja_template(content, metadata, file_path):
