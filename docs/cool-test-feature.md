@@ -10,6 +10,8 @@ varsFile: "docs/vars.yaml"
 
 This document describes the architecture for our awesome new feature.
 
+Now I am updating the document to make sure that it updates correctly!
+
 ## Architecture Diagram
 
 Here is the main diagram:
