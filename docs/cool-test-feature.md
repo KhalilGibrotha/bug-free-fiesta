@@ -6,7 +6,7 @@ project_status: "In Review"
 # All Confluence settings are now nested under this block
 confluence:
   title: "My Awesome New Feature"
-  space: "DEV" # Renamed from confluenceSpace
+  space: "AH" # Renamed from confluenceSpace
   parentPageId: "123456789" # Optional: for creating pages under a parent
   imageFolder: "docs/images" # Optional: for finding images
 ------
