@@ -32,15 +32,11 @@ def find_markdown_files(start_path):
     print(f"✅ Found {len(markdown_files)} Markdown files.")
     return markdown_files
 
-def render_jinja_template(file_path, metadata):
+def render_jinja_template(content, metadata, file_path):
     """
-    Renders the markdown content with Jinja2, supporting variables and macros.
+    Renders a markdown content string with Jinja2, supporting variables and macros.
     """
     print("✨ Rendering Jinja2 template...")
-
-    # The directory containing the file, for relative path resolution
-    template_dir = os.path.dirname(file_path)
-    template_file_name = os.path.basename(file_path)
 
     # Set up the Jinja2 environment to look for templates starting from the repo root.
     # This allows {% from 'docs/macros.jinja' import ... %} to work from any file.
@@ -50,6 +46,7 @@ def render_jinja_template(file_path, metadata):
     variables = {}
     vars_file_path = metadata.get('varsFile')
     if vars_file_path:
+        # ... (rest of the variable loading logic is the same)
         full_vars_path = os.path.join(GITHUB_WORKSPACE, vars_file_path)
         if os.path.exists(full_vars_path):
             print(f"  -> Loading variables from: {vars_file_path}")
@@ -58,16 +55,13 @@ def render_jinja_template(file_path, metadata):
         else:
             print(f"⚠️ Vars file not found at {full_vars_path}. Skipping.")
     
-    # Load the template file itself
     try:
-        # We need to provide the path relative to the GITHUB_WORKSPACE for the loader
-        relative_file_path = os.path.relpath(file_path, GITHUB_WORKSPACE)
-        template = env.get_template(relative_file_path)
+        # Load the content string directly as a template
+        template = env.from_string(content)
         return template.render(variables)
     except Exception as e:
         print(f"❌ Error rendering Jinja template for {file_path}: {e}")
-        return None # Return None to signal an error
-
+        return None
 
 def convert_md_to_confluence_xhtml(md_content, image_folder_path):
     """Converts rendered Markdown to Confluence XHTML and finds images."""
@@ -166,6 +160,48 @@ def publish_to_confluence(metadata, content, images):
     if images:
         upload_images(new_page_id, images)
 
+def build_from_templates():
+    """Finds and renders Jinja templates, saving them as Markdown files."""
+    print("\n--- BUILD STEP ---")
+    build_dir = os.path.join(GITHUB_WORKSPACE, 'build')
+    templates_dir = os.path.join(GITHUB_WORKSPACE, 'docs', 'templates')
+
+    if not os.path.exists(templates_dir):
+        print("No 'docs/templates' directory found. Skipping build step.")
+        return
+
+    for filename in os.listdir(templates_dir):
+        # We assume templates end with .j2 or .jinja
+        if not (filename.endswith('.j2') or filename.endswith('.jinja')):
+            continue
+
+        template_path = os.path.join(templates_dir, filename)
+        print(f"🔨 Building from template: {filename}")
+        
+        try:
+            with open(template_path, 'r') as f:
+                # Use frontmatter to get metadata needed for rendering
+                post = frontmatter.load(f)
+            
+            # Render the template content
+            rendered_content = render_jinja_template(post.content, post.metadata, template_path)
+            
+            if rendered_content:
+                # Create the final markdown content, including the YAML header
+                final_doc = f"---\n{yaml.dump(post.metadata)}---\n\n{rendered_content}"
+                
+                # Save the new .md file in the build directory
+                output_filename = filename.replace('.j2', '').replace('.jinja', '')
+                output_path = os.path.join(build_dir, output_filename)
+                
+                with open(output_path, 'w') as f_out:
+                    f_out.write(final_doc)
+                print(f"✅ Saved to: {output_path}")
+
+        except Exception as e:
+            print(f"❌ Error building template {filename}: {e}")
+
+    print("--- BUILD COMPLETE ---\n")
 
 def upload_images(page_id, images):
     """Uploads a list of image files to a Confluence page."""
@@ -183,19 +219,34 @@ def upload_images(page_id, images):
     print("✅ All images uploaded.")
 
 
-# --- Main Execution ---
 def main():
     if not all([CONFLUENCE_URL, CONFLUENCE_USER, CONFLUENCE_API_TOKEN]):
-        sys.exit("🛑 Missing required Confluence credentials. Set CONFLUENCE_URL, CONFLUENCE_USER, and CONFLUENCE_API_TOKEN secrets.")
+        sys.exit("🛑 Missing required Confluence credentials...")
 
+    # 1. BUILD STEP: Render templates into the ./build directory
+    build_from_templates()
+
+    # 2. PUBLISH STEP: Scan ./build and existing repo files for .md files to publish
+    print("--- PUBLISH STEP ---")
+    
+    # Scan both the repo root and the new build directory
     files_to_process = find_markdown_files(GITHUB_WORKSPACE)
+    build_dir_path = os.path.join(GITHUB_WORKSPACE, 'build')
+    if os.path.exists(build_dir_path):
+        files_to_process.extend(find_markdown_files(build_dir_path))
 
     for file_path in files_to_process:
+        # Check if the file is in the templates dir and skip it
+        if 'docs/templates' in file_path:
+            continue
+            
         try:
             with open(file_path, 'r', encoding='utf-8') as f:
                 post = frontmatter.load(f)
 
-            # Check for required metadata
+            # ... (the rest of the loop is the same as before)
+            # ... It will now correctly process files from both the main repo and the /build dir
+            
             required_keys = ['confluenceSpace', 'parentPageId', 'title']
             if not all(key in post.metadata for key in required_keys):
                 print(f"⏭️ Skipping {os.path.basename(file_path)}: missing required front matter.")
@@ -203,19 +254,14 @@ def main():
             
             print(f"\n--- Processing: {os.path.basename(file_path)} ---")
 
-            # --- New and improved code ---
-            # 1. Render Jinja templates
-            # We now pass the full file_path and the entire metadata dictionary
-            rendered_content = render_jinja_template(file_path, post.metadata)
+            # We use post.content here, which excludes the YAML header
+            rendered_content = render_jinja_template(post.content, post.metadata, file_path)
             if rendered_content is None:
-                # If rendering failed, skip this file
                 continue
 
-            # 2. Convert to Confluence format and find images
             image_folder = post.metadata.get('imageFolder')
             confluence_xhtml, images_to_upload = convert_md_to_confluence_xhtml(rendered_content, image_folder)
 
-            # 3. Publish to Confluence
             publish_to_confluence(post.metadata, confluence_xhtml, images_to_upload)
 
         except Exception as e:
