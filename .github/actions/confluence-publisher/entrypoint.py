@@ -82,18 +82,29 @@ def convert_md_to_confluence_xhtml(md_content, image_folder_path):
 def find_confluence_page(space, title):
     """Finds a Confluence page by title in a given space."""
     print(f"🔎 Searching for page with title '{title}' in space '{space}'...")
-    url = f"{CONFLUENCE_URL}/rest/api/content"
+    
+    # Let's add this for better debugging!
+    endpoint_url = f"{CONFLUENCE_URL}/rest/api/content"
+    print(f"  -> Calling API endpoint: {endpoint_url}")
+
     params = {"spaceKey": space, "title": title, "expand": "version"}
-    response = requests.get(url, headers=confluence_headers, auth=confluence_auth, params=params)
-    response.raise_for_status()
-    results = response.json().get("results", [])
-    if results:
-        page_id = results[0]['id']
-        version = results[0]['version']['number']
-        print(f"✅ Found existing page. ID: {page_id}, Version: {version}")
-        return page_id, version
-    print("📄 Page not found. Will create a new one.")
-    return None, None
+    try:
+        response = requests.get(endpoint_url, headers=confluence_headers, auth=confluence_auth, params=params)
+        response.raise_for_status() # This will raise an error on 4xx or 5xx responses
+        results = response.json().get("results", [])
+        if results:
+            page_id = results[0]['id']
+            version = results[0]['version']['number']
+            print(f"✅ Found existing page. ID: {page_id}, Version: {version}")
+            return page_id, version
+        print("📄 Page not found. Will create a new one.")
+        return None, None
+    except requests.exceptions.HTTPError as err:
+        print(f"❌ HTTP Error received: {err}")
+        # Add more context for 403 errors
+        if err.response.status_code == 403:
+            print("  -> A 403 Forbidden error suggests an issue with permissions, the API token, or IP allowlisting.")
+        sys.exit(1) # Exit with an error code
 
 
 def publish_to_confluence(metadata, content, images):
