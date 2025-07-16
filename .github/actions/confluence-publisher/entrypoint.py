@@ -79,7 +79,7 @@ def convert_md_to_confluence_xhtml(md_content, image_folder_path):
     """Converts rendered Markdown to Confluence XHTML and finds images."""
     # This function remains the same as before.
     print("🔄 Converting Markdown to Confluence XHTML...")
-    md = MarkdownIt("commonmark", {"breaks": True, "html": True}).use(admon_plugin)
+    md = MarkdownIt("gfm-like", {"breaks": True, "html": True}).use(admon_plugin)
     html_output = md.render(md_content)
     image_files_to_upload = []
     if image_folder_path and os.path.exists(os.path.join(GITHUB_WORKSPACE, image_folder_path)):
