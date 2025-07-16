@@ -32,23 +32,41 @@ def find_markdown_files(start_path):
     print(f"✅ Found {len(markdown_files)} Markdown files.")
     return markdown_files
 
-def render_jinja_template(content, vars_file_path):
-    """Renders the markdown content with Jinja2 if a vars file is specified."""
-    if not vars_file_path:
-        return content
+def render_jinja_template(file_path, metadata):
+    """
+    Renders the markdown content with Jinja2, supporting variables and macros.
+    """
+    print("✨ Rendering Jinja2 template...")
 
-    full_vars_path = os.path.join(GITHUB_WORKSPACE, vars_file_path)
-    if not os.path.exists(full_vars_path):
-        print(f"⚠️ Vars file not found at {full_vars_path}. Skipping templating.")
-        return content
+    # The directory containing the file, for relative path resolution
+    template_dir = os.path.dirname(file_path)
+    template_file_name = os.path.basename(file_path)
 
-    with open(full_vars_path, 'r') as f:
-        variables = yaml.safe_load(f)
+    # Set up the Jinja2 environment to look for templates starting from the repo root.
+    # This allows {% from 'docs/macros.jinja' import ... %} to work from any file.
+    env = Environment(loader=FileSystemLoader(searchpath=GITHUB_WORKSPACE), autoescape=True)
 
-    # Use a string-based loader for Jinja
-    env = Environment(loader=FileSystemLoader(searchpath=GITHUB_WORKSPACE))
-    template = env.from_string(content)
-    return template.render(variables)
+    # Load variables if a vars file is specified
+    variables = {}
+    vars_file_path = metadata.get('varsFile')
+    if vars_file_path:
+        full_vars_path = os.path.join(GITHUB_WORKSPACE, vars_file_path)
+        if os.path.exists(full_vars_path):
+            print(f"  -> Loading variables from: {vars_file_path}")
+            with open(full_vars_path, 'r') as f:
+                variables = yaml.safe_load(f)
+        else:
+            print(f"⚠️ Vars file not found at {full_vars_path}. Skipping.")
+    
+    # Load the template file itself
+    try:
+        # We need to provide the path relative to the GITHUB_WORKSPACE for the loader
+        relative_file_path = os.path.relpath(file_path, GITHUB_WORKSPACE)
+        template = env.get_template(relative_file_path)
+        return template.render(variables)
+    except Exception as e:
+        print(f"❌ Error rendering Jinja template for {file_path}: {e}")
+        return None # Return None to signal an error
 
 
 def convert_md_to_confluence_xhtml(md_content, image_folder_path):
@@ -185,8 +203,13 @@ def main():
             
             print(f"\n--- Processing: {os.path.basename(file_path)} ---")
 
+            # --- New and improved code ---
             # 1. Render Jinja templates
-            rendered_content = render_jinja_template(post.content, post.metadata.get('varsFile'))
+            # We now pass the full file_path and the entire metadata dictionary
+            rendered_content = render_jinja_template(file_path, post.metadata)
+            if rendered_content is None:
+                # If rendering failed, skip this file
+                continue
 
             # 2. Convert to Confluence format and find images
             image_folder = post.metadata.get('imageFolder')
