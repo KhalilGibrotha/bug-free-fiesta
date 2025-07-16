@@ -1,17 +1,17 @@
-{% import 'macros.j2' as macros %}
-
 ---
-# You can have other metadata here, like variables for Jinja
+# Metadata for Confluence Publishing
 varsFile: "docs/vars.yaml"
 project_status: "In Review"
 
-  # All Confluence settings are now nested under this block
+# Confluence Metadata
 confluence:
   title: "Ansible Automation Platform (AAP) Operations Manual"
   confluenceSpace: "AH"
   parent_page_id: "1343742"
   image_folder: "docs/images"
 ---
+
+{% import 'macros.j2' as macros %}
 
 # {{ ORGANIZATION_NAME }} Operations Manual
 ## 1. Introduction
