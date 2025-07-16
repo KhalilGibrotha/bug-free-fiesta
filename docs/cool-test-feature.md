@@ -1,5 +1,5 @@
 ---
-title: "My Awesome New Feature"
+confluence_title: "My Awesome New Feature"
 confluenceSpace: "AH"
 parentPageId: "1343742" # The ID of the parent page in Confluence
 imageFolder: "docs/images"
