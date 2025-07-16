@@ -1,10 +1,15 @@
 ---
-confluence_title: "My Awesome New Feature"
-confluenceSpace: "AH"
-parentPageId: "1343742" # The ID of the parent page in Confluence
-imageFolder: "docs/images"
+# You can have other metadata here, like variables for Jinja
 varsFile: "docs/vars.yaml"
----
+project_status: "In Review"
+
+# All Confluence settings are now nested under this block
+confluence:
+  title: "My Awesome New Feature"
+  space: "DEV" # Renamed from confluenceSpace
+  parentPageId: "123456789" # Optional: for creating pages under a parent
+  imageFolder: "docs/images" # Optional: for finding images
+------
 
 # {{ project_name }} Documentation
 
