@@ -120,16 +120,23 @@ def publish_to_confluence(metadata, content, images):
 
 def find_confluence_page(space, title):
     """Finds a Confluence page by title in a given space."""
-    # This function remains the same as before.
+    print(f"  -> Searching for page with title '{title}' in space '{space}'...")
     url = f"{CONFLUENCE_URL}/rest/api/content"
     params = {"spaceKey": space, "title": title, "expand": "version"}
-    response = requests.get(url, headers={"Accept": "application/json"}, auth=(CONFLUENCE_USER, CONfluence_API_TOKEN), params=params)
+    
+    # The typo was here:
+    response = requests.get(url, headers={"Accept": "application/json"}, auth=(CONFLUENCE_USER, CONFLUENCE_API_TOKEN), params=params)
+    
     response.raise_for_status()
     results = response.json().get("results", [])
     if results:
-        return results[0]['id'], results[0]['version']['number']
+        page_id = results[0]['id']
+        version = results[0]['version']['number']
+        print(f"  -> Found existing page. ID: {page_id}, Version: {version}")
+        return page_id, version
+    
+    print("  -> Page not found. A new page will be created.")
     return None, None
-
 def upload_images(page_id, images):
     """Uploads a list of image files to a Confluence page."""
     # This function remains the same as before.
