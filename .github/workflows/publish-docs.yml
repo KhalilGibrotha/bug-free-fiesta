@@ -19,9 +19,6 @@ jobs:
         with:
           python-version: '3.x'
 
-      - name: Create build directory
-        run: mkdir -p build
-      
       - name: Install dependencies
         run: pip install -r ./.github/actions/confluence-publisher/requirements.txt
 

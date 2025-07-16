@@ -21,16 +21,19 @@ confluence_headers = {"Content-Type": "application/json", "Accept": "application
 
 # --- Helper Functions ---
 
-def find_markdown_files(start_path):
-    """Finds all Markdown files in the repository."""
-    print("🔍 Scanning for Markdown files...")
-    markdown_files = []
+def find_all_source_files(start_path):
+    """Finds all potential source files (.md, .j2, .jinja) in the repository."""
+    print("🔍 Scanning for all source files...")
+    source_files = []
     for root, _, files in os.walk(start_path):
+        # Exclude the action's own directory
+        if '.github/actions' in root:
+            continue
         for file in files:
-            if file.endswith(".md"):
-                markdown_files.append(os.path.join(root, file))
-    print(f"✅ Found {len(markdown_files)} Markdown files.")
-    return markdown_files
+            if file.endswith(('.md', '.j2', '.jinja')):
+                source_files.append(os.path.join(root, file))
+    print(f"✅ Found {len(source_files)} potential source files.")
+    return source_files
 
 def render_jinja_template(content, metadata, file_path):
     """
@@ -222,50 +225,48 @@ def upload_images(page_id, images):
 # In entrypoint.py
 
 def main():
-    # This initial check is GOOD. If credentials are missing, we should stop immediately.
     if not all([CONFLUENCE_URL, CONFLUENCE_USER, CONFLUENCE_API_TOKEN]):
-        sys.exit("🛑 Missing required Confluence credentials. Set CONFLUENCE_URL, CONFLUENCE_USER, and CONFLUENCE_API_TOKEN secrets.")
+        sys.exit("🛑 Missing required Confluence credentials.")
 
-    print("--- PUBLISH STEP ---")
-    files_to_process = find_markdown_files(GITHUB_WORKSPACE)
+    print("\n--- UNIFIED PUBLISH PROCESS ---")
+    source_files = find_all_source_files(GITHUB_WORKSPACE)
 
-    if not files_to_process:
-        print("✅ No Markdown files found to process.")
-        return # Exit gracefully if there's nothing to do
+    if not source_files:
+        print("✅ No source files found to process.")
+        return
 
-    # This loop will now continue even if one file fails
-    for file_path in files_to_process:
-        # 💡 Wrap each file's processing in its own try/except block
+    for file_path in source_files:
         try:
-            print(f"\n--- Processing: {os.path.basename(file_path)} ---")
-
             with open(file_path, 'r', encoding='utf-8') as f:
                 post = frontmatter.load(f)
 
-            # Check for required metadata. If missing, skip this file.
-            required_keys = ['confluenceSpace', 'title']
-            if 'confluence' not in post.metadata or not all(key in post.metadata['confluence'] for key in required_keys):
-                print(f"⏭️ Skipping: File does not have the required 'confluence' YAML front matter block with 'title' and 'space'.")
-                continue # Move to the next file
-
-            confluence_meta = post.metadata['confluence']
-
-            # Render Jinja template from the file's content (the part after the YAML)
-            rendered_content = render_jinja_template(post.content, post.metadata, file_path)
-            if rendered_content is None:
-                # Error was already printed in the render function, so just skip.
+            # KEY CHECK: Is this a publishable page?
+            # We check if it has a `confluence.title` key. This lets us ignore
+            # files that are just macros (like macros.jinja).
+            if 'confluence' not in post.metadata or 'title' not in post.metadata.get('confluence', {}):
+                print(f"⏭️ Skipping {os.path.basename(file_path)}: Not a publishable page (missing 'confluence.title' front matter).")
                 continue
 
+            print(f"\n--- Processing: {os.path.basename(file_path)} ---")
+            confluence_meta = post.metadata['confluence']
+
+            # Render the content using Jinja. This works for plain MD (no Jinja tags)
+            # and full templates. We pass the full metadata to be used by the template.
+            rendered_content = render_jinja_template(post.content, post.metadata, file_path)
+            if rendered_content is None:
+                continue  # Skip on rendering error
+
+            # Convert to Confluence format and find images
             image_folder = confluence_meta.get('imageFolder')
             confluence_xhtml, images_to_upload = convert_md_to_confluence_xhtml(rendered_content, image_folder)
 
-            # Pass the specific confluence metadata to the publisher
+            # Publish to Confluence
             publish_to_confluence(confluence_meta, confluence_xhtml, images_to_upload)
 
         except Exception as e:
-            # If ANY error occurs for this file, print it and continue
+            # If ANY error occurs for this file, print it and continue to the next.
             print(f"❌ An error occurred while processing {os.path.basename(file_path)}: {e}")
             print("    Moving to the next file...")
-            continue # This is the key!
+            continue
 
     print("\n✅ All files processed.")
