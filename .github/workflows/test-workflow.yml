@@ -37,7 +37,7 @@ permissions:
 
 jobs:
   ci_cd_pipeline:
-    uses: KhalilGibrotha/redesigned-guacamole/.github/workflows/ci.yml@bbd7e14abc719a2192c75eb1734ef3e63359f5b4
+    uses: KhalilGibrotha/redesigned-guacamole/.github/workflows/ci.yml@develop
     with:
       branch_name: ${{ github.ref_name }}
     secrets:
