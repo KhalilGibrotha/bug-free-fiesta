@@ -1,5 +1,3 @@
-name: Confluence Publisher
-description: Publishes Markdown docs to Confluence.
 runs:
   using: 'composite'
   steps:
@@ -7,18 +5,12 @@ runs:
       uses: actions/setup-python@v4
       with:
         python-version: '3.x'
-    - name: Install dependencies
+    - name: Install dependencies and publish to Confluence
       run: |
         if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+        python .github/actions/confluence-publisher/entrypoint.py
       shell: bash
-      run: python .github/actions/confluence-publisher/entrypoint.py
-      run: python entrypoint.py
-      shell: bash
-            env:
-              CONFLUENCE_URL: ${{ env.CONFLUENCE_URL }}
-              CONFLUENCE_USER: ${{ env.CONFLUENCE_USER }}
+      env:
+        CONFLUENCE_URL: ${{ env.CONFLUENCE_URL }}
+        CONFLUENCE_USER: ${{ env.CONFLUENCE_USER }}
         CONFLUENCE_API_TOKEN: ${{ env.CONFLUENCE_API_TOKEN }}
-      # Ensure the following environment variables are set in your workflow or repository secrets:
-      #   - CONFLUENCE_URL
-      #   - CONFLUENCE_USER
-      #   - CONFLUENCE_API_TOKEN
