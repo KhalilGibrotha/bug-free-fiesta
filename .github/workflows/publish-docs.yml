@@ -4,8 +4,18 @@ on:
   push:
     branches:
       - main
+      - develop
       - 'feature/**'
       - 'feature/*'
+  workflow_call:
+    # 💡 2. Define the secrets this workflow expects to receive from the caller.
+    secrets:
+      CONFLUENCE_URL:
+        required: true
+      CONFLUENCE_USER:
+        required: true
+      CONFLUENCE_API_TOKEN:
+        required: true
 
 jobs:
   publish:
