@@ -1,44 +1,34 @@
-# .github/workflows/test-workflow.yml
-name: Automated Test CI and Documentation CD
+name: � CI/CD Pipeline
 
-# Trigger on pull requests made to this repository
 on:
   push:
     branches:
       - main
       - develop
-      # Feature branches - multiple prefixes supported
-      - 'feature/**'     # feature/user-management, feature/auth/login, etc.
-      - 'feature/*'      # feature/login, feature/user-auth, etc.
-      - 'ft/**'          # ft/user-management, ft/auth/login, etc.
-      - 'ft/*'           # ft/login, ft/user-auth, etc.
-      # Release branches
-      - 'release/**'     # release/v1.2.0, release/hotfix/v1.1.1, etc.
-      - 'release/*'      # release/v1.2.0, release/sprint-1, etc.
-      - 'rel/**'         # rel/v1.2.0 (alternative prefix)
-      - 'rel/*'          # rel/v1.2.0 (alternative prefix)
-      # Hotfix branches
-      - 'hotfix/**'      # hotfix/critical-bug, hotfix/security/auth-fix, etc.
-      - 'hotfix/*'       # hotfix/critical-bug, hotfix/auth-fix, etc.
-      - 'hf/**'          # hf/critical-bug (alternative prefix)
-      - 'hf/*'           # hf/critical-bug (alternative prefix)
+      - 'feature/**'
+      - 'release/**'
+      - 'hotfix/**'
+  pull_request:
+    branches: [main, develop]
+  workflow_dispatch:
+    inputs:
+      full_scan:
+        description: 'Run full codebase scan'
+        type: boolean
+        default: true
 
-# Grant all permissions needed by the reusable workflow
 permissions:
   contents: read
   packages: read
   statuses: write
   security-events: write
   actions: read
-  # I've commented these out since they are not needed in this context:
-  # pull-requests: write
-  # issues: write
-  # checks: write
 
 jobs:
-  ci_cd_pipeline:
-    uses: KhalilGibrotha/redesigned-guacamole/.github/workflows/ci.yml@develop
+  ci-cd-pipeline:
+    uses: KhalilGibrotha/redesigned-guacamole/.github/workflows/ci-optimized.yml@main
     with:
+      full_scan: ${{ inputs.full_scan || true }}
       branch_name: ${{ github.ref_name }}
     secrets:
       CONFLUENCE_URL: ${{ secrets.CONFLUENCE_URL }}
