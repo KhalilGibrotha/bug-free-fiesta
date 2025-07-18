@@ -1,25 +1,25 @@
 ---
 # Metadata for Confluence Publishing
-varsFile: "vars/aap.yml"
+varsFile: "docs/vars.yaml"
 project_status: "In Review"
 
 # Confluence Metadata
 confluence:
   title: "Ansible Automation Platform (AAP) Operations Manual"
   space: "AH"
-  category: "operations"  # Uses hierarchy: operations -> root
-  imageFolder: "docs/images"
+  parentPageId: "1343742"
+  iimageFolder: "docs/images"
 ---
 
 {% import './docs/macros/macros.j2' as macros %}
 
-# {{ organization_name }} Operations Manual
+# {{ ORGANIZATION_NAME }} Operations Manual
 ## 1. Introduction
 ### 1.1 Purpose
-This document outlines the operational procedures, maintenance guidelines, and governance structure for {{ organization_name }}'s Ansible Automation Platform (AAP) infrastructure.
+This document outlines the operational procedures, maintenance guidelines, and governance structure for {{ ORGANIZATION_NAME }}'s Ansible Automation Platform (AAP) infrastructure.
 
 ### 1.2 Scope
-This manual applies to all automation operations within {{ sub_organization_name }}, including job execution, security policies, access management, and compliance.
+This manual applies to all automation operations within {{ SUB_ORGANIZATION_NAME }}, including job execution, security policies, access management, and compliance.
 
 ### 1.3 Audience
 - **Platform Engineers** – Responsible for maintaining and optimizing automation workflows.
@@ -31,65 +31,65 @@ This manual applies to all automation operations within {{ sub_organization_name
 
 ## 2. Platform Overview
 ### 2.1 Environment & Infrastructure
-- **Environment Type**: {{ environment_type }}
-- **Primary Objectives**: {{ main_objectives | join(', ') }}
+- **Environment Type**: {{ ENVIRONMENT_TYPE }}
+- **Primary Objectives**: {{ MAIN_OBJECTIVES | join(', ') }}
 - **Supported OS Versions**: 
-  - **RHEL**: {{ rhel_versions | join(', ') }}
-  - **Windows**: {{ windows_versions | join(', ') }}
-- **Ansible Automation Platform Version**: {{ aap_version }}
-- **Red Hat Satellite Version**: {{ satellite_version }}
+  - **RHEL**: {{ RHEL_VERSIONS | join(', ') }}
+  - **Windows**: {{ WINDOWS_VERSIONS | join(', ') }}
+- **Ansible Automation Platform Version**: {{ AAP_VERSION }}
+- **Red Hat Satellite Version**: {{ SATELLITE_VERSION }}
 
 ### 2.2 Infrastructure Components
-- **Identity Management System**: {{ identity_management_system }}
-- **RBAC Provider**: {{ aap_rbac_provider }}
-- **Load Balancer**: {{ aap_load_balancer }}
-- **Inventory Management**: {{ aap_inventory_management }}
-- **Credential Storage**: {{ aap_credential_storage }}
+- **Identity Management System**: {{ IDENTITY_MANAGEMENT_SYSTEM }}
+- **RBAC Provider**: {{ AAP_RBAC_PROVIDER }}
+- **Load Balancer**: {{ AAP_LOAD_BALANCER }}
+- **Inventory Management**: {{ AAP_INVENTORY_MANAGEMENT }}
+- **Credential Storage**: {{ AAP_CREDENTIAL_STORAGE }}
 
 ---
 
 ## 3. Operational Procedures
 ### 3.1 Job Execution Policies
-- **Policy**: {{ aap_job_execution_policy }}
+- **Policy**: {{ AAP_JOB_EXECUTION_POLICY }}
 - Only approved job templates are executed.
 - Jobs are logged and audited for compliance.
 
 ### 3.2 Maintenance Schedule
-- **Routine Maintenance**: Every {{ aap_compliance_audit_frequency }}.
-- **Patching**: Managed through {{ aap_inventory_management }}.
+- **Routine Maintenance**: Every {{ AAP_COMPLIANCE_AUDIT_FREQUENCY }}.
+- **Patching**: Managed through {{ AAP_INVENTORY_MANAGEMENT }}.
 
 ### 3.3 Security & Compliance
-- **Compliance Standards**: {{ aap_security_and_compliance | join(', ') }}
-- **Audit Frequency**: {{ aap_compliance_audit_frequency }}
-- **Monitoring & Logging**: {{ aap_integration_points | join(', ') }}
+- **Compliance Standards**: {{ AAP_SECURITY_AND_COMPLIANCE | join(', ') }}
+- **Audit Frequency**: {{ AAP_COMPLIANCE_AUDIT_FREQUENCY }}
+- **Monitoring & Logging**: {{ AAP_INTEGRATION_POINTS | join(', ') }}
 
 ---
 
 ## 4. Technology Stack
 ### 4.1 Infrastructure
-- **Network Technologies**: {{ aap_network_tech | join(', ') }}
-- **Security Technologies**: {{ aap_security_tech | join(', ') }}
-- **Compute Technologies**: {{ aap_compute_tech | join(', ') }}
+- **Network Technologies**: {{ AAP_NETWORK_TECH | join(', ') }}
+- **Security Technologies**: {{ AAP_SECURITY_TECH | join(', ') }}
+- **Compute Technologies**: {{ AAP_COMPUTE_TECH | join(', ') }}
 
 ### 4.2 Configuration & Deployment
-- **Configuration Management**: {{ aap_config_management_tech | join(', ') }}
-- **Storage Systems**: {{ aap_storage_tech | join(', ') }}
-- **Identity & Access Management**: {{ aap_iam_tech | join(', ') }}
+- **Configuration Management**: {{ AAP_CONFIG_MANAGEMENT_TECH | join(', ') }}
+- **Storage Systems**: {{ AAP_STORAGE_TECH | join(', ') }}
+- **Identity & Access Management**: {{ AAP_IAM_TECH | join(', ') }}
 
 ### 4.3 Monitoring & Logging
-- **Service Management Tools**: {{ aap_service_mgmt_tech | join(', ') }}
-- **Containerization Platforms**: {{ aap_containerization_tech | join(', ') }}
-- **Application Management**: {{ aap_application_mgmt_tech | join(', ') }}
+- **Service Management Tools**: {{ AAP_SERVICE_MGMT_TECH | join(', ') }}
+- **Containerization Platforms**: {{ AAP_CONTAINERIZATION_TECH | join(', ') }}
+- **Application Management**: {{ AAP_APPLICATION_MGMT_TECH | join(', ') }}
 
 ---
 
 ## 5. Performance Metrics & Governance
 ### 5.1 Key Metrics
 Performance of AAP is tracked using the following key metrics:
-- **Automation Coverage**: {{ aap_metrics | join(', ') }}
+- **Automation Coverage**: {{ AAP_METRICS | join(', ') }}
 
 ### 5.2 Governance Model
-- **Role-Based Access Control (RBAC)** is enforced via {{ aap_rbac_provider }}.
+- **Role-Based Access Control (RBAC)** is enforced via {{ AAP_RBAC_PROVIDER }}.
 - **Platform Admins** manage high-level configuration and access.
 - **Operators** are limited to executing approved job templates.
 
@@ -119,8 +119,8 @@ Performance of AAP is tracked using the following key metrics:
   - **Operational Stability**
 
 ### 7.2 Compliance Auditing
-- **Audit Schedule**: {{ aap_compliance_audit_frequency }}.
-- **Audited By**: {{ aap_rbac_provider }} security teams.
-- **Logged & Monitored By**: {{ aap_integration_points | join(', ') }}.
+- **Audit Schedule**: {{ AAP_COMPLIANCE_AUDIT_FREQUENCY }}.
+- **Audited By**: {{ AAP_RBAC_PROVIDER }} security teams.
+- **Logged & Monitored By**: {{ AAP_INTEGRATION_POINTS | join(', ') }}.
 
 ---

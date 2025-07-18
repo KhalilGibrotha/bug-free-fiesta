@@ -1,13 +1,14 @@
+
 ---
 # Metadata for Confluence Publishing
-varsFile: "vars/aap.yml"
+varsFile: "docs/vars.yaml"
 project_status: "In Review"
 
 # Confluence Metadata
 confluence:
   title: "Ansible Automation Platform (AAP) Policy & Governance"
   space: "AH"
-  category: "governance"  # Uses hierarchy: governance -> root
+  parentPageId: "1343742" # The ID of the parent page in Confluence
   imageFolder: "docs/images"
 ---
 
@@ -19,15 +20,15 @@ confluence:
 
 # 1. Introduction
 
-This policy and governance document establishes the foundation for Red Hat Ansible Automation Platform (AAP) implementation at {{ organization_name }}. It defines our comprehensive governance framework, encompassing user roles, role-based access control (RBAC), and permission structures that safeguard our automation workflows within {{ sub_organization_name }}. This document also outlines the AAP architecture, execution model, and key concepts, clearly understanding the platform's operational structure.
+This policy and governance document establishes the foundation for Red Hat Ansible Automation Platform (AAP) implementation at {{ ORGANIZATION_NAME }}. It defines our comprehensive governance framework, encompassing user roles, role-based access control (RBAC), and permission structures that safeguard our automation workflows within {{ SUB_ORGANIZATION_NAME }}. This document also outlines the AAP architecture, execution model, and key concepts, clearly understanding the platform's operational structure.
 
 
 ## Purpose
-This document serves multiple critical functions within our automation strategy. It establishes the fundamental governance structure for AAP, including organization design, role-based access control, and permission management. These elements work together to ensure secure, scalable automation practices that align with {{ organization_name }}'s operational requirements and {{ sub_organization_name }}' {{ sub_org_objective_title }} ({{ macros.oxford_comma_list(main_objectives) }}).
+This document serves multiple critical functions within our automation strategy. It establishes the fundamental governance structure for AAP, including organization design, role-based access control, and permission management. These elements work together to ensure secure, scalable automation practices that align with {{ ORGANIZATION_NAME }}'s operational requirements and {{ SUB_ORGANIZATION_NAME }}' {{ SUB_ORG_OBJECTIVE_TITLE }} ({{ macros.oxford_comma_list(MAIN_OBJECTIVES) }}).
 
-Our governance framework enforces strict RBAC policies through {{ macros.oxford_comma_list(aap_security_and_compliance) }} to ensure only authorized personnel can create, modify, or execute automation workflows. This control extends beyond basic access management through comprehensive auditing policies that track job executions, access modifications, and automation changes. These measures ensure compliance with both industry standards and our internal security policies, with integration points {{ macros.oxford_comma_list(aap_integration_points) }} providing a centralized view of platform activities.
+Our governance framework enforces strict RBAC policies through {{ macros.oxford_comma_list(AAP_SECURITY_AND_COMPLIANCE) }} to ensure only authorized personnel can create, modify, or execute automation workflows. This control extends beyond basic access management through comprehensive auditing policies that track job executions, access modifications, and automation changes. These measures ensure compliance with both industry standards and our internal security policies, with integration points {{ macros.oxford_comma_list(AAP_INTEGRATION_POINTS) }} providing a centralized view of platform activities.
 
-The successful implementation of this governance framework requires active participation across all domains: {{ macros.oxford_comma_list(aap_role_domains) }}. Platform Architects, Engineers, and Automation Consumers must collaborate effectively while operating within their defined roles to maintain our automation environment's security, efficiency, and operational resilience.
+The successful implementation of this governance framework requires active participation across all domains: {{ macros.oxford_comma_list(AAP_ROLE_DOMAINS) }}. Platform Architects, Engineers, and Automation Consumers must collaborate effectively while operating within their defined roles to maintain our automation environment's security, efficiency, and operational resilience.
 
 
 ## Scope
@@ -51,9 +52,9 @@ The successful implementation of this governance framework requires active parti
 
 # AAP Architecture & Execution Model
 
-The job execution process follows a defined sequence that ensures security and proper resource utilization. When a job is initiated—whether through manual intervention, scheduled execution, or a webhook trigger—the Automation Controller receives and validates the request through established {{ aap_security_and_compliance }} protocols. After validation, the Controller retrieves the necessary inventory from {{ aap_inventory_management }} and credentials from {{ aap_credential_storage }} before dispatching the job to an appropriate Execution Node.
+The job execution process follows a defined sequence that ensures security and proper resource utilization. When a job is initiated—whether through manual intervention, scheduled execution, or a webhook trigger—the Automation Controller receives and validates the request through established {{ AAP_SECURITY_AND_COMPLIANCE }} protocols. After validation, the Controller retrieves the necessary inventory from {{ AAP_INVENTORY_MANAGEMENT }} and credentials from {{ AAP_CREDENTIAL_STORAGE }} before dispatching the job to an appropriate Execution Node.
 
-The Execution Node then pulls the required Execution Environment (EE) from {{ aap_registry_url }}, creating an isolated context for the automation task. Within this environment, the job executes using predetermined playbooks and collections {{ macros.oxford_comma_list(aap_preferred_galaxy_collections) }}. Throughout the process, the platform maintains comprehensive logging of all activities in {{ macros.oxford_comma_list(aap_integration_points) }}, ensuring full auditability of the execution chain.
+The Execution Node then pulls the required Execution Environment (EE) from {{ AAP_REGISTRY_URL }}, creating an isolated context for the automation task. Within this environment, the job executes using predetermined playbooks and collections {{ macros.oxford_comma_list(AAP_PREFERRED_GALAXY_COLLECTIONS) }}. Throughout the process, the platform maintains comprehensive logging of all activities in {{ macros.oxford_comma_list(AAP_INTEGRATION_POINTS) }}, ensuring full auditability of the execution chain.
 
  This section breaks down the key components of AAP. It highlights Control Nodes, which are responsible for managing automation tasks, and Execution Nodes, which carry out those tasks. We also clarify important terminology, including team roles, credentials, workflows, and execution environments.
 
@@ -62,7 +63,7 @@ The Execution Node then pulls the required Execution Environment (EE) from {{ aa
 | Concept | Definition |
 |---------|------------|
 | **Team Roles** | Defined roles such as Platform Administrators, Engineers, Operators, and Auditors, ensuring proper governance and execution of automation. |
-| **Credentials** | Securely stored secrets used for authentication and authorization within automation workflows, managed via {{ aap_credential_storage }}. |
+| **Credentials** | Securely stored secrets used for authentication and authorization within automation workflows, managed via {{ AAP_CREDENTIAL_STORAGE }}. |
 | **Organizations** | Logical separation of automation workloads (e.g., `Prod`, `Develop`) to ensure governance and controlled access. |
 | **Workflows & Jobs** | A workflow is a sequence of automated tasks, while jobs are individual executions within those workflows. |
 | **Job Templates** | Predefined automation jobs ensuring standardization and repeatability. |
@@ -74,24 +75,24 @@ The Execution Node then pulls the required Execution Environment (EE) from {{ aa
 | **Mesh Nodes** | Distributed execution nodes used to scale automation workloads across different network segments. |
 | **Network Management Zone** | A designated area where EE virtual machine hosts are deployed, guaranteeing controlled execution within network parameters. |
 | **Containers & Container Images** | Lightweight, isolated execution units used to package and run automation tasks efficiently. |
-| **Registries** | Storage locations for Execution Environments and container images (e.g.,  {{ aap_registry_url }}). |
+| **Registries** | Storage locations for Execution Environments and container images (e.g.,  {{ AAP_REGISTRY_URL }}). |
 
 
 # 3. AAP Organizations & Role-Based Access Model
 
-Our AAP implementation uses a deliberate two-organization structure that balances security with operational efficiency. The {{ aap_upper_environment }} organization is the primary automation environment, encompassing all operational stages. This consolidated approach ensures consistent governance across our deployment pipeline while maintaining appropriate access controls for each environment.
+Our AAP implementation uses a deliberate two-organization structure that balances security with operational efficiency. The {{ AAP_UPPER_ENVIRONMENT }} organization is the primary automation environment, encompassing all operational stages. This consolidated approach ensures consistent governance across our deployment pipeline while maintaining appropriate access controls for each environment.
 
-The `{{ aap_lower_environment }}` organization provides a dedicated space for testing and validation, explicitly separated from production workloads. This separation enables teams to safely experiment with and validate automation workflows before promoting them through {{ aap_ci_cd_system }} with our {{ aap_ci_cd_pipeline }} pipeline.
+The `{{ AAP_LOWER_ENVIRONMENT }}` organization provides a dedicated space for testing and validation, explicitly separated from production workloads. This separation enables teams to safely experiment with and validate automation workflows before promoting them through {{ AAP_CI_CD_SYSTEM }} with our {{ AAP_CI_CD_PIPELINE }} pipeline.
 
 This model delivers several key benefits:
 
   1. It maintains operational simplicity while supporting enterprise-scale automation across outrastructure.
-  2. The structure aligns naturally with our existing {{ aap_code_repository }} code promotion strategy.
-  3. Cross-team visibility is preserved through universal read access to both organizations, fostering collaboration while maintaining security boundaries through {{ macros.oxford_comma_list(aap_iam_tech) }}. 
+  2. The structure aligns naturally with our existing {{ AAP_CODE_REPOSITORY }} code promotion strategy.
+  3. Cross-team visibility is preserved through universal read access to both organizations, fostering collaboration while maintaining security boundaries through {{ macros.oxford_comma_list(AAP_IAM_TECH) }}. 
 
 ## Organization Structure
-- **{{ aap_upper_environment }}**: Hosts approved automation for production environments. For governance purposes, all {{ organization_name }}SDLC environments, including {{ macros.oxford_comma_list(org_sdlc_environments) }}, are considered part of the `{{ aap_lower_environment }}` organization within the context of AAP.
-- **{{ aap_lower_environment }}**: Used for testing and validating playbooks before production deployment, explicitly tied to a sandbox environment.
+- **{{ AAP_UPPER_ENVIRONMENT }}**: Hosts approved automation for production environments. For governance purposes, all {{ ORGANIZATION_NAME }}SDLC environments, including {{ macros.oxford_comma_list(ORG_SDLC_ENVIRONMENTS) }}, are considered part of the `{{ AAP_LOWER_ENVIRONMENT }}` organization within the context of AAP.
+- **{{ AAP_LOWER_ENVIRONMENT }}**: Used for testing and validating playbooks before production deployment, explicitly tied to a sandbox environment.
 
 
 ## Why This Model?
@@ -101,7 +102,7 @@ This model delivers several key benefits:
 
 
 ## Team Role Definitions
-Role permissions are handled at the team level. Each team role is mapped to a SailPoint-managed Active Directory (AD) group. Teams are domain focused and aligned with specific technology stacks ({{ macros.oxford_comma_list(organization_name) }}), ensuring clear ownership of automation assets. The following roles are defined within our AAP implementation:
+Role permissions are handled at the team level. Each team role is mapped to a SailPoint-managed Active Directory (AD) group. Teams are domain focused and aligned with specific technology stacks ({{ macros.oxford_comma_list(ORGANIZATION_NAME) }}), ensuring clear ownership of automation assets. The following roles are defined within our AAP implementation:
 - **Authentication to AAP is exclusively through Okta**; all users authenticate via Okta before accessing the platform.
 - **Local platform administrator accounts have strictly limited usage**, reserved for break-glass scenarios only.
 - **Platform personnel do not manage access directly**. User and team access is provisioned through **SailPoint-managed AD groups** and is governed by corporate identity policies.
@@ -109,30 +110,30 @@ Role permissions are handled at the team level. Each team role is mapped to a Sa
 
 ## Permissions Model Overview
 
-Our permissions framework implements multiple layers of access control and governance. Platform Administrators maintain centralized control over inventories through {{ aap_inventory_management }}, ensuring efficient resource utilization while preventing licensed host overuse. Each team receives a dedicated inventory scope aligned with their infrastructure responsibilities, with access rights determined by team-based roles in {{ aap_rbac_provider }}.
+Our permissions framework implements multiple layers of access control and governance. Platform Administrators maintain centralized control over inventories through {{ AAP_INVENTORY_MANAGEMENT }}, ensuring efficient resource utilization while preventing licensed host overuse. Each team receives a dedicated inventory scope aligned with their infrastructure responsibilities, with access rights determined by team-based roles in {{ AAP_RBAC_PROVIDER }}.
 
-Projects are organized around platform domains including {{ macros.oxford_comma_list(aap_role_domains) }}. This structure follows a clear ownership model: teams managing specific technologies own the corresponding automation code, while integration code resides within the relevant platform scope.
+Projects are organized around platform domains including {{ macros.oxford_comma_list(AAP_ROLE_DOMAINS) }}. This structure follows a clear ownership model: teams managing specific technologies own the corresponding automation code, while integration code resides within the relevant platform scope.
 
-To maintain security and compliance, all platform actions are logged and forwarded to {{ macros.oxford_comma_list(aap_integration_points) }} for analysis. Our Architects and Principal Engineers enforce clear boundaries between high-risk and low-risk workflows, with future plans to implement automated approval processes for high-risk operations. While routine workflows may operate under standing CAB approval with Work Orders, higher-risk activities require explicit Change Requests (CRQs) in {{ aap_change_management_system }} before execution.
+To maintain security and compliance, all platform actions are logged and forwarded to {{ macros.oxford_comma_list(AAP_INTEGRATION_POINTS) }} for analysis. Our Architects and Principal Engineers enforce clear boundaries between high-risk and low-risk workflows, with future plans to implement automated approval processes for high-risk operations. While routine workflows may operate under standing CAB approval with Work Orders, higher-risk activities require explicit Change Requests (CRQs) in {{ AAP_CHANGE_MANAGEMENT_SYSTEM }} before execution.
 
 ---
 
 # 4. Platform Configuration
 
-The platform configuration establishes essential operational parameters that ensure reliability, security, and performance across our automation infrastructure. Our implementation leverages {{ aap_load_balancer }} for high availability, with comprehensive integration across our technology stack.
+The platform configuration establishes essential operational parameters that ensure reliability, security, and performance across our automation infrastructure. Our implementation leverages {{ AAP_LOAD_BALANCER }} for high availability, with comprehensive integration across our technology stack.
 
 ## Authentication & Access Control
 
-Authentication and access control operate through a multi-layered approach utilizing {{ macros.oxford_comma_list(aap_iam_tech) }}. This integration provides robust user lifecycle management while maintaining compliance with our security requirements. The platform strictly adheres to {{ macros.oxford_comma_list(aap_security_and_compliance) }} standards.
+Authentication and access control operate through a multi-layered approach utilizing {{ macros.oxford_comma_list(AAP_IAM_TECH) }}. This integration provides robust user lifecycle management while maintaining compliance with our security requirements. The platform strictly adheres to {{ macros.oxford_comma_list(AAP_SECURITY_AND_COMPLIANCE) }} standards.
 
 ## Execution Environment Configuration
 
-Our Execution Environment (EE) strategy emphasizes consistency and security across all automation workflows. EEs are securely hosted in {{ aap_registry_url }}, with standardized Python dependencies including {{ macros.oxford_comma_list(aap_python_dependencies) }} to support our diverse automation requirements across RHEL and Windows Server environments.
+Our Execution Environment (EE) strategy emphasizes consistency and security across all automation workflows. EEs are securely hosted in {{ AAP_REGISTRY_URL }}, with standardized Python dependencies including {{ macros.oxford_comma_list(AAP_PYTHON_DEPENDENCIES) }} to support our diverse automation requirements across RHEL and Windows Server environments.
 
 The EE lifecycle follows a structured governance model:
 
 > Development Phase
-> EEs begin in the {{ aap_lower_environment }} organization, where teams can safely develop and validate new configurations. During this phase, Platform Engineers utilize Ansible Builder to create and modify EEs, ensuring alignment with organization-wide automation standards.
+> EEs begin in the {{ AAP_LOWER_ENVIRONMENT }} organization, where teams can safely develop and validate new configurations. During this phase, Platform Engineers utilize Ansible Builder to create and modify EEs, ensuring alignment with organization-wide automation standards.
 
 > Validation & Approval
 > Architectural review is mandatory for all EE modifications. This process ensures that changes align with our technical standards and security requirements. Platform architects must approve any significant configuration changes before proceeding with production consideration. ***Significant changes include***:
@@ -144,7 +145,7 @@ The EE lifecycle follows a structured governance model:
 > - Any other modifications that may impact security or stability
 
 > Production Promotion
-> Promotion to {{ aap_upper_environment }} requires formal change management through {{ aap_change_management_system }}. Only approved, stable EEs are permitted in the production environment, with container image management leveraging {{ aap_containerization_tech }} capabilities.
+> Promotion to {{ AAP_UPPER_ENVIRONMENT }} requires formal change management through {{ AAP_CHANGE_MANAGEMENT_SYSTEM }}. Only approved, stable EEs are permitted in the production environment, with container image management leveraging {{ AAP_CONTAINERIZATION_TECH }} capabilities.
 
 Future state improvements will leverage Red Hat OpenShift Quay for enhanced EE image management, introducing automated validation workflows to streamline our governance processes while maintaining security standards.
 
@@ -152,14 +153,14 @@ Future state improvements will leverage Red Hat OpenShift Quay for enhanced EE i
 
 Our collection management strategy ensures consistent and secure automation content across the platform. Key aspects include:
 
-The architectural review process evaluates new collections for security implications, dependency management, and alignment with our automation standards. Version control policies ensure stability while allowing for necessary updates, with collection updates automated through {{ aap_registry_url }}.
+The architectural review process evaluates new collections for security implications, dependency management, and alignment with our automation standards. Version control policies ensure stability while allowing for necessary updates, with collection updates automated through {{ AAP_REGISTRY_URL }}.
 
 ## Inventory Management
 
 Inventory control within AAP follows a centralized management model led by Platform Engineers. This approach ensures:
 
 1. Consistent access control through RBAC-driven policies
-2. Efficient resource utilization within {{ aap_inventory_management }}
+2. Efficient resource utilization within {{ AAP_INVENTORY_MANAGEMENT }}
 3. Prevention of licensed host overutilization through active monitoring
 4. Standardized inventory structure across automation workflows
 
@@ -170,16 +171,16 @@ The inventory framework supports team autonomy while maintaining platform-wide g
 # 5. Team Onboarding & Role Integration
 ## Access Management Framework
 
-Our platform's access management strategy integrates with {{ macros.oxford_comma_list(aap_iam_tech) }} to ensure comprehensive identity governance. This framework supports our diverse technical domains: {{ macros.oxford_comma_list(aap_role_domains) }}, each with specific operational requirements and access needs.
+Our platform's access management strategy integrates with {{ macros.oxford_comma_list(AAP_IAM_TECH) }} to ensure comprehensive identity governance. This framework supports our diverse technical domains: {{ macros.oxford_comma_list(AAP_ROLE_DOMAINS) }}, each with specific operational requirements and access needs.
 
-All permissions are managed through team roles rather than individual assignments, with group membership controlled through {{ aap_rbac_provider }}. Platform Engineers maintain resource assignments for specific automation components while overall identity management remains cetralized.
+All permissions are managed through team roles rather than individual assignments, with group membership controlled through {{ AAP_RBAC_PROVIDER }}. Platform Engineers maintain resource assignments for specific automation components while overall identity management remains cetralized.
 
 Platform Administrator responsibilities include:
-- Managing automation resources across {{ macros.oxford_comma_list(aap_compute_tech) }}
-- Overseeing integration with {{ macros.oxford_comma_list(aap_service_mgmt_tech) }}
-- Ensuring compliance with {{ macros.oxford_comma_list(aap_security_and_compliance) }}
+- Managing automation resources across {{ macros.oxford_comma_list(AAP_COMPUTE_TECH) }}
+- Overseeing integration with {{ macros.oxford_comma_list(AAP_SERVICE_MGMT_TECH) }}
+- Ensuring compliance with {{ macros.oxford_comma_list(AAP_SECURITY_AND_COMPLIANCE) }}
 
-Changes to access permissions require formal requests through {{ macros.oxford_comma_list(aap_service_mgmt_tech) }}, maintaining our governance standards while supporting operational efficiency.
+Changes to access permissions require formal requests through {{ macros.oxford_comma_list(AAP_SERVICE_MGMT_TECH) }}, maintaining our governance standards while supporting operational efficiency.
 
 ## Permissions Model
 Each team role is assigned specific permissions based on their operational responsibilities.
@@ -187,13 +188,13 @@ Each team role is assigned specific permissions based on their operational respo
 | Role | Projects | Job Templates | Inventories | Credentials | Execution Environments |
 |------|---------|--------------|------------|------------|-------------------------|
 | Platform Admin | Admin | Admin | Admin | Admin | Admin |
-| Platform Architect | Admin ({{ aap_lower_environment }}) / Read ({{ aap_upper_environment }}) | Admin ({{ aap_lower_environment }}) / Read ({{ aap_upper_environment }}) | None | Use ({{ aap_lower_environment }}) / Read ({{ aap_upper_environment }}) | Use ({{ aap_lower_environment }}) / Read ({{ aap_upper_environment }}) |
+| Platform Architect | Admin ({{ AAP_LOWER_ENVIRONMENT }}) / Read ({{ AAP_UPPER_ENVIRONMENT }}) | Admin ({{ AAP_LOWER_ENVIRONMENT }}) / Read ({{ AAP_UPPER_ENVIRONMENT }}) | None | Use ({{ AAP_LOWER_ENVIRONMENT }}) / Read ({{ AAP_UPPER_ENVIRONMENT }}) | Use ({{ AAP_LOWER_ENVIRONMENT }}) / Read ({{ AAP_UPPER_ENVIRONMENT }}) |
 | Platform Engineer | Use | Edit & Execute | Read | Use | Use |
 | Platform Operator | Read | Execute | None | Use | Use |
 | Platform Auditor | Read | Read | Read | Read | Read |
 | Virtualization Engineer | Use | Edit & Execute | None | Use | Use |
 | Virtualization Operator | Read | Execute | None | Use | Use |
-| Architect | Edit & Execute ({{ aap_lower_environment }}) / Read ({{ aap_upper_environment }}) | Edit & Execute ({{ aap_lower_environment }}) / Read ({{ aap_upper_environment }}) | None | Use ({{ aap_lower_environment }}) / Read ({{ aap_upper_environment }}) | Use ({{ aap_lower_environment }}) / Read ({{ aap_upper_environment }}) |
+| Architect | Edit & Execute ({{ AAP_LOWER_ENVIRONMENT }}) / Read ({{ AAP_UPPER_ENVIRONMENT }}) | Edit & Execute ({{ AAP_LOWER_ENVIRONMENT }}) / Read ({{ AAP_UPPER_ENVIRONMENT }}) | None | Use ({{ AAP_LOWER_ENVIRONMENT }}) / Read ({{ AAP_UPPER_ENVIRONMENT }}) | Use ({{ AAP_LOWER_ENVIRONMENT }}) / Read ({{ AAP_UPPER_ENVIRONMENT }}) |
 | Engineer | Use | Edit & Execute | None | Use | Use |
 | Operator | Read | Execute | None | Use | Use |
 | Operator | Read | Execute | None | Use | Use |
@@ -208,28 +209,28 @@ Each team role is assigned specific permissions based on their operational respo
 
 # 6. Security & Compliance
 
-Our security framework implements comprehensive controls that protect automation assets while enabling efficient operations. The platform maintains compliance with {{ macros.oxford_comma_list(aap_security_and_compliance) }} standards, with regular audits conducted {{ aap_compliance_audit_frequency }}.
+Our security framework implements comprehensive controls that protect automation assets while enabling efficient operations. The platform maintains compliance with {{ macros.oxford_comma_list(AAP_SECURITY_AND_COMPLIANCE) }} standards, with regular audits conducted {{ AAP_COMPLIANCE_AUDIT_FREQUENCY }}.
 
 ## Hardening Guidelines
 
 Our security posture encompasses multiple layers of protection:
-- Execution isolation through {{ macros.oxford_comma_list(aap_containerization_tech) }}
-- Network security managed via {{ macros.oxford_comma_list(aap_network_tech) }}
-- Endpoint protection through {{ macros.oxford_comma_list(aap_security_tech) }}
-- Access control via {{ macros.oxford_comma_list(aap_iam_tech) }}
+- Execution isolation through {{ macros.oxford_comma_list(AAP_CONTAINERIZATION_TECH) }}
+- Network security managed via {{ macros.oxford_comma_list(AAP_NETWORK_TECH) }}
+- Endpoint protection through {{ macros.oxford_comma_list(AAP_SECURITY_TECH) }}
+- Access control via {{ macros.oxford_comma_list(AAP_IAM_TECH) }}
 
 ## Sensitive Data Management
 
-Credential and secret management leverages {{ aap_credential_storage }} for secure storage and controlled access. This integration ensures that sensitive data remains protected throughout the automation lifecycle while remaining accessible to authorized workflows.
+Credential and secret management leverages {{ AAP_CREDENTIAL_STORAGE }} for secure storage and controlled access. This integration ensures that sensitive data remains protected throughout the automation lifecycle while remaining accessible to authorized workflows.
 
 ## Monitoring and Compliance
 
 Our comprehensive monitoring strategy includes:
-- Operational metrics tracking: {{ macros.oxford_comma_list(aap_metrics) }}
-- Security event monitoring through {{ macros.oxford_comma_list(aap_integration_points) }}
-- Change tracking via {{ aap_change_management_system }}
-- Configuration management in {{ macros.oxford_comma_list(aap_config_management_tech) }}
+- Operational metrics tracking: {{ macros.oxford_comma_list(AAP_METRICS) }}
+- Security event monitoring through {{ macros.oxford_comma_list(AAP_INTEGRATION_POINTS) }}
+- Change tracking via {{ AAP_CHANGE_MANAGEMENT_SYSTEM }}
+- Configuration management in {{ macros.oxford_comma_list(AAP_CONFIG_MANAGEMENT_TECH) }}
 
-Regular compliance reporting aligns with {{ aap_compliance_audit_frequency }} audit cycles, ensuring continued adherence to our security standards and operational requirements.
+Regular compliance reporting aligns with {{ AAP_COMPLIANCE_AUDIT_FREQUENCY }} audit cycles, ensuring continued adherence to our security standards and operational requirements.
 
 ---

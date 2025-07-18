@@ -1,196 +1,105 @@
----
-# Sample Variables for Confluence Documentation Templates
-# This file provides example values for all the variables referenced in the AAP documentation templates
+project_name: "Project Phoenix"
+project_status: "In Development"
 
-# Project Information
-project_name: "Redesigned Guacamole"
-project_status: "In Review"
-
-# Confluence Page Hierarchy Configuration
-confluence_hierarchy:
-  # Root page for all AAP documentation
-  root:
-    title: "Ansible Automation Platform Documentation"
-    space: "AH"
-    pageId: "1343742"  # Main parent page
-  
-  # Documentation structure organized by categories
-  categories:
-    operations:
-      title: "Operations & Maintenance"
-      parent: "root"
-      description: "Daily operations, maintenance procedures, and operational guidelines"
-    
-    administration:
-      title: "Platform Administration"
-      parent: "root"
-      description: "System administration, user management, and configuration"
-    
-    governance:
-      title: "Policies & Governance"
-      parent: "root"
-      description: "Security policies, compliance standards, and governance frameworks"
-    
-    automation_hub:
-      title: "Automation Hub"
-      parent: "root"
-      description: "Content management, collections, and automation hub operations"
-    
-    guides:
-      title: "User Guides & Training"
-      parent: "root"
-      description: "End-user documentation, training materials, and quick reference guides"
-    
-    testing:
-      title: "Testing & Validation"
-      parent: "root"
-      description: "Testing procedures, validation scripts, and quality assurance"
-
-# Organization Information
-organization_name: "Your Organization"
-sub_organization_name: "IT Operations"
-sub_org_objective_title: "Digital Transformation Initiative"
-
-# Main Objectives
-main_objectives:
-  - "Improve operational efficiency"
-  - "Enhance security posture"
-  - "Accelerate service delivery"
-  - "Reduce manual processes"
-
-# Environment Configuration
-environment_type: "Production"
-aap_version: "4.4"
-satellite_version: "6.13"
-
-# Operating System Versions
-rhel_versions:
-  - "RHEL 8"
-  - "RHEL 9"
-windows_versions:
-  - "Windows Server 2019"
-  - "Windows Server 2022"
-
-# AAP Environment Configuration
-aap_upper_environment: "Prod"
-aap_lower_environment: "Develop"
-
-# Organization SDLC Environments
-org_sdlc_environments:
+ORGANIZATION_NAME: "My Big Company"
+SUB_ORGANIZATION_NAME: "Server Engineering and Operations"
+SUB_ORG_OBJECTIVE_TITLE: "Strategic Roadmap"
+IDENTITY_MANAGEMENT_SYSTEM: "Active Directory, Okta"
+ORG_SDLC_ENVIRONMENTS:
   - "Development"
-  - "Testing"
+  - "Test"
   - "Staging"
-  - "Pre-Production"
+  - "Production"
+AAP_REGISTRY_URL: "quay.io/internal-registry"
+AAP_RBAC_PROVIDER: "SailPoint"
+AAP_LOAD_BALANCER: "F5 Big-IP"
+AAP_INVENTORY_MANAGEMENT: "Red Hat Satellite, Ansible Inventory"
+AAP_CREDENTIAL_STORAGE: "CyberArk"
+AAP_JOB_EXECUTION_POLICY: "Restricted to approved job templates"
+AAP_COMPLIANCE_AUDIT_FREQUENCY: "Quarterly"
+AAP_LOWER_ENVIRONMENT: "main"  # Example: 'Development, Test'
+AAP_UPPER_ENVIRONMENT: "develop"  # Example: 'Staging, Production'
+AAP_CHANGE_MANAGEMENT_SYSTEM: "BMC Helix"  # Example: 'ServiceNow, BMC Helix'
+AAP_CODE_REPOSITORY: "Github"  # Example: 'GitLab, GitHub'
+AAP_CI_CD_SYSTEM: "Github Actions"  # Example: 'Jenkins, GitLab CI'
+AAP_CI_CD_PIPELINE: "Build, Test, Deploy"  # Example: 'Build, Test, Deploy'
 
-# Infrastructure Components
-identity_management_system: "Active Directory"
-aap_rbac_provider: "Okta"
-aap_load_balancer: "F5 BIG-IP"
-aap_inventory_management: "Red Hat Satellite"
-aap_credential_storage: "HashiCorp Vault"
-aap_registry_url: "registry.redhat.io"
+# Environment & Technical Constraints
+ENVIRONMENT_TYPE: "On-Prem"
+MAIN_OBJECTIVES:
+  - "Stabilize the Environment"
+  - "Drive Process Efficiencies"
+  - "Develop Talent"
+  - "Deliver Emerging Technologies"
+  - "Manage Cost"
+RHEL_VERSIONS:
+  - 8
+  - 9
+WINDOWS_VERSIONS:
+  - 2016
+  - 2019
+  - 2022
+AAP_PREFERRED_GALAXY_COLLECTIONS:
+  - "ansible.windows"
+  - "community.general"
+AAP_PYTHON_VERSION: "3.8"
+AAP_PYTHON_DEPENDENCIES:
+  - "pywinrm"
+  - "requests"
+  - "pyvmomi"
+AAP_SYSTEM_DEPENDENCIES: [""]
+AAP_VERSION: "2.5"
+SATELLITE_VERSION: "6.13"
 
-# CI/CD and Code Management
-aap_ci_cd_system: "GitLab CI/CD"
-aap_ci_cd_pipeline: "automated promotion"
-aap_code_repository: "GitLab"
-aap_change_management_system: "ServiceNow"
+# Security & Compliance
+AAP_SECURITY_AND_COMPLIANCE:
+  - "SECU security standards"
+AAP_INTEGRATION_POINTS:
+  - "Splunk"
+  - "BMC Helix"
+  - "Red Hat Satellite"
 
-# Job Execution Policy
-aap_job_execution_policy: "Role-based execution with approval workflow"
-
-# Compliance and Audit
-aap_compliance_audit_frequency: "quarterly"
-
-# Technology Stacks
-aap_network_tech:
-  - "Cisco ACI"
-  - "F5 Networks"
-  - "Palo Alto Networks"
-
-aap_security_tech:
-  - "CrowdStrike Falcon"
-  - "Qualys VMDR"
-  - "Splunk Enterprise Security"
-
-aap_compute_tech:
+# AAP Components & Technology
+AAP_NETWORK_TECH:
+  - "Cisco Fabric"
+  - "Infoblox (DNS)"
+AAP_SECURITY_TECH:
+  - "Tenable"
+  - "SentinelOne"
+AAP_COMPUTE_TECH:
   - "VMware vSphere"
   - "Red Hat OpenShift"
-  - "Microsoft Hyper-V"
-
-aap_config_management_tech:
-  - "Red Hat Satellite"
+AAP_CONFIG_MANAGEMENT_TECH:
   - "Ansible Automation Platform"
-  - "Git"
-
-aap_storage_tech:
-  - "NetApp ONTAP"
-  - "Dell EMC PowerStore"
-  - "Red Hat Ceph Storage"
-
-aap_iam_tech:
+  - "GitLab"
+AAP_STORAGE_TECH:
+  - "Pure Storage"
+  - "Dell EMC"
+AAP_IAM_TECH:
   - "Okta"
   - "Active Directory"
-  - "CyberArk PAM"
-
-aap_service_mgmt_tech:
-  - "ServiceNow"
-  - "PagerDuty"
-  - "Jira Service Management"
-
-aap_containerization_tech:
+  - "SailPoint"
+AAP_SERVICE_MGMT_TECH:
+  - "BMC Helix"
+  - "Digital Workplace"
+AAP_CONTAINERIZATION_TECH:
   - "Red Hat OpenShift"
   - "Docker"
-  - "Podman"
+AAP_APPLICATION_MGMT_TECH:
+  - "Archer"
 
-aap_application_mgmt_tech:
-  - "Red Hat OpenShift"
-  - "Kubernetes"
-  - "Helm"
+# Metrics
+AAP_METRICS:
+  - "Automation Coverage (%)"
+  - "Change Lead Time"
+  - "Incident MTTR"
+  - "Configuration Drift (%)"
 
-# Security and Compliance Standards
-aap_security_and_compliance:
-  - "SOX compliance"
-  - "PCI DSS"
-  - "ISO 27001"
-  - "NIST Cybersecurity Framework"
-
-# Integration Points
-aap_integration_points:
-  - "Splunk"
-  - "ServiceNow"
-  - "Slack"
-  - "Microsoft Teams"
-
-# Python Dependencies
-aap_python_dependencies:
-  - "boto3"
-  - "requests"
-  - "paramiko"
-  - "netaddr"
-  - "dnspython"
-
-# Preferred Galaxy Collections
-aap_preferred_galaxy_collections:
-  - "community.general"
-  - "ansible.posix"
-  - "community.crypto"
-  - "community.vmware"
-  - "ansible.windows"
-
-# Metrics and Monitoring
-aap_metrics:
-  - "Job success rate"
-  - "Automation coverage percentage"
-  - "Mean time to resolution"
-  - "Infrastructure drift detection"
-  - "Security compliance score"
-
-# Role Domains
-aap_role_domains:
-  - "Network Operations"
-  - "Security Operations"
-  - "Platform Engineering"
-  - "Database Administration"
-  - "Virtualization Management"
-  - "Cloud Operations"
+# Team Roles by Domain
+AAP_ROLE_DOMAINS:
+  - "Storage"
+  - "Network"
+  - "Network Security"
+  - "Server"
+  - "Virtualization"
+  - "App Dev"

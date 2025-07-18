@@ -1,24 +1,24 @@
 ---
 # Metadata for Confluence Publishing
-varsFile: "vars/aap.yml"
+varsFile: "docs/vars.yaml"
 project_status: "In Review"
 
 # Confluence Metadata
 confluence:
   title: "Ansible Automation Platform (AAP) Admin Guide"
   space: "AH"
-  category: "administration"  # Uses hierarchy: administration -> root
+  parentPageId: "1343742" # The ID of the parent page in Confluence
   imageFolder: "docs/images"
 ---
 
 {% import './docs/macros/macros.j2' as macros %}
 
-# {{ organization_name }}
-# {{ sub_organization_name }} - Platform Admin Guide
+# {{ ORGANIZATION_NAME }}
+# {{ SUB_ORGANIZATION_NAME }} - Platform Admin Guide
 
 ## 1. Introduction
-**Purpose:** Define administrative responsibilities in {{ organization_name }}'s AAP deployment.  
-**Scope:** Covers Execution Environments (EEs), job templates, RBAC, security, and compliance for {{ organization_name }}.
+**Purpose:** Define administrative responsibilities in {{ ORGANIZATION_NAME }}'s AAP deployment.  
+**Scope:** Covers Execution Environments (EEs), job templates, RBAC, security, and compliance for {{ ORGANIZATION_NAME }}.
 
 ---
 
@@ -26,11 +26,11 @@ confluence:
 ### AAP Architecture Overview
 - Control Nodes (Orchestration)
 - Execution Nodes (Playbook Execution)
-- Load Balancer: {{ aap_load_balancer }}
+- Load Balancer: {{ AAP_LOAD_BALANCER }}
 
 ### Networking Requirements
-- Registry access for EE builds: {{ aap_registry_url }}
-- RBAC via {{ identity_management_system }}
+- Registry access for EE builds: {{ AAP_REGISTRY_URL }}
+- RBAC via {{ IDENTITY_MANAGEMENT_SYSTEM }}
 
 ---
 
@@ -38,7 +38,7 @@ confluence:
 ### 3.1. Building a Custom EE
 #### Define EE Build Configuration
 - Base image
-- Collections: {{ aap_preferred_galaxy_collections | join(', ') }}
+- Collections: {{ AAP_PREFERRED_GALAXY_COLLECTIONS | join(', ') }}
 - Python dependencies (e.g., boto3, requests)
 - System dependencies (e.g., RPM packages)
 
@@ -55,11 +55,11 @@ confluence:
 
 ## 4. Platform Security & Governance
 ### RBAC Enforcement
-- Role-based access control via {{ aap_rbac_provider }}
+- Role-based access control via {{ AAP_RBAC_PROVIDER }}
 - No direct individual permissions
 
 ### Inventory & Credential Security
-- Centralized credential storage: {{ aap_credential_storage }}
+- Centralized credential storage: {{ AAP_CREDENTIAL_STORAGE }}
 - Role-based credential usage restrictions
 
 ### Job Execution Policies
@@ -74,11 +74,11 @@ confluence:
 - Checking build logs
 
 ### Registry Sync Failures
-- Ensuring connectivity to {{ aap_registry_url }}
+- Ensuring connectivity to {{ AAP_REGISTRY_URL }}
 - Automating periodic sync jobs
 
 ### RBAC/Access Errors
-- Validating {{ identity_management_system }} group memberships
+- Validating {{ IDENTITY_MANAGEMENT_SYSTEM }} group memberships
 - Ensuring correct role assignments
 
 ### Container Logs & Debugging
@@ -89,7 +89,7 @@ confluence:
 
 ## 6. Roles & Responsibilities
 ### 6.1 Overview
-To maintain the integrity, security, and efficiency of {{ organization_name }}'s AAP, clearly defined roles and responsibilities ensure structured governance, technical execution, and compliance.
+To maintain the integrity, security, and efficiency of {{ ORGANIZATION_NAME }}'s AAP, clearly defined roles and responsibilities ensure structured governance, technical execution, and compliance.
 
 ### 6.2 Key Roles
 | Role | Responsibilities | Decision Authority | SME Area |
