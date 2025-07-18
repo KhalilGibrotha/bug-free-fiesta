@@ -1,0 +1,39 @@
+{%- from 'docs/macros.j2' import oxford_comma_list -%}
+
+# {{ project_name | default(organization_name) }} Documentation
+
+Environment: **{{ env }}**
+
+Database URL: [Link]({{ database_url }})
+
+## Organization Information
+- **Organization**: {{ organization_name }}
+- **Sub-Organization**: {{ sub_organization_name }}
+- **Environment Type**: {{ environment_type }}
+- **AAP Version**: {{ aap_version }}
+- **Satellite Version**: {{ satellite_version }}
+
+## RHEL Versions Supported
+The following RHEL versions are supported: {{ oxford_comma_list(rhel_versions) }}.
+
+## Windows Versions Supported  
+The following Windows versions are supported: {{ oxford_comma_list(windows_versions) }}.
+
+## Main Objectives
+{{ oxford_comma_list(main_objectives) }}.
+
+## Key Technologies
+### Network Technologies
+{{ oxford_comma_list(aap_network_tech) }}.
+
+### Security Technologies  
+{{ oxford_comma_list(aap_security_tech) }}.
+
+### Compute Technologies
+{{ oxford_comma_list(aap_compute_tech) }}.
+
+## Subpages
+{% for page in child_pages -%}
+- [{{ page.title }}]({{ page.file | replace('.md', '') }})
+{% endfor %}
+
