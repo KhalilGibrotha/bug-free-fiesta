@@ -16,6 +16,18 @@ on:
         description: 'Run full codebase scan'
         type: boolean
         default: true
+      target_environment:
+        description: 'Target environment for publishing'
+        type: choice
+        options:
+          - 'production'
+          - 'staging'
+          - 'development'
+        default: 'production'
+      dry_run:
+        description: 'Dry run mode (no actual publishing)'
+        type: boolean
+        default: true
 
 permissions:
   contents: read
@@ -29,7 +41,8 @@ jobs:
     uses: KhalilGibrotha/redesigned-guacamole/.github/workflows/ci-optimized.yml@main
     with:
       full_scan: ${{ inputs.full_scan || true }}
-      branch_name: ${{ github.ref_name }}
+      target_environment: ${{ inputs.target_environment || 'production' }}
+      dry_run: ${{ inputs.dry_run || false }}
     secrets:
       CONFLUENCE_URL: ${{ secrets.CONFLUENCE_URL }}
       CONFLUENCE_USER: ${{ secrets.CONFLUENCE_USER }}
