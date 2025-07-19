@@ -9,7 +9,7 @@ on:
       - 'release/**'
       - 'hotfix/**'
   pull_request:
-    branches: [main, develop]
+    branches: [main]  # Only run PR workflows when targeting main
   workflow_dispatch:
     inputs:
       full_scan:
