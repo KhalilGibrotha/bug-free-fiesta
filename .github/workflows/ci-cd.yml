@@ -38,12 +38,9 @@ permissions:
 
 jobs:
   ci-cd-pipeline:
-    uses: KhalilGibrotha/redesigned-guacamole/.github/workflows/ci-optimized.yml@develop
+    uses: KhalilGibrotha/redesigned-guacamole/.github/workflows/ci-optimized.yml@main
     with:
       full_scan: ${{ inputs.full_scan || true }}
       target_environment: ${{ inputs.target_environment || 'production' }}
       dry_run: ${{ inputs.dry_run || false }}
-    secrets:
-      CONFLUENCE_URL: ${{ secrets.CONFLUENCE_URL }}
-      CONFLUENCE_USER: ${{ secrets.CONFLUENCE_USER }}
-      CONFLUENCE_API_TOKEN: ${{ secrets.CONFLUENCE_API_TOKEN }}
+    secrets: inherit
