@@ -1,0 +1,46 @@
+name: 🚀 CI/CD Pipeline
+
+on:
+  push:
+    branches:
+      - main
+      - develop
+      - 'feature/**'
+      - 'release/**'
+      - 'hotfix/**'
+  pull_request:
+    branches: [main]  # Only run PR workflows when targeting main
+  workflow_dispatch:
+    inputs:
+      full_scan:
+        description: 'Run full codebase scan'
+        type: boolean
+        default: true
+      target_environment:
+        description: 'Target environment for publishing'
+        type: choice
+        options:
+          - 'production'
+          - 'staging'
+          - 'development'
+        default: 'production'
+      dry_run:
+        description: 'Dry run mode (no actual publishing)'
+        type: boolean
+        default: true
+
+permissions:
+  contents: read
+  packages: read
+  statuses: write
+  security-events: write
+  actions: read
+
+jobs:
+  ci-cd-pipeline:
+    uses: KhalilGibrotha/redesigned-guacamole/.github/workflows/ci-optimized.yml@main
+    with:
+      full_scan: ${{ inputs.full_scan || true }}
+      target_environment: ${{ inputs.target_environment || 'production' }}
+      dry_run: ${{ inputs.dry_run || false }}
+    secrets: inherit
