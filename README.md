@@ -1,10 +1,11 @@
+---
 # 🎉 Bug Free Fiesta
 
 A demonstration repository showcasing automated documentation publishing with Ansible Automation Platform (AAP) templates.
 
 ## 📁 Repository Structure
 
-```
+```bash
 bug-free-fiesta/
 ├── docs/                           # Documentation templates and content
 │   ├── macros/                     # Jinja2 macros for template processing
