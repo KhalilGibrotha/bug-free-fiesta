@@ -43,4 +43,9 @@ jobs:
       full_scan: ${{ inputs.full_scan || true }}
       target_environment: ${{ inputs.target_environment || 'production' }}
       dry_run: ${{ inputs.dry_run || false }}
-    secrets: inherit
+      auto_fix: true  # Enable auto-fixes for remote calls
+    secrets:
+      # Confluence publishing secrets (configure in repository settings)
+      CONFLUENCE_URL: ${{ secrets.CONFLUENCE_URL }}
+      CONFLUENCE_USER: ${{ secrets.CONFLUENCE_USER }}
+      CONFLUENCE_API_TOKEN: ${{ secrets.CONFLUENCE_API_TOKEN }}
