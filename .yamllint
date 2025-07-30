@@ -1,23 +1,97 @@
-# YAML Lint Configuration for bug-free-fiesta
-# This configuration exists in the calling repository
-
+---
 extends: default
 
+# Ignore encrypted vault files
+ignore: |
+  vars/vars.yml
+
 rules:
+  # Line length - enterprise standard allowing reasonable line lengths
+  # Increased to 180 to accommodate long Confluence API URLs
   line-length:
-    max: 120  # More lenient than default
+    max: 180
     level: warning
-  
+    allow-non-breakable-words: true
+    allow-non-breakable-inline-mappings: true
+
+  # Indentation - enforce consistent 2-space indentation
   indentation:
     spaces: 2
     indent-sequences: true
     check-multi-line-strings: false
-  
+
+  # Boolean values - enforce consistent true/false over yes/no
+  truthy:
+    allowed-values: ['true', 'false']
+    check-keys: false
+
+  # Comments formatting - enforce clean comment style
   comments:
     min-spaces-from-content: 1
-  
-  truthy:
-    allowed-values: ['true', 'false', 'on', 'off']
+    require-starting-space: true
+  comments-indentation: false
 
-# Custom configuration for bug-free-fiesta repository
-# This should take precedence over redesigned-guacamole config
+  # Brackets and braces formatting - enforce consistent spacing
+  brackets:
+    min-spaces-inside: 0
+    max-spaces-inside: 0
+    min-spaces-inside-empty: 0
+    max-spaces-inside-empty: 0
+  braces:
+    min-spaces-inside: 0
+    max-spaces-inside: 1
+    min-spaces-inside-empty: 0
+    max-spaces-inside-empty: 0
+
+  # Colons - enforce consistent spacing around colons
+  colons:
+    max-spaces-before: 0
+    max-spaces-after: 1
+
+  # Commas - enforce consistent spacing around commas
+  commas:
+    max-spaces-before: 0
+    max-spaces-after: 1
+
+  # Hyphens - enforce consistent spacing for list items
+  hyphens:
+    max-spaces-after: 1
+
+  # Empty lines - control document structure (max 2 blank lines)
+  empty-lines:
+    max: 2
+    max-start: 0
+    max-end: 1
+
+  # Empty values - allow empty values for Ansible flexibility
+  empty-values:
+    forbid-in-block-mappings: false
+    forbid-in-flow-mappings: false
+
+  # Key duplicates - prevent accidental duplicates
+  key-duplicates: enable
+
+  # Key ordering - disabled for Ansible flexibility
+  key-ordering: disable
+
+  # Octal values - required for ansible-lint compatibility
+  octal-values:
+    forbid-implicit-octal: true
+    forbid-explicit-octal: false
+
+  # Quoted strings - relaxed for Ansible task names and values
+  quoted-strings:
+    quote-type: any
+    required: false
+
+  # Trailing spaces - enforce clean formatting
+  trailing-spaces: enable
+
+  # Document formatting - require document start marker
+  document-start:
+    present: true
+  document-end:
+    present: false
+
+  # New line at end of file - enforce clean file endings
+  new-line-at-end-of-file: enable
