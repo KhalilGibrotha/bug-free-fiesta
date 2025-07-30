@@ -1,0 +1,23 @@
+# YAML Lint Configuration for bug-free-fiesta
+# This configuration exists in the calling repository
+
+extends: default
+
+rules:
+  line-length:
+    max: 120  # More lenient than default
+    level: warning
+  
+  indentation:
+    spaces: 2
+    indent-sequences: true
+    check-multi-line-strings: false
+  
+  comments:
+    min-spaces-from-content: 1
+  
+  truthy:
+    allowed-values: ['true', 'false', 'on', 'off']
+
+# Custom configuration for bug-free-fiesta repository
+# This should take precedence over redesigned-guacamole config

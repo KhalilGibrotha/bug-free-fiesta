@@ -1,0 +1,25 @@
+# Ansible Lint Configuration for bug-free-fiesta
+# This configuration exists in the calling repository and should take precedence
+
+warn_list:
+  - yaml[line-length]
+  - name[missing]
+
+exclude_paths:
+  - .github/
+  - .cache/
+  - .pytest_cache/
+  - tests/output/
+
+# Skip specific rules for certain files
+skip_list:
+  - meta-no-info  # Skip for example playbooks
+  - role-name  # Skip role name validation
+
+# Use a specific tag for rules
+use_default_rules: true
+enable_list:
+  - yaml[indentation]
+
+# This shows this file is from the calling repository
+# and should be used instead of the redesigned-guacamole version
