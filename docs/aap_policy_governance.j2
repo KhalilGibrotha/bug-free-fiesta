@@ -14,7 +14,7 @@ confluence:
 
 {% import './docs/macros/macros.j2' as macros %}
 
-# Red Hat Ansible Automation Platform (AAP) Policy & Governance 
+# Red Hat Ansible Automation Platform (AAP) Policy & Governance
 
 ---
 
@@ -56,7 +56,7 @@ The job execution process follows a defined sequence that ensures security and p
 
 The Execution Node then pulls the required Execution Environment (EE) from {{ AAP_REGISTRY_URL }}, creating an isolated context for the automation task. Within this environment, the job executes using predetermined playbooks and collections {{ macros.oxford_comma_list(AAP_PREFERRED_GALAXY_COLLECTIONS) }}. Throughout the process, the platform maintains comprehensive logging of all activities in {{ macros.oxford_comma_list(AAP_INTEGRATION_POINTS) }}, ensuring full auditability of the execution chain.
 
- This section breaks down the key components of AAP. It highlights Control Nodes, which are responsible for managing automation tasks, and Execution Nodes, which carry out those tasks. We also clarify important terminology, including team roles, credentials, workflows, and execution environments.
+This section breaks down the key components of AAP. It highlights Control Nodes, which are responsible for managing automation tasks, and Execution Nodes, which carry out those tasks. We also clarify important terminology, including team roles, credentials, workflows, and execution environments.
 
 
 ## Definition of Key Concepts
@@ -88,7 +88,7 @@ This model delivers several key benefits:
 
   1. It maintains operational simplicity while supporting enterprise-scale automation across outrastructure.
   2. The structure aligns naturally with our existing {{ AAP_CODE_REPOSITORY }} code promotion strategy.
-  3. Cross-team visibility is preserved through universal read access to both organizations, fostering collaboration while maintaining security boundaries through {{ macros.oxford_comma_list(AAP_IAM_TECH) }}. 
+  3. Cross-team visibility is preserved through universal read access to both organizations, fostering collaboration while maintaining security boundaries through {{ macros.oxford_comma_list(AAP_IAM_TECH) }}.
 
 ## Organization Structure
 - **{{ AAP_UPPER_ENVIRONMENT }}**: Hosts approved automation for production environments. For governance purposes, all {{ ORGANIZATION_NAME }}SDLC environments, including {{ macros.oxford_comma_list(ORG_SDLC_ENVIRONMENTS) }}, are considered part of the `{{ AAP_LOWER_ENVIRONMENT }}` organization within the context of AAP.
