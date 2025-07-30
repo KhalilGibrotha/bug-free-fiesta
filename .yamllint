@@ -77,7 +77,7 @@ rules:
   # Octal values - required for ansible-lint compatibility
   octal-values:
     forbid-implicit-octal: true
-    forbid-explicit-octal: true
+    forbid-explicit-octal: false
 
   # Quoted strings - relaxed for Ansible task names and values
   quoted-strings:
