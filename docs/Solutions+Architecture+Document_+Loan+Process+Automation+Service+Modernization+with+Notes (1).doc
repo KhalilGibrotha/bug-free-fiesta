@@ -1,0 +1,2157 @@
+Date: Mon, 4 Aug 2025 18:13:29 +0000 (UTC)
+Message-ID: <1117783947.57.1754331209510@72db07b102d1>
+Subject: Exported From Confluence
+MIME-Version: 1.0
+Content-Type: multipart/related; 
+	boundary="----=_Part_56_1981941104.1754331209510"
+
+------=_Part_56_1981941104.1754331209510
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+Content-Location: file:///C:/exported.html
+
+<html xmlns:o=3D'urn:schemas-microsoft-com:office:office'
+      xmlns:w=3D'urn:schemas-microsoft-com:office:word'
+      xmlns:v=3D'urn:schemas-microsoft-com:vml'
+      xmlns=3D'urn:w3-org-ns:HTML'>
+<head>
+    <meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dutf-8=
+">
+    <title>Solutions Architecture Document: Loan Process Automation Service=
+ Modernization with Notes</title>
+    <!--[if gte mso 9]>
+    <xml>
+        <o:OfficeDocumentSettings>
+            <o:TargetScreenSize>1024x640</o:TargetScreenSize>
+            <o:PixelsPerInch>72</o:PixelsPerInch>
+            <o:AllowPNG/>
+        </o:OfficeDocumentSettings>
+        <w:WordDocument>
+            <w:View>Print</w:View>
+            <w:Zoom>90</w:Zoom>
+            <w:DoNotOptimizeForBrowser/>
+        </w:WordDocument>
+    </xml>
+    <![endif]-->
+    <style>
+                <!--
+        @page Section1 {
+            size: 8.5in 11.0in;
+            margin: 1.0in;
+            mso-header-margin: .5in;
+            mso-footer-margin: .5in;
+            mso-paper-source: 0;
+        }
+
+        table {
+            border: solid 1px;
+            border-collapse: collapse;
+        }
+
+        table td, table th {
+            border: solid 1px;
+            padding: 5px;
+        }
+
+        td {
+            page-break-inside: avoid;
+        }
+
+        tr {
+            page-break-after: avoid;
+        }
+
+        div.Section1 {
+            page: Section1;
+        }
+
+        /* Confluence print stylesheet. Common to all themes for print medi=
+a */
+/* Full of !important until we improve batching for print CSS */
+
+@media print {
+    #main {
+        padding-bottom: 1em !important; /* The default padding of 6em is to=
+o much for printouts */
+    }
+
+    body {
+        font: var(--ds-font-body-small, Arial, Helvetica, FreeSans, sans-se=
+rif);
+    }
+
+    body, #full-height-container, #main, #page, #content, .has-personal-sid=
+ebar #content {
+        background: var(--ds-surface, #fff) !important;
+        color: var(--ds-text, #000) !important;
+        border: 0 !important;
+        width: 100% !important;
+        height: auto !important;
+        min-height: auto !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        display: block !important;
+    }
+
+    a, a:link, a:visited, a:focus, a:hover, a:active {
+        color: var(--ds-text, #000);
+    }
+
+    #content h1,
+    #content h2,
+    #content h3,
+    #content h4,
+    #content h5,
+    #content h6 {
+        page-break-after: avoid;
+    }
+
+    pre {
+        font: var(--ds-font-code, Monaco, "Courier New", monospace);
+    }
+
+    #header,
+    .aui-header-inner,
+    #navigation,
+    #sidebar,
+    .sidebar,
+    #personal-info-sidebar,
+    .ia-fixed-sidebar,
+    .page-actions,
+    .navmenu,
+    .ajs-menu-bar,
+    .noprint,
+    .inline-control-link,
+    .inline-control-link a,
+    a.show-labels-editor,
+    .global-comment-actions,
+    .comment-actions,
+    .quick-comment-container,
+    #addcomment {
+        display: none !important;
+    }
+
+    /* CONF-28544 cannot print multiple pages in IE */
+    #splitter-content {
+        position: relative !important;
+    }
+
+    .comment .date::before {
+        content: none !important; /* remove middot for print view */
+    }
+
+    h1.pagetitle img {
+        height: auto;
+        width: auto;
+    }
+
+    .print-only {
+        display: block;
+    }
+
+    #footer {
+        position: relative !important; /* CONF-17506 Place the footer at en=
+d of the content */
+        margin: 0;
+        padding: 0;
+        background: none;
+        clear: both;
+    }
+
+    #poweredby {
+        border-top: none;
+        background: none;
+    }
+
+    #poweredby li.print-only {
+        display: list-item;
+        font-style: italic;
+    }
+
+    #poweredby li.noprint {
+        display: none;
+    }
+
+    /* no width controls in print */
+    .wiki-content .table-wrap,
+    .wiki-content p,
+    .panel .codeContent,
+    .panel .codeContent pre,
+    .image-wrap {
+        overflow: visible !important;
+    }
+
+    /* TODO - should this work? */
+    #children-section,
+    #comments-section .comment,
+    #comments-section .comment .comment-body,
+    #comments-section .comment .comment-content,
+    #comments-section .comment p {
+        page-break-inside: avoid;
+    }
+
+    #page-children a {
+        text-decoration: none;
+    }
+
+    /**
+     hide twixies
+
+     the specificity here is a hack because print styles
+     are getting loaded before the base styles. */
+    #comments-section.pageSection .section-header,
+    #comments-section.pageSection .section-title,
+    #children-section.pageSection .section-header,
+    #children-section.pageSection .section-title,
+    .children-show-hide {
+        padding-left: 0;
+        margin-left: 0;
+    }
+
+    .children-show-hide.icon {
+        display: none;
+    }
+
+    /* personal sidebar */
+    .has-personal-sidebar #content {
+        margin-right: 0px;
+    }
+
+    .has-personal-sidebar #content .pageSection {
+        margin-right: 0px;
+    }
+
+    .no-print, .no-print * {
+        display: none !important;
+    }
+}
+-->
+    </style>
+</head>
+<body>
+    <h1>Solutions Architecture Document: Loan Process Automation Service Mo=
+dernization with Notes</h1>
+    <div class=3D"Section1">
+        <h1 id=3D"SolutionsArchitectureDocument:LoanProcessAutomationServic=
+eModernizationwithNotes-SolutionsArchitectureDocument:LoanProcessAutomation=
+ServiceModernization">
+<style>[data-colorid=3Dvwec8faoe4]{color:#bf2600} html[data-color-mode=3Dda=
+rk] [data-colorid=3Dvwec8faoe4]{color:#ff6640}[data-colorid=3Djzjfp8jeav]{c=
+olor:#bf2600} html[data-color-mode=3Ddark] [data-colorid=3Djzjfp8jeav]{colo=
+r:#ff6640}[data-colorid=3Def65ck8m3l]{color:#bf2600} html[data-color-mode=
+=3Ddark] [data-colorid=3Def65ck8m3l]{color:#ff6640}[data-colorid=3Drabokghb=
+cp]{color:#bf2600} html[data-color-mode=3Ddark] [data-colorid=3Drabokghbcp]=
+{color:#ff6640}</style>Solutions Architecture Document: Loan Process Automa=
+tion Service Modernization</h1>
+<div class=3D"table-wrap">
+<table data-table-width=3D"760" data-layout=3D"default" data-local-id=3D"75=
+54b893-ccba-4aea-b898-fbd6ecdba789" class=3D"confluenceTable">
+<tbody>
+<tr>
+<th class=3D"confluenceTh">
+<p>Author:</p></th>
+<th class=3D"confluenceTh">
+<p>Lex, Principal Infrastructure Engineer and Architect</p></th>
+</tr>
+<tr>
+<td class=3D"confluenceTd">
+<p><em>Date:</em></p></td>
+<td class=3D"confluenceTd">
+<p>August 4, 2025</p></td>
+</tr>
+<tr>
+<td class=3D"confluenceTd">
+<p><em>Version:</em></p></td>
+<td class=3D"confluenceTd">
+<p>1.2</p></td>
+</tr>
+<tr>
+<td class=3D"confluenceTd">
+<p><em>Status:</em></p></td>
+<td class=3D"confluenceTd">
+<p>Draft</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<h2 id=3D"SolutionsArchitectureDocument:LoanProcessAutomationServiceModerni=
+zationwithNotes-1.0ExecutiveSummary">1.0 Executive Summary</h2>
+<p>The "Loan Process Automation" business service is a critical function th=
+at currently operates without a structured Software Development Lifecycle (=
+SDLC), formal version control, or adequate security and access controls. Th=
+is presents significant operational, security, and compliance risks, notabl=
+y failing to align with NCUA requirements and internal CIS Controls.</p>
+<p>This document outlines a proposed future state architecture and a phased=
+ action plan to address these deficiencies. The core of the proposal is to =
+introduce foundational SRE and DevOps practices by establishing a secure, r=
+ole-based file access model, implementing version control for source code, =
+and creating a formal, manifest-driven release process for all application =
+components. This will be supported by deployment automation and a robust da=
+ta sanitization process for non-production environments.</p>
+<p>Successful implementation will result in a more secure, stable, and comp=
+liant service while providing a clear and manageable workflow for the devel=
+opment and support teams.</p>
+<h2 id=3D"SolutionsArchitectureDocument:LoanProcessAutomationServiceModerni=
+zationwithNotes-2.0CurrentStateAnalysis">2.0 Current State Analysis</h2>
+<h3 id=3D"SolutionsArchitectureDocument:LoanProcessAutomationServiceModerni=
+zationwithNotes-2.1IdentifiedProblemsandRisks">2.1 Identified Problems and =
+Risks</h3>
+<ul>
+<li>
+<p><em>No Version Control:</em> The "Launcher" application source code is m=
+aintained on a single developer's machine, representing a critical single p=
+oint of failure and eliminating change traceability.</p></li>
+<li>
+<p><em>Insecure Access Control:</em> A single, legacy Active Directory grou=
+p grants developers excessive write permissions to all environment files an=
+d production data, violating the principle of least privilege.</p></li>
+<li>
+<p><em>Lack of Separation of Duties:</em> Developers deploy directly to pro=
+duction (via manual requests) and have direct, unaudited access to producti=
+on data for development purposes.</p></li>
+<li>
+<p><em>Uncontrolled Data Flow:</em> Production data, including Personally I=
+dentifiable Information (PII), is manually copied to lower environments wit=
+hout a formal sanitization or masking process, creating a significant data =
+security and compliance risk.</p></li>
+<li>
+<p><em>Manual &amp; Error-Prone Deployments:</em> The promotion process for=
+ all artifacts is manual (file copies, helpdesk tickets), leading to incons=
+istencies, a lack of auditability, and a high risk of error.</p></li>
+<li>
+<p><em>Compliance Gaps:</em> The current state does not adhere to foundatio=
+nal CIS Controls (e.g., Access Control, Secure Configuration) or OWASP Top =
+10 principles (e.g., Broken Access Control, Sensitive Data Exposure).</p></=
+li>
+</ul>
+<h3 id=3D"SolutionsArchitectureDocument:LoanProcessAutomationServiceModerni=
+zationwithNotes-2.2CurrentSDLC&amp;ApplicationFlow">2.2 Current SDLC &amp; =
+Application Flow</h3>
+<p>The current processes are unstructured and introduce significant risk, a=
+s illustrated below.</p>
+<h4 id=3D"SolutionsArchitectureDocument:LoanProcessAutomationServiceModerni=
+zationwithNotes-CurrentDevelopment&amp;DeploymentFlow">Current Development =
+&amp; Deployment Flow</h4>
+<div class=3D"code panel pdl" style=3D"border-width: 1px;">
+<div class=3D"codeContent panelContent pdl">
+<pre class=3D"syntaxhighlighter-pre" data-syntaxhighlighter-params=3D"brush=
+: java; gutter: false; theme: Confluence" data-theme=3D"Confluence">flowcha=
+rt TD
+    subgraph "Developer Workstation"
+      direction TB
+      A["Visual Studio: Edit Launcher Code"]
+      B["Visual Studio: Edit Excel/Access Artifacts"]
+      C["Manual Build of Launcher.exe"]
+    end
+
+    subgraph "Single Isilon File Share (All Environments)"
+      direction TB
+      D["Excel &amp; Access Files (Dev/UAT/Prod)"]
+    end
+
+    subgraph "SQL Servers (All Environments)"
+      direction TB
+      E["Production &amp; Lower Environment Databases"]
+    end
+
+    subgraph "Production Endpoints"
+      F["Production PCs with Launcher.exe"]
+      G["Users accessing Production Artifacts"]
+    end
+
+    A --&gt; C
+    C --&gt;|1. Helix Ticket| F
+    B --&gt;|2. Manual Save/Copy| D
+    D --&gt; B
+    B --&gt;|3. Direct DB Connection| E
+    G --&gt; D
+</pre>
+</div>
+</div>
+<h4 id=3D"SolutionsArchitectureDocument:LoanProcessAutomationServiceModerni=
+zationwithNotes-CurrentApplicationDataFlow(UserPerspective)">Current Applic=
+ation Data Flow (User Perspective)</h4>
+<div class=3D"code panel pdl" style=3D"border-width: 1px;">
+<div class=3D"codeContent panelContent pdl">
+<pre class=3D"syntaxhighlighter-pre" data-syntaxhighlighter-params=3D"brush=
+: js; gutter: false; theme: Confluence" data-theme=3D"Confluence">flowchart=
+ TB
+    subgraph "User's Workstation"
+        User["End User"]
+        Launcher["Launcher.exe"]
+        Artifact["Opened Access/Excel File"]
+    end
+
+    subgraph "Isilon File Share"
+        FS["Production Artifacts Folder"]
+    end
+
+    subgraph "Production SQL Server"
+        DB["LoanProcessDB (Production)"]
+    end
+
+    User -- "1. Runs" --&gt; Launcher
+    Launcher -- "2. Reads Content List From" --&gt; FS
+    Launcher -- "3. Opens Selected File" --&gt; Artifact
+    Artifact -- "4. Executes Embedded Logic (VBA/VB.NET)" --&gt; DB
+    DB -- "5. Returns Production Data" --&gt; Artifact
+    Artifact -- "6. Renders UI For" --&gt; User
+</pre>
+</div>
+</div>
+<h2 id=3D"SolutionsArchitectureDocument:LoanProcessAutomationServiceModerni=
+zationwithNotes-3.0ProposedFutureStateArchitecture">3.0 Proposed Future Sta=
+te Architecture</h2>
+<h3 id=3D"SolutionsArchitectureDocument:LoanProcessAutomationServiceModerni=
+zationwithNotes-3.1GuidingPrinciples">3.1 Guiding Principles</h3>
+<ul>
+<li>
+<p><em>Security First:</em> Implement the principle of least privilege for =
+all access.</p></li>
+<li>
+<p><em>Traceability:</em> Ensure every change is version-controlled and aud=
+itable.</p></li>
+<li>
+<p><em>Automation:</em> Automate promotions and repetitive tasks to reduce =
+errors and increase velocity.</p></li>
+<li>
+<p><em>Separation:</em> Enforce strict separation between production and no=
+n-production environments, duties, and data.</p></li>
+<li>
+<p><em>Atomicity:</em> Promote application changes as a single, consistent,=
+ versioned unit to ensure stability.</p></li>
+</ul>
+<h3 id=3D"SolutionsArchitectureDocument:LoanProcessAutomationServiceModerni=
+zationwithNotes-3.2ProposedSolutions">3.2 Proposed Solutions</h3>
+<h4 id=3D"SolutionsArchitectureDocument:LoanProcessAutomationServiceModerni=
+zationwithNotes-3.2.1.FileShareandPermissionsArchitecture">3.2.1. File Shar=
+e and Permissions Architecture</h4>
+<p>A structured file share with Role-Based Access Control (RBAC) will be im=
+plemented to segregate environments and enforce least privilege.</p>
+<ul>
+<li>
+<p><em>Structure:</em></p></li>
+</ul>
+<div class=3D"code panel pdl" style=3D"border-width: 1px;">
+<div class=3D"codeContent panelContent pdl">
+<pre class=3D"syntaxhighlighter-pre" data-syntaxhighlighter-params=3D"brush=
+: java; gutter: false; theme: Confluence" data-theme=3D"Confluence">\pfil\*=
+\FileShares
+
+=E2=94=9C=E2=94=80=E2=94=80 LoanAutomation-Prod/
+=E2=94=9C=E2=94=80=E2=94=80 LoanAutomation-UAT/
+=E2=94=9C=E2=94=80=E2=94=80 LoanAutomation-Staging/
+=E2=94=9C=E2=94=80=E2=94=80 LoanAutomation-Dev/
+=E2=94=94=E2=94=80=E2=94=80 LoanAutomation-Archive/
+  =E2=94=94=E2=94=80=E2=94=80 2025-08-04_143000_Release-1.2.1/
+    =E2=94=9C=E2=94=80=E2=94=80 manifest.json
+    =E2=94=9C=E2=94=80=E2=94=80 Launcher-v1.5.exe
+    =E2=94=9C=E2=94=80=E2=94=80 LoanApplication.xlsm
+    =E2=94=94=E2=94=80=E2=94=80 RiskAnalysis.accdb</pre>
+</div>
+</div>
+<ul>
+<li>
+<p><em>Permissions Model:</em> New AD groups will be created to enforce sep=
+aration of duties.</p>
+<ul>
+<li>
+<p><em>Developers:</em> <code>Read/Write</code> access to <code>Dev</code> =
+and <code>Staging</code>. <code>Read-only</code> to <code>UAT</code>. <stro=
+ng>NO</strong> write access to <code>Prod</code> or <code>Archive</code>.</=
+p></li>
+<li>
+<p><em>Application Support:</em> <code>Read/Write</code> access to all envi=
+ronments, including the <code>Archive</code>, to manage promotions. They ar=
+e the only group with <code>Write</code> access to <code>UAT</code>, <code>=
+Prod</code>, and <code>Archive</code>.</p></li>
+<li>
+<p><em>Business Users:</em> <code>Read-only</code> access to <code>Prod</co=
+de> for execution. <code>Read-only</code> to <code>UAT</code> for testing.<=
+/p></li>
+</ul></li>
+</ul>
+<blockquote>
+<p><em>Architect's Note on Permissions for MS Access Lock Files:</em><br>
+An investigation was conducted into providing developers with a granular pe=
+rmission set that would allow them to create MS Access lock files (<code>.l=
+db</code>, <code>.laccdb</code>) in a read-only production directory withou=
+t granting broader write access.</p>
+<p><strong>Conclusion:</strong> This is not feasible with standard NTFS per=
+missions. The architecturally sound solution is to provide a fully separate=
+ <code>Dev</code> environment where developers have the necessary permissio=
+ns to work effectively, eliminating any need for write access to the produc=
+tion directory.</p>
+</blockquote>
+<h4 id=3D"SolutionsArchitectureDocument:LoanProcessAutomationServiceModerni=
+zationwithNotes-3.2.2.ImplementationStrategy:ParallelEnvironmentCutover">3.=
+2.2. Implementation Strategy: Parallel Environment Cutover</h4>
+<p>Recognizing that the proposed changes will impact the development team's=
+ workflow, a parallel implementation strategy is recommended.</p>
+<ul>
+<li>
+<p>The new, structured file shares will be created in parallel to the exist=
+ing legacy share.</p></li>
+<li>
+<p>A defined cutover period will be provided for the development team to tr=
+ansition their workflows to the new <code>Dev</code> environment.</p></li>
+<li>
+<p>The Application Support team will simultaneously build and test promotio=
+n automation using the new structure.</p></li>
+<li>
+<p>After the cutover period, the legacy file share will be set to read-only=
+ and eventually decommissioned.</p></li>
+</ul>
+<h4 id=3D"SolutionsArchitectureDocument:LoanProcessAutomationServiceModerni=
+zationwithNotes-3.2.3.VersionControlStrategy(SourceCode)">3.2.3. Version Co=
+ntrol Strategy (Source Code)</h4>
+<ul>
+<li>
+<p><em>Tool:</em> Enterprise GitHub.</p></li>
+<li>
+<p><em>Target:</em> All text-based source code, primarily the code for the =
+"Launcher" application.</p></li>
+<li>
+<p><em>Branching Model:</em> A simple GitFlow model (<code>main</code>, <co=
+de>develop</code>, <code>feature/*</code>) is recommended.</p></li>
+</ul>
+<blockquote>
+<p><em><span data-colorid=3D"jzjfp8jeav">Clarifying Question:</span></em><s=
+pan data-colorid=3D"rabokghbcp"> Does the Launcher application contain any =
+logic that is dependent on a specific version of an Access/Excel artifact?<=
+/span></p>
+<p><em><span data-colorid=3D"vwec8faoe4">Impact if False:</span></em><span =
+data-colorid=3D"ef65ck8m3l"> If the Launcher and artifacts are tightly coup=
+led, our release manifest becomes even more critical. We must ensure that a=
+ change to the Launcher code cannot be deployed without the correct corresp=
+onding artifact version, and vice versa.</span></p>
+</blockquote>
+<h4 id=3D"SolutionsArchitectureDocument:LoanProcessAutomationServiceModerni=
+zationwithNotes-3.2.4.DataManagementandSanitization">3.2.4. Data Management=
+ and Sanitization</h4>
+<p>A formal, automated process for creating safe, non-production datasets i=
+s required.</p>
+<ol start=3D"1">
+<li>
+<p><em>Identify PII:</em> Conduct data discovery on the production database=
+ to classify sensitive data.</p></li>
+<li>
+<p><em>Develop Scripts:</em> Create automated scripts to extract data from =
+production.</p></li>
+<li>
+<p><em>Sanitize/Mask:</em> The scripts will mask, anonymize, or replace all=
+ PII according to compliance requirements.</p></li>
+<li>
+<p><em>Load into Non-Prod:</em> The sanitized data will be loaded into the =
+<code>Dev</code>, <code>Staging</code>, and <code>UAT</code> database envir=
+onments.</p></li>
+<li>
+<p><em>Automate:</em> This entire process will be automated and scheduled t=
+o ensure non-prod environments have recent but safe data.</p></li>
+</ol>
+<h4 id=3D"SolutionsArchitectureDocument:LoanProcessAutomationServiceModerni=
+zationwithNotes-3.2.5.ReleaseManagementandManifest(BinaryArtifacts)">3.2.5.=
+ Release Management and Manifest (Binary Artifacts)</h4>
+<p>To manage the reality that individual Access/Excel artifacts may be prom=
+oted independently, a manifest-driven release process will be implemented. =
+This ensures that even individual promotions are done in a controlled, atom=
+ic, and traceable manner.</p>
+<ul>
+<li>
+<p><strong>The Release Package:</strong> A release is no longer a single fi=
+le, but a "package" defined by a manifest. This package represents the comp=
+lete, known-good state of the application for a given version.</p></li>
+<li>
+<p><strong>The Manifest:</strong> This is a simple file (e.g., <code>manife=
+st.json</code>) created by Application Support in collaboration with the re=
+questing developer. It explicitly lists every component and its specific ve=
+rsion for that release.</p></li>
+</ul>
+<div class=3D"code panel pdl" style=3D"border-width: 1px;">
+<div class=3D"codeContent panelContent pdl">
+<pre class=3D"syntaxhighlighter-pre" data-syntaxhighlighter-params=3D"brush=
+: java; gutter: false; theme: Confluence" data-theme=3D"Confluence">  {
+    "releaseId": "2025-08-04_143000_Release-1.2.1",
+    "launcherVersion": "1.5",
+    "launcherGitTag": "v1.5-release",
+    "artifacts": [
+      "LoanApplication.xlsm",
+      "RiskAnalysis.accdb",
+      "Reporting.xlsm"
+    ]
+  }</pre>
+</div>
+</div>
+<h2 id=3D"SolutionsArchitectureDocument:LoanProcessAutomationServiceModerni=
+zationwithNotes-4.0Assumptions&amp;RequiredClarifications">4.0 Assumptions =
+&amp; Required Clarifications</h2>
+<p>To validate this architecture, the following assumptions must be verifie=
+d and questions answered by the development team.</p>
+<h3 id=3D"SolutionsArchitectureDocument:LoanProcessAutomationServiceModerni=
+zationwithNotes-4.1KeyAssumptions">4.1 Key Assumptions</h3>
+<ul>
+<li>
+<p><em>Launcher Auth:</em> The Launcher application performs no internal us=
+er authentication and relies solely on underlying file-share permissions.</=
+p></li>
+<li>
+<p><em>Visual Studio Connections:</em> Developers are using Visual Studio t=
+o connect directly to production databases, likely via embedded connection =
+strings in the Access/Excel artifacts.</p></li>
+<li>
+<p><em>PII Location:</em> PII is present in both the front-end Access/Excel=
+ files and the back-end SQL databases.</p></li>
+<li>
+<p><em>Tooling Availability:</em> Enterprise Application Support is willing=
+ and able to own production deployments using Ansible Automation Platform a=
+nd/or MoveIT.</p></li>
+</ul>
+<h3 id=3D"SolutionsArchitectureDocument:LoanProcessAutomationServiceModerni=
+zationwithNotes-4.2CriticalQuestionsfortheDevelopmentTeam">4.2 Critical Que=
+stions for the Development Team</h3>
+<ol start=3D"1">
+<li>
+<p><strong>Database Connections:</strong></p>
+<ul>
+<li>
+<p>Where are the SQL database connection strings defined today? (e.g., Insi=
+de Access VBA, in the Launcher's code, a config file, or a local ODBC DSN?)=
+</p></li>
+<li>
+<p>How are credentials for different environments managed? Are they hard-co=
+ded?</p></li>
+<li>
+<p>What authentication method is used (Windows Integrated, SQL Login)?</p><=
+/li>
+</ul></li>
+<li>
+<p><strong>Launcher Configuration:</strong></p>
+<ul>
+<li>
+<p>How does the Launcher determine which file share path to open? Is this p=
+ath hard-coded?</p></li>
+<li>
+<p>Can this path be changed without recompiling the application?</p></li>
+</ul></li>
+<li>
+<p><strong>Artifact Logic:</strong></p>
+<ul>
+<li>
+<p>Confirm if the Excel and Access files contain significant business logic=
+ (VBA macros, forms, queries) or if they are primarily data viewers. A demo=
+nstration of the most critical logic would be beneficial.</p></li>
+</ul></li>
+</ol>
+<p>Extras:</p>
+<div class=3D"table-wrap">
+<table data-table-width=3D"760" data-layout=3D"default" data-local-id=3D"bf=
+70a18c-cc2e-4780-8b04-72d3bcb206d7" class=3D"confluenceTable">
+<colgroup>
+<col style=3D"width: 49.0px;">
+<col style=3D"width: 204.0px;">
+<col style=3D"width: 126.0px;">
+<col style=3D"width: 126.0px;">
+<col style=3D"width: 126.0px;">
+<col style=3D"width: 126.0px;">
+</colgroup>
+<tbody>
+<tr>
+<th class=3D"confluenceTh">
+<p>#</p></th>
+<th class=3D"confluenceTh">
+<p>Assumption</p></th>
+<th class=3D"confluenceTh">
+<p>Why we think this</p></th>
+<th class=3D"confluenceTh">
+<p>How to validate</p></th>
+<th class=3D"confluenceTh">
+<p>Owner</p></th>
+<th class=3D"confluenceTh">
+<p>Risk if false</p></th>
+</tr>
+<tr>
+<td class=3D"confluenceTd">
+<p>A1</p></td>
+<td class=3D"confluenceTd">
+<p>The <strong>Launcher</strong> does not perform auth; it relies on Window=
+s/AD file-share permissions.</p></td>
+<td class=3D"confluenceTd">
+<p>Behavioral evidence + typical pattern.</p></td>
+<td class=3D"confluenceTd">
+<p>Ask dev: =E2=80=9CDoes Launcher do any user auth/role checks?=E2=80=9D R=
+eview code/config.</p></td>
+<td class=3D"confluenceTd">
+<p>Dev Lead + App Support</p></td>
+<td class=3D"confluenceTd">
+<p>We may need to add auth/role checks or wrap with a service if it=E2=80=
+=99s doing more than launching.</p></td>
+</tr>
+<tr>
+<td class=3D"confluenceTd">
+<p>A2</p></td>
+<td class=3D"confluenceTd">
+<p>The <strong>Launcher</strong> code can be moved to <strong>enterprise Gi=
+tHub</strong> without legal/IP constraints.</p></td>
+<td class=3D"confluenceTd">
+<p>Internal tool; no third-party license issues expected.</p></td>
+<td class=3D"confluenceTd">
+<p>Code scan + legal quick check.</p></td>
+<td class=3D"confluenceTd">
+<p>Dev Lead + Security</p></td>
+<td class=3D"confluenceTd">
+<p>Delay in version control adoption; deployment automation blocked.</p></t=
+d>
+</tr>
+<tr>
+<td class=3D"confluenceTd">
+<p>A3</p></td>
+<td class=3D"confluenceTd">
+<p><strong>Excel/Access artifacts</strong> contain embedded logic (VBA/form=
+s/queries), not just data.</p></td>
+<td class=3D"confluenceTd">
+<p>Devs use VS/VB; artifacts drive workflow.</p></td>
+<td class=3D"confluenceTd">
+<p>Open representative files; list of macros/modules; short demo.</p></td>
+<td class=3D"confluenceTd">
+<p>Dev Team</p></td>
+<td class=3D"confluenceTd">
+<p>More effort to refactor logic into services; promotion becomes more comp=
+lex.</p></td>
+</tr>
+<tr>
+<td class=3D"confluenceTd">
+<p>A4</p></td>
+<td class=3D"confluenceTd">
+<p><strong>Developers need write on the folder</strong> (not the DB content=
+) due to Access <strong>lock files</strong> (<code>.laccdb</code>).</p></td=
+>
+<td class=3D"confluenceTd">
+<p>Standard Access behavior.</p></td>
+<td class=3D"confluenceTd">
+<p>Reproduce with read-only file + write on folder; confirm error.</p></td>
+<td class=3D"confluenceTd">
+<p>App Support + Dev</p></td>
+<td class=3D"confluenceTd">
+<p>Over-permissioning persists; audit findings in Prod.</p></td>
+</tr>
+<tr>
+<td class=3D"confluenceTd">
+<p>A5</p></td>
+<td class=3D"confluenceTd">
+<p><strong>Visual Studio</strong> connects to <strong>Prod SQL</strong> via=
+ connection strings in code or local settings.</p></td>
+<td class=3D"confluenceTd">
+<p>Current behavior reports + lack of SDLC.</p></td>
+<td class=3D"confluenceTd">
+<p>Inspect connection strings; check SQL login audit logs.</p></td>
+<td class=3D"confluenceTd">
+<p>DB Team + Security</p></td>
+<td class=3D"confluenceTd">
+<p>Direct Prod access continues; data leakage &amp; change risk.</p></td>
+</tr>
+<tr>
+<td class=3D"confluenceTd">
+<p>A6</p></td>
+<td class=3D"confluenceTd">
+<p><strong>PII</strong> resides in front-end files <strong>and</strong> bac=
+kend databases.</p></td>
+<td class=3D"confluenceTd">
+<p>Loan processing domain reality + your note.</p></td>
+<td class=3D"confluenceTd">
+<p>Data classification scan (file share + DB).</p></td>
+<td class=3D"confluenceTd">
+<p>Data Governance + DB Team</p></td>
+<td class=3D"confluenceTd">
+<p>Data masking scope underestimated; non-prod unsafe.</p></td>
+</tr>
+<tr>
+<td class=3D"confluenceTd">
+<p>A7</p></td>
+<td class=3D"confluenceTd">
+<p><strong>Enterprise App Support</strong> will own <strong>Prod</strong> d=
+eployments and promotions.</p></td>
+<td class=3D"confluenceTd">
+<p>Stated willingness + team charter.</p></td>
+<td class=3D"confluenceTd">
+<p>RACI confirmation + SOP draft approval.</p></td>
+<td class=3D"confluenceTd">
+<p>App Support Manager</p></td>
+<td class=3D"confluenceTd">
+<p>No clear ownership =E2=86=92 shadow deployments continue.</p></td>
+</tr>
+<tr>
+<td class=3D"confluenceTd">
+<p>A8</p></td>
+<td class=3D"confluenceTd">
+<p><strong>AAP</strong> and <strong>MoveIT</strong> are available for autom=
+ation and controlled transfer.</p></td>
+<td class=3D"confluenceTd">
+<p>You confirmed availability.</p></td>
+<td class=3D"confluenceTd">
+<p>Access granted, service accounts created, pilot job runs.</p></td>
+<td class=3D"confluenceTd">
+<p>App Support + AAP Eng</p></td>
+<td class=3D"confluenceTd">
+<p>Manual steps remain; audit trail weak.</p></td>
+</tr>
+<tr>
+<td class=3D"confluenceTd">
+<p>A9</p></td>
+<td class=3D"confluenceTd">
+<p>We can <strong>create new AD groups</strong> and phase out the <strong>l=
+egacy</strong> one with minimal dependencies.</p></td>
+<td class=3D"confluenceTd">
+<p>Common pattern; manageable scope.</p></td>
+<td class=3D"confluenceTd">
+<p>AD/SailPoint report of group membership &amp; usage; migration plan.</p>=
+</td>
+<td class=3D"confluenceTd">
+<p>IAM + App Support</p></td>
+<td class=3D"confluenceTd">
+<p>Hidden dependencies break access; project stalls.</p></td>
+</tr>
+<tr>
+<td class=3D"confluenceTd">
+<p>A10</p></td>
+<td class=3D"confluenceTd">
+<p>Dev team is <strong>open to change</strong> with guided handoffs; they h=
+ave limited SDLC maturity.</p></td>
+<td class=3D"confluenceTd">
+<p>Your assessment.</p></td>
+<td class=3D"confluenceTd">
+<p>Run a short enablement session; gauge tool readiness.</p></td>
+<td class=3D"confluenceTd">
+<p>App Owner + Architect</p></td>
+<td class=3D"confluenceTd">
+<p>Overly ambitious plan fails; adoption risk.</p></td>
+</tr>
+<tr>
+<td class=3D"confluenceTd">
+<p>A11</p></td>
+<td class=3D"confluenceTd">
+<p>Non-prod environments (Dev/UAT/Staging) are <strong>reachable</strong> a=
+nd can host sanitized data copies.</p></td>
+<td class=3D"confluenceTd">
+<p>Existing estate has these tiers.</p></td>
+<td class=3D"confluenceTd">
+<p>Infra check: capacity, network, SQL instances.</p></td>
+<td class=3D"confluenceTd">
+<p>Infra + DB Team</p></td>
+<td class=3D"confluenceTd">
+<p>No safe place to iterate; pressure to keep using Prod.</p></td>
+</tr>
+<tr>
+<td class=3D"confluenceTd">
+<p>A12</p></td>
+<td class=3D"confluenceTd">
+<p>No regulatory blocker to storing <strong>sanitized</strong> Prod extract=
+s in non-prod.</p></td>
+<td class=3D"confluenceTd">
+<p>Common practice when masked.</p></td>
+<td class=3D"confluenceTd">
+<p>Compliance review; sign-off on masking spec.</p></td>
+<td class=3D"confluenceTd">
+<p>Compliance + Security</p></td>
+<td class=3D"confluenceTd">
+<p>Rework of data pipelines; approval delays.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><br></p>
+<p></p>
+<ul>
+<li>
+<p>Developer team ideally has <strong>no direct write</strong> access to Pr=
+od.</p></li>
+<li>
+<p>File deployment and management done by Enterprise Application Support vi=
+a Ansible Automation Platform.</p></li>
+</ul>
+<hr>
+<h3 id=3D"SolutionsArchitectureDocument:LoanProcessAutomationServiceModerni=
+zationwithNotes-=F0=9F=9F=A8Non-ProductionEnvironments(UAT,Staging)">=F0=9F=
+=9F=A8 <strong>Non-Production Environments (UAT, Staging)</strong></h3>
+<div class=3D"table-wrap">
+<table data-table-width=3D"760" data-layout=3D"default" data-local-id=3D"cf=
+64eb13-9153-40e8-94ca-7f3dfeff9a5d" class=3D"confluenceTable">
+<tbody>
+<tr>
+<th class=3D"confluenceTh">
+<p>Group Name (New AD Groups)</p></th>
+<th class=3D"confluenceTh">
+<p>Permissions</p></th>
+<th class=3D"confluenceTh">
+<p>Members</p></th>
+</tr>
+<tr>
+<td class=3D"confluenceTd">
+<p><code>LoanAuto_AppSupport_NonProd_RW</code></p></td>
+<td class=3D"confluenceTd">
+<p><strong>Read/Write</strong> (Deploy &amp; Promote files)</p></td>
+<td class=3D"confluenceTd">
+<p>Enterprise Application Support Team</p></td>
+</tr>
+<tr>
+<td class=3D"confluenceTd">
+<p><code>LoanAuto_Developers_NonProd_RW</code></p></td>
+<td class=3D"confluenceTd">
+<p><strong>Read/Write</strong> (Build/Test files, artifacts)</p></td>
+<td class=3D"confluenceTd">
+<p>Developers, QA/Test Teams</p></td>
+</tr>
+<tr>
+<td class=3D"confluenceTd">
+<p><code>LoanAuto_BusinessUAT_R</code></p></td>
+<td class=3D"confluenceTd">
+<p><strong>Read-only</strong> (Acceptance Testing)</p></td>
+<td class=3D"confluenceTd">
+<p>Business Users (for testing and validation)</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><strong>Note:</strong></p>
+<ul>
+<li>
+<p>Developers perform most of their testing and validation here.</p></li>
+<li>
+<p>Enterprise Application Support owns promotions between UAT, Staging, and=
+ Prod.</p></li>
+</ul>
+<hr>
+<h3 id=3D"SolutionsArchitectureDocument:LoanProcessAutomationServiceModerni=
+zationwithNotes-=F0=9F=9F=A6DevelopmentEnvironment(Dev)">=F0=9F=9F=A6 <stro=
+ng>Development Environment (Dev)</strong></h3>
+<div class=3D"table-wrap">
+<table data-table-width=3D"760" data-layout=3D"default" data-local-id=3D"af=
+d1deb7-399e-4732-96e3-372b493b80c9" class=3D"confluenceTable">
+<tbody>
+<tr>
+<th class=3D"confluenceTh">
+<p>Group Name (New AD Groups)</p></th>
+<th class=3D"confluenceTh">
+<p>Permissions</p></th>
+<th class=3D"confluenceTh">
+<p>Members</p></th>
+</tr>
+<tr>
+<td class=3D"confluenceTd">
+<p><code>LoanAuto_Developers_Dev_RW</code></p></td>
+<td class=3D"confluenceTd">
+<p><strong>Read/Write</strong> (Development/Test/Modify freely)</p></td>
+<td class=3D"confluenceTd">
+<p>Developers, QA/Test teams</p></td>
+</tr>
+<tr>
+<td class=3D"confluenceTd">
+<p><code>LoanAuto_AppSupport_Dev_RW</code></p></td>
+<td class=3D"confluenceTd">
+<p><strong>Read/Write</strong> (Manage/assist developers if needed)</p></td=
+>
+<td class=3D"confluenceTd">
+<p>Enterprise Application Support Team</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><strong>Note:</strong></p>
+<ul>
+<li>
+<p>This area provides freedom for developers, with sanitized data.</p></li>
+<li>
+<p>Regular sync-downs of sanitized data from prod into this area using auto=
+mation scripts.</p></li>
+</ul>
+<hr>
+<h3 id=3D"SolutionsArchitectureDocument:LoanProcessAutomationServiceModerni=
+zationwithNotes-=F0=9F=94=B4PhasingOutLegacyADGroup">=F0=9F=94=B4 <strong>P=
+hasing Out Legacy AD Group</strong></h3>
+<ul>
+<li>
+<p>Identify existing dependencies of the legacy AD group:</p>
+<ol start=3D"1">
+<li>
+<p>Perform AD group audit (via SailPoint, AD reporting, or Splunk queries) =
+to confirm usage.</p></li>
+<li>
+<p>Identify all fileshares, applications, and infrastructure accessed by th=
+e legacy group.</p></li>
+<li>
+<p>Gradually migrate dependencies to new groups (phase-by-phase).</p></li>
+<li>
+<p>After complete transition, retire the legacy AD group to eliminate confu=
+sion and risk.</p></li>
+</ol></li>
+</ul>
+<hr>
+<h2 id=3D"SolutionsArchitectureDocument:LoanProcessAutomationServiceModerni=
+zationwithNotes-AlignmentwithComplianceFrameworks">Alignment with Complianc=
+e Frameworks</h2>
+<h3 id=3D"SolutionsArchitectureDocument:LoanProcessAutomationServiceModerni=
+zationwithNotes-=E2=9C=85CISControlsAlignment:">=E2=9C=85 <strong>CIS Contr=
+ols Alignment:</strong></h3>
+<div class=3D"table-wrap">
+<table data-table-width=3D"760" data-layout=3D"default" data-local-id=3D"91=
+473484-5291-4ca9-b526-633efa2a7ace" class=3D"confluenceTable">
+<tbody>
+<tr>
+<th class=3D"confluenceTh">
+<p>CIS Control Area</p></th>
+<th class=3D"confluenceTh">
+<p>How Addressed in File-Share Model</p></th>
+</tr>
+<tr>
+<td class=3D"confluenceTd">
+<p><strong>Data Protection</strong> (Control 3)</p></td>
+<td class=3D"confluenceTd">
+<p>Segregated and access-controlled environments; sanitized data for dev en=
+vironments.</p></td>
+</tr>
+<tr>
+<td class=3D"confluenceTd">
+<p><strong>Secure Configuration</strong> (Control 4)</p></td>
+<td class=3D"confluenceTd">
+<p>Structured RBAC clearly defined.</p></td>
+</tr>
+<tr>
+<td class=3D"confluenceTd">
+<p><strong>Account Management</strong> (Control 5)</p></td>
+<td class=3D"confluenceTd">
+<p>AD groups with defined roles; least privilege enforced.</p></td>
+</tr>
+<tr>
+<td class=3D"confluenceTd">
+<p><strong>Audit Log Management</strong> (Control 8)</p></td>
+<td class=3D"confluenceTd">
+<p>Logs-and-Audit folders for all access.</p></td>
+</tr>
+<tr>
+<td class=3D"confluenceTd">
+<p><strong>Controlled Access Based on Need to Know</strong> (Control 14)</p=
+></td>
+<td class=3D"confluenceTd">
+<p>Dev teams explicitly limited; Prod environment secured.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<hr>
+<h3 id=3D"SolutionsArchitectureDocument:LoanProcessAutomationServiceModerni=
+zationwithNotes-=E2=9C=85OWASPTop10Alignment(DeveloperPerspective):">=E2=9C=
+=85 <strong>OWASP Top 10 Alignment (Developer Perspective):</strong></h3>
+<p>Developers can address OWASP best practices more easily with:</p>
+<ul>
+<li>
+<p><strong>Security Misconfiguration (A05)</strong>: Clearly defined share =
+permissions.</p></li>
+<li>
+<p><strong>Sensitive Data Exposure (A02)</strong>: PII data sanitized befor=
+e moving to lower environments.</p></li>
+<li>
+<p><strong>Broken Access Control (A01)</strong>: Implemented strong RBAC po=
+licies limiting prod access.</p></li>
+</ul>
+<p><em>(Ensure developers receive training to understand these requirements=
+ clearly.)</em></p>
+<hr>
+<h2 id=3D"SolutionsArchitectureDocument:LoanProcessAutomationServiceModerni=
+zationwithNotes-NextSteps(ActionableItems):">Next Steps (Actionable Items):=
+</h2>
+<ul>
+<li>
+<p><strong>Step 1: Verify details with Development Team</strong></p>
+<ul>
+<li>
+<p>Confirm launcher=E2=80=99s auth approach.</p></li>
+<li>
+<p>Clarify the exact need for write access to Access DB files.</p></li>
+</ul></li>
+<li>
+<p><strong>Step 2: Initiate Fileshare Changes</strong></p>
+<ul>
+<li>
+<p>Work with Enterprise Infrastructure team to provision structured file sh=
+ares.</p></li>
+<li>
+<p>Create and populate new AD groups (via SailPoint request).</p></li>
+</ul></li>
+<li>
+<p><strong>Step 3: Enterprise GitHub</strong></p>
+<ul>
+<li>
+<p>Establish GitHub repository for Launcher app.</p></li>
+<li>
+<p>Assist the developer in transitioning to using GitHub.</p></li>
+</ul></li>
+<li>
+<p><strong>Step 4: Automation &amp; Ansible Integration</strong></p>
+<ul>
+<li>
+<p>Involve newly certified AAP engineer in planning automation of deploymen=
+ts/promotions.</p></li>
+<li>
+<p>Develop scripts or workflows to sanitize and replicate production data t=
+o dev/test environments.</p></li>
+</ul></li>
+<li>
+<p><strong>Step 5: Legacy Group Phase-out Plan</strong></p>
+<ul>
+<li>
+<p>Audit and transition legacy AD group to new groups.</p></li>
+<li>
+<p>Communicate and execute phased decommissioning.<br></p></li>
+</ul></li>
+</ul>
+<h2 id=3D"SolutionsArchitectureDocument:LoanProcessAutomationServiceModerni=
+zationwithNotes-High-LevelActionPlan(Recommendations)">High-Level Action Pl=
+an (Recommendations)</h2>
+<blockquote>
+<p>Phased, outcome-oriented. Each item notes the primary control objectives=
+ it advances.</p>
+</blockquote>
+<h3 id=3D"SolutionsArchitectureDocument:LoanProcessAutomationServiceModerni=
+zationwithNotes-Phase0=E2=80=94Guardrails&amp;Visibility(Weeks0=E2=80=932)"=
+>Phase 0 =E2=80=94 Guardrails &amp; Visibility (Weeks 0=E2=80=932)</h3>
+<ul>
+<li>
+<p><strong>Freeze ad-hoc Prod writes by devs</strong> (temporary exception =
+process only).</p>
+<ul>
+<li>
+<p><em>CIS v8:</em> 6 Access Control Mgmt, 5 Account Mgmt; <em>OWASP:</em> =
+A01 Broken Access Control, A05 Security Misconfig.</p></li>
+</ul></li>
+<li>
+<p><strong>Audit the legacy AD group</strong> usage across shares and SQL. =
+Produce a dependency map.</p>
+<ul>
+<li>
+<p><em>CIS:</em> 5 Account Mgmt, 8 Audit Log Mgmt; <em>OWASP:</em> A09 Secu=
+rity Logging &amp; Monitoring.</p></li>
+</ul></li>
+<li>
+<p><strong>Locate connection strings</strong> (Launcher, macros, VS project=
+s) and catalog DB targets.</p>
+<ul>
+<li>
+<p><em>CIS:</em> 2 Software Inventory, 3 Data Protection; <em>OWASP:</em> A=
+02 Cryptographic Failures (secrets handling).</p></li>
+</ul></li>
+</ul>
+<p><strong>Exit criteria:</strong> Inventory of shares, groups, connection =
+strings, and who writes to what in Prod.</p>
+<hr>
+<h3 id=3D"SolutionsArchitectureDocument:LoanProcessAutomationServiceModerni=
+zationwithNotes-Phase1=E2=80=94StructuretheFileShares&amp;Access(Weeks2=E2=
+=80=934)">Phase 1 =E2=80=94 Structure the File Shares &amp; Access (Weeks 2=
+=E2=80=934)</h3>
+<ul>
+<li>
+<p><strong>Create environment-segmented shares</strong> and folders you out=
+lined earlier: <code>Prod/UAT/Staging/Dev</code>, each with <code>Launcher-=
+App</code>, <code>Excel-Access-Artifacts</code>, <code>Logs-and-Audit</code=
+>, plus <code>Test-Data</code> (non-prod).</p></li>
+<li>
+<p><strong>Stand up new AD groups</strong>:</p>
+<ul>
+<li>
+<p><code>LoanAuto_AppSupport_Prod_RW</code>, <code>LoanAuto_Developers_Prod=
+_R</code> (strict exceptions), <code>LoanAuto_BusinessUsers_R</code>,</p></=
+li>
+<li>
+<p><code>LoanAuto_AppSupport_NonProd_RW</code>, <code>LoanAuto_Developers_N=
+onProd_RW</code>, <code>LoanAuto_BusinessUAT_R</code>,</p></li>
+<li>
+<p><code>LoanAuto_Developers_Dev_RW</code>, <code>LoanAuto_AppSupport_Dev_R=
+W</code>.</p></li>
+</ul></li>
+<li>
+<p><strong>Apply least-privilege ACLs;</strong> devs lose Prod write; App S=
+upport owns promotions.</p>
+<ul>
+<li>
+<p><em>CIS:</em> 3 Data Protection, 5 Account Mgmt, 6 Access Control, 14 Co=
+ntrolled Access; <em>OWASP:</em> A01, A05.</p></li>
+</ul></li>
+</ul>
+<p><strong>Exit criteria:</strong> Devs can fully work in Dev/UAT; App Supp=
+ort is the only team writing to Prod.</p>
+<hr>
+<h3 id=3D"SolutionsArchitectureDocument:LoanProcessAutomationServiceModerni=
+zationwithNotes-Phase2=E2=80=94VersionControl&amp;BasicSDLC(Weeks3=E2=80=93=
+6)">Phase 2 =E2=80=94 Version Control &amp; Basic SDLC (Weeks 3=E2=80=936)<=
+/h3>
+<ul>
+<li>
+<p><strong>Move Launcher code to enterprise GitHub</strong>; define a <stro=
+ng>simple branching model</strong> (e.g., <code>main</code>, <code>release/=
+*</code>, <code>feature/*</code>).</p></li>
+<li>
+<p><strong>Introduce a lightweight SDLC</strong>:</p>
+<ul>
+<li>
+<p>Dev =E2=86=92 PR =E2=86=92 UAT validation =E2=86=92 App Support promotio=
+n to Prod.</p></li>
+</ul></li>
+<li>
+<p><strong>Capture build artifacts</strong> (Launcher exe/config, signed if=
+ applicable) in a controlled drop location.</p>
+<ul>
+<li>
+<p><em>CIS:</em> 2 Software Inventory, 4 Secure Configurations, 8 Audit Log=
+s; <em>OWASP:</em> A08 Software &amp; Data Integrity Failures.</p></li>
+</ul></li>
+</ul>
+<p><strong>Exit criteria:</strong> Every Launcher change is traceable from =
+commit =E2=86=92 artifact =E2=86=92 deployment.</p>
+<hr>
+<h3 id=3D"SolutionsArchitectureDocument:LoanProcessAutomationServiceModerni=
+zationwithNotes-Phase3=E2=80=94DataSafetyforLowerEnvironments(Weeks4=E2=80=
+=938)">Phase 3 =E2=80=94 Data Safety for Lower Environments (Weeks 4=E2=80=
+=938)</h3>
+<ul>
+<li>
+<p><strong>Define a data masking/sanitization spec</strong> for PII (names,=
+ SSNs, DOB, account #s).</p></li>
+<li>
+<p><strong>Automate sanitized refreshes</strong> into Dev/UAT (frequency ba=
+sed on need).</p></li>
+<li>
+<p><strong>Block direct VS connections to Prod</strong>; provide <strong>no=
+n-prod service accounts</strong> and approved connection profiles.</p>
+<ul>
+<li>
+<p><em>CIS:</em> 3 Data Protection, 6 Access Control; <em>OWASP:</em> A02 C=
+ryptographic Failures, A01 Broken Access Control.</p></li>
+</ul></li>
+</ul>
+<p><strong>Exit criteria:</strong> Dev/UAT have fresh, safe data; no routin=
+e dev access to Prod data.</p>
+<hr>
+<h3 id=3D"SolutionsArchitectureDocument:LoanProcessAutomationServiceModerni=
+zationwithNotes-Phase4=E2=80=94DeploymentAutomation&amp;Auditability(Weeks6=
+=E2=80=9310)">Phase 4 =E2=80=94 Deployment Automation &amp; Auditability (W=
+eeks 6=E2=80=9310)</h3>
+<ul>
+<li>
+<p><strong>Use AAP</strong> for promotions:</p>
+<ul>
+<li>
+<p>Jobs to: copy/verify artifacts =E2=86=92 checksum =E2=86=92 place in <co=
+de>Prod/Launcher-App</code> =E2=86=92 set permissions =E2=86=92 write to <c=
+ode>Logs-and-Audit</code>.</p></li>
+</ul></li>
+<li>
+<p><strong>Use MoveIT</strong> (or AAP modules) for <strong>controlled, aud=
+itable file transfer</strong> where required.</p></li>
+<li>
+<p><strong>Centralize logs</strong> (e.g., Splunk): promotions, file writes=
+, and access events by group/user.</p>
+<ul>
+<li>
+<p><em>CIS:</em> 8 Audit Log Mgmt, 4 Secure Configurations; <em>OWASP:</em>=
+ A09 Logging &amp; Monitoring.</p></li>
+</ul></li>
+</ul>
+<p><strong>Exit criteria:</strong> Buttoned-up, auditable deployments; zero=
+ manual, untracked Prod writes.</p>
+<hr>
+<h3 id=3D"SolutionsArchitectureDocument:LoanProcessAutomationServiceModerni=
+zationwithNotes-Phase5=E2=80=94Hardening&amp;ContinuousImprovement(Weeks8=
+=E2=80=9312)">Phase 5 =E2=80=94 Hardening &amp; Continuous Improvement (Wee=
+ks 8=E2=80=9312)</h3>
+<ul>
+<li>
+<p><strong>Secret management</strong> for connection strings (vaulted varia=
+bles, CyberArk, etc.).</p></li>
+<li>
+<p><strong>Macro/Access governance</strong>:</p>
+<ul>
+<li>
+<p>Inventory macros/add-ins; sign macros; set policy for what=E2=80=99s all=
+owed in Prod.</p></li>
+</ul></li>
+<li>
+<p><strong>Training &amp; enablement</strong>:</p>
+<ul>
+<li>
+<p>Short sessions: SDLC basics, environment usage, how to request promotion=
+s, OWASP Top 10 in practice.</p></li>
+</ul></li>
+<li>
+<p><strong>Retire the legacy AD group</strong> after all dependencies are m=
+igrated.</p>
+<ul>
+<li>
+<p><em>CIS:</em> 4 Secure Configs, 7 Vulnerability Mgmt (for outdated compo=
+nents), 5/6 Access/Account Mgmt; <em>OWASP:</em> A05 Misconfig, A06 Vulnera=
+ble Components, A08 Integrity.</p></li>
+</ul></li>
+</ul>
+<p><strong>Exit criteria:</strong> Secrets are vaulted, macros controlled, =
+team trained, legacy group removed.</p>
+<hr>
+<h2 id=3D"SolutionsArchitectureDocument:LoanProcessAutomationServiceModerni=
+zationwithNotes-RecommendedRACI(condensed)">Recommended RACI (condensed)</h=
+2>
+<ul>
+<li>
+<p><strong>Architect (you):</strong> Strategy, standards, approvals.</p></l=
+i>
+<li>
+<p><strong>Dev Lead:</strong> Launcher code, macros inventory, non-prod rea=
+diness.</p></li>
+<li>
+<p><strong>App Support:</strong> Promotions, AAP jobs, share/ACL enforcemen=
+t, audit trail.</p></li>
+<li>
+<p><strong>DB Team:</strong> Non-prod DBs, masking pipelines, service accou=
+nts.</p></li>
+<li>
+<p><strong>IAM/SailPoint:</strong> New AD groups, legacy group retirement.<=
+/p></li>
+<li>
+<p><strong>Security/Compliance:</strong> Masking spec approval, logging ove=
+rsight, CIS/OWASP alignment.<br></p></li>
+</ul>
+<hr>
+<h2 id=3D"SolutionsArchitectureDocument:LoanProcessAutomationServiceModerni=
+zationwithNotes-SuccessMetrics(objective,exec-friendly)">Success Metrics (o=
+bjective, exec-friendly)</h2>
+<ul>
+<li>
+<p><strong>0</strong> routine developer write operations to <strong>Prod</s=
+trong> shares/databases.</p></li>
+<li>
+<p><strong>100%</strong> of Launcher changes <strong>in Git</strong> with P=
+Rs and approvals.</p></li>
+<li>
+<p><strong>100%</strong> of Prod promotions executed by Application Support=
+ (audited). (AAP Could be used)</p></li>
+<li>
+<p><strong>=E2=89=A4 X days</strong> to refresh <strong>sanitized</strong> =
+non-prod data per schedule.</p></li>
+<li>
+<p><strong>Legacy AD group</strong> fully decommissioned by <strong>&lt;dat=
+e&gt;</strong>.</p></li>
+<li>
+<p><strong>Training completion</strong>: Dev &amp; App Support, <strong>&gt=
+;90%</strong> attendance; short assessment =E2=89=A5 <strong>80%</strong>.<=
+/p></li>
+</ul>
+<hr>
+<h2 id=3D"SolutionsArchitectureDocument:LoanProcessAutomationServiceModerni=
+zationwithNotes-OpenQuestionstoCloseBeforetheCall">Open Questions to Close =
+Before the Call</h2>
+<ul>
+<li>
+<p>Do we need <strong>code signing</strong> for the Launcher? (recommended =
+if distributed widely)</p></li>
+<li>
+<p>Are there any <strong>external vendors</strong> tied to these artifacts =
+or shares?</p></li>
+<li>
+<p>Preferred <strong>logging taxonomy</strong> (index, fields) for promotio=
+ns/access events?</p></li>
+<li>
+<p>Is <strong>macro signing</strong> feasible given current Office policies=
+?</p></li>
+</ul>
+<hr>
+<p>If you'd like, I can create a 1=E2=80=932 slide =E2=80=9CAssumptions=E2=
+=80=9D page and a 3=E2=80=934 slide =E2=80=9CAction Plan=E2=80=9D with CIS/=
+OWASP callouts for your meeting. Want me to draft the PowerPoint outline ne=
+xt?<br></p>
+<hr>
+<h3 id=3D"SolutionsArchitectureDocument:LoanProcessAutomationServiceModerni=
+zationwithNotes-Whatdoes=E2=80=9C=E2=89=A4Xdaystorefreshsanitizednon-prodda=
+taperschedule=E2=80=9Dmean?"><strong>What does =E2=80=9C=E2=89=A4 X days to=
+ refresh sanitized non-prod data per schedule=E2=80=9D mean?</strong></h3>
+<ul>
+<li>
+<p><strong>The =E2=80=9C=E2=89=A4 X days=E2=80=9D part:</strong><br>
+This sets a maximum target for how quickly your development and test (non-p=
+rod) environments should receive <strong>fresh, sanitized copies</strong> o=
+f production data.</p>
+<ul>
+<li>
+<p><strong>=E2=80=9CX=E2=80=9D is a placeholder</strong> for the actual num=
+ber of days your team agrees is reasonable (for example, 3 days, 7 days, et=
+c.).</p></li>
+</ul></li>
+<li>
+<p><strong>=E2=80=9CRefresh sanitized non-prod data=E2=80=9D:</strong><br>
+This involves taking a current snapshot of production data, removing or mas=
+king sensitive information (such as names, SSNs, and account numbers), and =
+then loading the<strong> sanitized copy</strong> into your lower environmen=
+ts (Dev, UAT, QA).</p></li>
+<li>
+<p><strong>=E2=80=9CPer schedule=E2=80=9D:</strong><br>
+Refers to the regular cadence you decide=E2=80=94could be weekly, monthly, =
+or aligned with sprint cycles or release milestones.</p></li>
+</ul>
+<hr>
+<h3 id=3D"SolutionsArchitectureDocument:LoanProcessAutomationServiceModerni=
+zationwithNotes-Whydoesthismetricmatter?"><strong>Why does this metric matt=
+er?</strong></h3>
+<ul>
+<li>
+<p><strong>Keeps test environments useful:</strong><br>
+Developers and testers work with data that=E2=80=99s close to real, which h=
+elps catch bugs before they hit production.</p></li>
+<li>
+<p><strong>Protects sensitive info:</strong><br>
+Sanitization ensures PII isn=E2=80=99t leaking into places it shouldn=E2=80=
+=99t be (e.g., dev/test, where security is often weaker).</p></li>
+<li>
+<p><strong>Enforces process discipline:</strong><br>
+Regular, timely refreshes demonstrate that your organization takes data gov=
+ernance seriously, which is critical for audits and compliance.</p></li>
+</ul>
+<hr>
+<h3 id=3D"SolutionsArchitectureDocument:LoanProcessAutomationServiceModerni=
+zationwithNotes-Howdoyouusethismetricinpractice?"><strong>How do you use th=
+is metric in practice?</strong></h3>
+<ul>
+<li>
+<p><strong>Pick an =E2=80=9CX=E2=80=9D that=E2=80=99s realistic:</strong><b=
+r>
+Example: =E2=80=9CNon-prod environments must be refreshed with sanitized da=
+ta from Prod every 7 days or less.=E2=80=9D</p></li>
+<li>
+<p><strong>Track &amp; report:</strong><br>
+Each time you refresh, log the date. If you slip past your target (say, it =
+takes 10 days instead of 7), you know you need to improve.</p></li>
+<li>
+<p><strong>Automate if possible:</strong><br>
+Tools like Ansible Automation Platform or database scripts can make this ha=
+nds-off.</p></li>
+</ul>
+<hr>
+<h4 id=3D"SolutionsArchitectureDocument:LoanProcessAutomationServiceModerni=
+zationwithNotes-ExampleinContext:"><strong>Example in Context:</strong></h4=
+>
+<p>Suppose you set =E2=80=9C=E2=89=A4 7 days.=E2=80=9D</p>
+<ul>
+<li>
+<p><strong>Monday:</strong> Prod data is masked &amp; copied to Dev/UAT.</p=
+></li>
+<li>
+<p><strong>Next refresh deadline:</strong> The following Monday.</p></li>
+<li>
+<p><strong>If you miss that,</strong> you=E2=80=99re out of compliance with=
+ your own metric.</p></li>
+</ul>
+<p></p>
+<hr>
+<h2 id=3D"SolutionsArchitectureDocument:LoanProcessAutomationServiceModerni=
+zationwithNotes-SDLCCompliance:RelevantControls(withLinks)">SDLC Compliance=
+: Relevant Controls (with Links)</h2>
+<h3 id=3D"SolutionsArchitectureDocument:LoanProcessAutomationServiceModerni=
+zationwithNotes-CISControlsv8">CIS Controls v8</h3>
+<ul>
+<li>
+<p><strong>Control 2: Inventory and Control of Software Assets</strong><br>=
+<em>Version control, inventorying artifacts, and change management ensure y=
+ou know what=E2=80=99s deployed and where.</em></p></li>
+<li>
+<p><strong>Control 3: Data Protection</strong><br><em>Sanitizing data in no=
+n-prod environments and limiting PII exposure.</em></p></li>
+<li>
+<p><strong>Control 4: Secure Configuration of Enterprise Assets and Softwar=
+e</strong><br><em>RBAC, secure file shares, and config management for apps/=
+artifacts.</em></p></li>
+<li>
+<p><strong>Control 5: Account Management</strong><br><em>Tight control and =
+monitoring of who has access to what in Dev/UAT/Prod.</em></p></li>
+<li>
+<p><strong>Control 6: Access Control Management</strong><br><em>Least privi=
+lege: only App Support deploys to prod, devs don=E2=80=99t write to prod, e=
+tc.</em></p></li>
+<li>
+<p><strong>Control 8: Audit Log Management</strong><br><em>Logging promotio=
+ns, file access, and code changes for traceability and compliance.</em></p>=
+</li>
+<li>
+<p><strong>Control 14: Controlled Access Based on the Need to Know</strong>=
+<br><em>No prod DB access for devs; strong separation of duties.</em></p></=
+li>
+</ul>
+<hr>
+<h3 id=3D"SolutionsArchitectureDocument:LoanProcessAutomationServiceModerni=
+zationwithNotes-OWASPTop10(2021)">OWASP Top 10 (2021)</h3>
+<ul>
+<li>
+<p><strong>A01:2021 =E2=80=93 Broken Access Control</strong><br><em>Strict =
+RBAC, no direct prod access, formal promotion paths.</em></p></li>
+<li>
+<p><strong>A02:2021 =E2=80=93 Cryptographic Failures</strong><br><em>Protec=
+ting credentials and connection strings; sanitizing data.</em></p></li>
+<li>
+<p><strong>A05:2021 =E2=80=93 Security Misconfiguration</strong><br><em>Cor=
+rect permissions, properly segmented environments, hardened defaults.</em><=
+/p></li>
+<li>
+<p><strong>A08:2021 =E2=80=93 Software and Data Integrity Failures</strong>=
+<br><em>Version control, code reviews, traceable promotion/deployment.</em>=
+</p></li>
+<li>
+<p><strong>A09:2021 =E2=80=93 Security Logging and Monitoring Failures</str=
+ong><br><em>Audit trails for deployments, code changes, access to sensitive=
+ environments/data.</em></p></li>
+</ul>
+<hr>
+<p><em>You can copy/paste this into your companion guide or notes. If you w=
+ant, I can provide a markdown version with the same links for direct inclus=
+ion in documentation.</em></p>
+<h5 id=3D"SolutionsArchitectureDocument:LoanProcessAutomationServiceModerni=
+zationwithNotes-Yousaid:">You said:</h5>
+<p>can you validate those links?</p>
+<h6 id=3D"SolutionsArchitectureDocument:LoanProcessAutomationServiceModerni=
+zationwithNotes-ChatGPTsaid:">ChatGPT said:</h6>
+<p>Sure! I've verified the official resources for both CIS and OWASP. Here'=
+s the quick-reference list with properly formatted HTML links and embedded =
+citations for your internal doc:</p>
+<hr>
+<h2 id=3D"SolutionsArchitectureDocument:LoanProcessAutomationServiceModerni=
+zationwithNotes-SDLCCompliance:RelevantControls(withVerifiedLinks)">SDLC Co=
+mpliance: Relevant Controls (with Verified Links)</h2>
+<h3 id=3D"SolutionsArchitectureDocument:LoanProcessAutomationServiceModerni=
+zationwithNotes-CISControlsv8.1"><strong>CIS Controls v8</strong></h3>
+<ul>
+<li>
+<p><strong>&lt;a href=3D"</strong><a href=3D"https://www.cisecurity.org/con=
+trols/inventory-and-control-of-software-assets" data-card-appearance=3D"inl=
+ine" class=3D"external-link" rel=3D"nofollow">https://www.cisecurity.org/co=
+ntrols/inventory-and-control-of-software-assets</a> <strong>"&gt;Control 2:=
+ Inventory and Control of Software Assets&lt;/a&gt;</strong><br><em>Manages=
+ version control, artifact tracking, and software inventory to ensure autho=
+rized application deployments.</em> <a href=3D"https://cas7.1.docs.cisecuri=
+ty.org/en/latest/controls/control-2/control-2.1.html?utm_source=3Dchatgpt.c=
+om" class=3D"external-link" rel=3D"nofollow">cas7.1.docs.cisecurity.org+1CI=
+S+1</a><a href=3D"https://www.cisecurity.org/controls/inventory-and-control=
+-of-software-assets?utm_source=3Dchatgpt.com" class=3D"external-link" rel=
+=3D"nofollow">Wikipedia+10CIS+10CIS+10</a></p></li>
+<li>
+<p><strong>&lt;a href=3D"</strong><a href=3D"https://www.cisecurity.org/con=
+trols/data-protection-control-3/" class=3D"external-link" rel=3D"nofollow">=
+<strong>https://www.cisecurity.org/controls/data-protection-control-3/</str=
+ong></a><strong>"&gt;Control 3: Data Protection&lt;/a&gt;</strong><br><em>F=
+ocuses on data classification, masking, and minimizing PII exposure.</em> <=
+a href=3D"https://www.cisecurity.org/controls/cis-controls-list?utm_source=
+=3Dchatgpt.com" class=3D"external-link" rel=3D"nofollow">CIS</a></p></li>
+<li>
+<p><strong>&lt;a href=3D"</strong><a href=3D"https://www.cisecurity.org/con=
+trols/secure-configuration-of-enterprise-assets-and-software-control-4/" cl=
+ass=3D"external-link" rel=3D"nofollow"><strong>https://www.cisecurity.org/c=
+ontrols/secure-configuration-of-enterprise-assets-and-software-control-4/</=
+strong></a><strong>"&gt;Control 4: Secure Configuration of Enterprise Asset=
+s and Software&lt;/a&gt;</strong><br><em>Addresses RBAC, secure file shares=
+, and hardened default configurations.</em> <a href=3D"https://www.cisecuri=
+ty.org/controls/cis-controls-list?utm_source=3Dchatgpt.com" class=3D"extern=
+al-link" rel=3D"nofollow">OWASP+10CIS+10CIS+10</a></p></li>
+<li>
+<p><strong>&lt;a href=3D"</strong><a href=3D"https://www.cisecurity.org/con=
+trols/account-management-control-5/" class=3D"external-link" rel=3D"nofollo=
+w"><strong>https://www.cisecurity.org/controls/account-management-control-5=
+/</strong></a><strong>"&gt;Control 5: Account Management&lt;/a&gt;</strong>=
+<br><em>Ensures proper provisioning and de-provisioning of access rights ac=
+ross environments.</em> <a href=3D"https://owasp.org/Top10/fr/A01_2021-Brok=
+en_Access_Control/?utm_source=3Dchatgpt.com" class=3D"external-link" rel=3D=
+"nofollow">OWASP</a></p></li>
+<li>
+<p><strong>&lt;a href=3D"</strong><a href=3D"https://www.cisecurity.org/con=
+trols/access-control-management-control-6/" class=3D"external-link" rel=3D"=
+nofollow"><strong>https://www.cisecurity.org/controls/access-control-manage=
+ment-control-6/</strong></a><strong>"&gt;Control 6: Access Control Manageme=
+nt&lt;/a&gt;</strong><br><em>Implements least=E2=80=91privilege access and =
+group-based permissions aligned with roles.</em> <a href=3D"https://www.cis=
+ecurity.org/controls/cis-controls-list?utm_source=3Dchatgpt.com" class=3D"e=
+xternal-link" rel=3D"nofollow">OWASP+14CIS+14cas7.1.docs.cisecurity.org+14<=
+/a></p></li>
+<li>
+<p><strong>&lt;a href=3D"</strong><a href=3D"https://www.cisecurity.org/con=
+trols/audit-log-management-control-8/" class=3D"external-link" rel=3D"nofol=
+low"><strong>https://www.cisecurity.org/controls/audit-log-management-contr=
+ol-8/</strong></a><strong>"&gt;Control 8: Audit Log Management&lt;/a&gt;</s=
+trong><br><em>Enables traceability of deployments, file access, and policy =
+violations.</em> <a href=3D"https://www.cisecurity.org/controls/cis-control=
+s-list?utm_source=3Dchatgpt.com" class=3D"external-link" rel=3D"nofollow">C=
+IS</a><a href=3D"https://www.cisecurity.org/controls/cis-controls-navigator=
+?utm_source=3Dchatgpt.com" class=3D"external-link" rel=3D"nofollow">CIS</a>=
+</p></li>
+<li>
+<p><strong>&lt;a href=3D"</strong><a href=3D"https://www.cisecurity.org/con=
+trols/controlled-access-based-on-the-need-to-know-control-14/" class=3D"ext=
+ernal-link" rel=3D"nofollow"><strong>https://www.cisecurity.org/controls/co=
+ntrolled-access-based-on-the-need-to-know-control-14/</strong></a><strong>"=
+&gt;Control 14: Controlled Access Based on the Need to Know&lt;/a&gt;</stro=
+ng><br><em>Restricts exposure of sensitive environments and data to only au=
+thorized roles.</em> <a href=3D"https://cas7.1.docs.cisecurity.org/en/lates=
+t/controls/control-2/index.html?utm_source=3Dchatgpt.com" class=3D"external=
+-link" rel=3D"nofollow">cas7.1.docs.cisecurity.org+2cas7.1.docs.cisecurity.=
+org+2cas7.1.docs.cisecurity.org+2</a><a href=3D"https://cheatsheetseries.ow=
+asp.org/IndexTopTen.html?utm_source=3Dchatgpt.com" class=3D"external-link" =
+rel=3D"nofollow">OWASP Cheat Sheet Series+1OWASP+1</a></p></li>
+</ul>
+<hr>
+<h3 id=3D"SolutionsArchitectureDocument:LoanProcessAutomationServiceModerni=
+zationwithNotes-OWASPTop10(2021).1"><strong>OWASP Top 10 (2021)</strong></h=
+3>
+<ul>
+<li>
+<p><strong>&lt;a href=3D"</strong><a href=3D"https://owasp.org/Top10/A01_20=
+21-Broken_Access_Control/" data-card-appearance=3D"inline" class=3D"externa=
+l-link" rel=3D"nofollow">https://owasp.org/Top10/A01_2021-Broken_Access_Con=
+trol/</a> <strong>"&gt;A01:2021 =E2=80=93 Broken Access Control&lt;/a&gt;</=
+strong><br><em>Mitigates risk by enforcing strict RBAC and denying direct d=
+ev access to Prod.</em> <a href=3D"https://owasp.org/Top10/A01_2021-Broken_=
+Access_Control/?utm_source=3Dchatgpt.com" class=3D"external-link" rel=3D"no=
+follow">Wikipedia+9OWASP+9OWASP+9</a><a href=3D"https://owasp.org/Top10/ja/=
+A01_2021-Broken_Access_Control/?utm_source=3Dchatgpt.com" class=3D"external=
+-link" rel=3D"nofollow">OWASP+3OWASP+3OWASP+3</a></p></li>
+<li>
+<p><strong>&lt;a href=3D"</strong><a href=3D"https://owasp.org/Top10/A02_20=
+21-Cryptographic_Failures/" data-card-appearance=3D"inline" class=3D"extern=
+al-link" rel=3D"nofollow">https://owasp.org/Top10/A02_2021-Cryptographic_Fa=
+ilures/</a> <strong>"&gt;A02:2021 =E2=80=93 Cryptographic Failures&lt;/a&gt=
+;</strong><br><em>Focuses on secure handling of credentials, secrets, and s=
+anitized data.</em> <a href=3D"https://owasp.org/www-project-top-ten/?utm_s=
+ource=3Dchatgpt.com" class=3D"external-link" rel=3D"nofollow">OWASP+9OWASP+=
+9OWASP+9</a></p></li>
+<li>
+<p><strong>&lt;a href=3D"</strong><a href=3D"https://owasp.org/Top10/A05_20=
+21-Security_Misconfiguration/" data-card-appearance=3D"inline" class=3D"ext=
+ernal-link" rel=3D"nofollow">https://owasp.org/Top10/A05_2021-Security_Misc=
+onfiguration/</a> <strong>"&gt;A05:2021 =E2=80=93 Security Misconfiguration=
+&lt;/a&gt;</strong><br><em>Prevents unsecured ACLs, misconfigured shares, a=
+nd environment mixing.</em> <a href=3D"https://owasp.org/www-project-top-te=
+n/?utm_source=3Dchatgpt.com" class=3D"external-link" rel=3D"nofollow">OWASP=
+ Cheat Sheet Series+3OWASP+3OWASP+3</a></p></li>
+<li>
+<p><strong>&lt;a href=3D"</strong><a href=3D"https://owasp.org/Top10/A08_20=
+21-Software_and_Data_Integrity_Failures/" data-card-appearance=3D"inline" c=
+lass=3D"external-link" rel=3D"nofollow">https://owasp.org/Top10/A08_2021-So=
+ftware_and_Data_Integrity_Failures/</a> <strong>"&gt;A08:2021 =E2=80=93 Sof=
+tware and Data Integrity Failures&lt;/a&gt;</strong><br><em>Adds software i=
+ntegrity through Git, code reviews, and promotion pipelines.</em> <a href=
+=3D"https://owasp.org/www-project-top-ten/?utm_source=3Dchatgpt.com" class=
+=3D"external-link" rel=3D"nofollow">OWASP Cheat Sheet Series+3OWASP+3OWASP+=
+3</a></p></li>
+<li>
+<p><strong>&lt;a href=3D"</strong><a href=3D"https://owasp.org/Top10/A09_20=
+21-Security_Logging_and_Monitoring_Failures/" data-card-appearance=3D"inlin=
+e" class=3D"external-link" rel=3D"nofollow">https://owasp.org/Top10/A09_202=
+1-Security_Logging_and_Monitoring_Failures/</a> <strong>"&gt;A09:2021 =E2=
+=80=93 Security Logging and Monitoring Failures&lt;/a&gt;</strong><br><em>E=
+nsures robust audit logging for deployments, access, and configuration chan=
+ges.</em> <a href=3D"https://owasp.org/www-project-top-ten/?utm_source=3Dch=
+atgpt.com" class=3D"external-link" rel=3D"nofollow">Wikipedia+3OWASP+3OWASP=
++3</a></p></li>
+</ul>
+<p></p>
+<hr>
+<hr>
+<h2 id=3D"SolutionsArchitectureDocument:LoanProcessAutomationServiceModerni=
+zationwithNotes-Clarifications&amp;TechnicalExplanations:">Clarifications &=
+amp; Technical Explanations:</h2>
+<h3 id=3D"SolutionsArchitectureDocument:LoanProcessAutomationServiceModerni=
+zationwithNotes-1.LauncherApplication">1. <strong>Launcher Application</str=
+ong></h3>
+<ul>
+<li>
+<p><strong>What it seems to do:</strong> Opens a centralized menu or interf=
+ace for launching various Excel spreadsheets and Access databases.</p></li>
+<li>
+<p><strong>Auth/permissions:</strong></p>
+<ul>
+<li>
+<p>It likely relies on users' existing Windows permissions for files. The l=
+auncher probably does <strong>not</strong> handle file permissions directly=
+.</p></li>
+<li>
+<p>Confirm this explicitly with the developer:<br><em>"Does the Launcher ha=
+ndle any user authentication or authorization internally, or does it simply=
+ rely on users=E2=80=99 existing Windows file share permissions?"</em></p><=
+/li>
+</ul></li>
+<li>
+<p><strong>Deployment:</strong></p>
+<ul>
+<li>
+<p>Placing the launcher on enterprise GitHub is a solid and necessary first=
+ step to introducing version control.</p></li>
+</ul></li>
+</ul>
+<hr>
+<h3 id=3D"SolutionsArchitectureDocument:LoanProcessAutomationServiceModerni=
+zationwithNotes-2.Access&amp;ExcelFront-End(Logicvs.DataContainer)">2. <str=
+ong>Access &amp; Excel Front-End (Logic vs. Data Container)</strong></h3>
+<p>This differentiation is critical:</p>
+<div class=3D"table-wrap">
+<table data-layout=3D"default" data-local-id=3D"7ad53adb-c041-4833-8777-602=
+65fd73aff" class=3D"confluenceTable">
+<tbody>
+<tr>
+<th class=3D"confluenceTh">
+<p>Type</p></th>
+<th class=3D"confluenceTh">
+<p>What it means</p></th>
+<th class=3D"confluenceTh">
+<p>Questions to clarify with devs</p></th>
+</tr>
+<tr>
+<td class=3D"confluenceTd">
+<p><strong>Logic Container</strong></p></td>
+<td class=3D"confluenceTd">
+<p>Files contain VBA macros, custom scripts, or business logic embedded dir=
+ectly within them. They execute business logic (calculations, queries, form=
+s) directly inside the Excel or Access application itself.</p></td>
+<td class=3D"confluenceTd">
+<p>"Do these Excel and Access files contain embedded VBA macros, queries, f=
+orms, or other logic that runs locally? Or are they purely for data storage=
+ and retrieval?"</p></td>
+</tr>
+<tr>
+<td class=3D"confluenceTd">
+<p><strong>Data Container Only</strong></p></td>
+<td class=3D"confluenceTd">
+<p>Files are simply containers to store or retrieve data (usually temporari=
+ly). They have minimal logic and mainly point to external databases.</p></t=
+d>
+<td class=3D"confluenceTd">
+<p>"Are the Excel and Access files mostly used to store or retrieve data wi=
+thout local processing or embedded logic?"</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>You <strong>likely have "Logic Containers"</strong> here, given they're =
+using Visual Studio (<a href=3D"http://VB.NET" data-card-appearance=3D"inli=
+ne" class=3D"external-link" rel=3D"nofollow">http://VB.NET</a> ). <a href=
+=3D"http://VB.NET" data-card-appearance=3D"inline" class=3D"external-link" =
+rel=3D"nofollow">http://VB.NET</a> code could mean external applications, b=
+ut they might also be writing VBA inside Access/Excel. Clarify explicitly.<=
+/p>
+<p><strong>Clarify with the team:</strong></p>
+<ul>
+<li>
+<p><em>"Is Visual Studio used only to build the launcher application, or ar=
+e you using </em><a href=3D"http://VB.NET" data-card-appearance=3D"inline" =
+class=3D"external-link" rel=3D"nofollow">http://VB.NET</a> <em> to automate=
+ or embed logic directly in the Access/Excel files?"</em></p></li>
+</ul>
+<hr>
+<h3 id=3D"SolutionsArchitectureDocument:LoanProcessAutomationServiceModerni=
+zationwithNotes-3.AccessWritePermissionsMisunderstanding">3. <strong>Access=
+ Write Permissions Misunderstanding</strong></h3>
+<ul>
+<li>
+<p>Generally, Access databases (<code>.mdb</code> or <code>.accdb</code>) o=
+nly require <strong>read permissions</strong> if just viewing data.</p></li=
+>
+<li>
+<p>The confusion probably arises from the fact that:</p>
+<ul>
+<li>
+<p>Access creates temporary <strong>lock files (</strong><code>.ldb</code><=
+strong>/</strong><code>.laccdb</code><strong>)</strong> when opening databa=
+ses.</p></li>
+<li>
+<p>If the databases are opened directly on the share, the user needs permis=
+sion to <strong>create/write</strong> these lock files on the folder itself=
+.</p></li>
+<li>
+<p>It's not "write permissions" to the database <strong>content</strong> it=
+self that's needed=E2=80=94just the ability to create and manage temporary =
+lock files.</p></li>
+</ul></li>
+</ul>
+<p><strong>To clarify explicitly:</strong><br><em>"Do you mean you need fol=
+der-level write permissions just to open Access files, or are you actually =
+modifying (writing to) data in these Access databases from the frontend?"</=
+em></p>
+<p>A better approach is generally:</p>
+<ul>
+<li>
+<p>Move copies of databases locally or to dedicated folders for temporary a=
+ccess.</p></li>
+<li>
+<p>Implement proper file share permissions separating folder vs. file-level=
+ access.</p></li>
+</ul>
+<hr>
+<h3 id=3D"SolutionsArchitectureDocument:LoanProcessAutomationServiceModerni=
+zationwithNotes-4.VisualStudioandDBConnection">4. <strong>Visual Studio and=
+ DB Connection</strong></h3>
+<ul>
+<li>
+<p>Visual Studio (VS) is typically used to write code that connects program=
+matically to databases via connection strings.</p></li>
+<li>
+<p>Developers likely have connection strings configured in their <a href=3D=
+"http://VB.NET" data-card-appearance=3D"inline" class=3D"external-link" rel=
+=3D"nofollow">http://VB.NET</a> code to connect to SQL servers.</p></li>
+<li>
+<p>Currently, they're directly hitting production databases. This is risky =
+and not best practice.</p></li>
+</ul>
+<p><strong>Typical DB Auth Setup</strong> (recommended future state):</p>
+<ul>
+<li>
+<p><strong>Launcher app or </strong><a href=3D"http://VB.NET" data-card-app=
+earance=3D"inline" class=3D"external-link" rel=3D"nofollow">http://VB.NET</=
+a> <strong> App:</strong></p>
+<ul>
+<li>
+<p>App connects to databases via a <strong>service account</strong>.</p></l=
+i>
+<li>
+<p>Users authenticate to the app, not directly to the DB.</p></li>
+<li>
+<p>Connection strings are stored securely in config files or secrets manage=
+ment solutions (e.g., CyberArk, Azure Key Vault).</p></li>
+</ul></li>
+<li>
+<p><strong>Developers in Visual Studio (Dev Environment):</strong></p>
+<ul>
+<li>
+<p>Use individual or shared credentials specifically provisioned for dev en=
+vironments only.</p></li>
+<li>
+<p>Ideally, move entirely away from direct production DB connections. Inste=
+ad, use sanitized databases for development/testing.</p></li>
+</ul></li>
+</ul>
+<hr>
+<h3 id=3D"SolutionsArchitectureDocument:LoanProcessAutomationServiceModerni=
+zationwithNotes-5.DataManagement&amp;PIIConsiderations">5. <strong>Data Man=
+agement &amp; PII Considerations</strong></h3>
+<p>Since PII exists in your databases, you must establish <strong>data mask=
+ing</strong> or <strong>data sanitization</strong> when promoting or replic=
+ating data from prod to non-prod environments:</p>
+<ul>
+<li>
+<p>Scrub PII data (names, SSNs, account numbers, etc.).</p></li>
+<li>
+<p>Create sanitized datasets for lower environments to comply with NCUA and=
+ general security best practices.</p></li>
+</ul>
+<hr>
+<h3 id=3D"SolutionsArchitectureDocument:LoanProcessAutomationServiceModerni=
+zationwithNotes-6.EnterpriseApplicationSupport&amp;Tooling">6. <strong>Ente=
+rprise Application Support &amp; Tooling</strong></h3>
+<ul>
+<li>
+<p>Great news that <strong>Enterprise Application Support</strong> can help=
+ handle the production deployment.</p></li>
+<li>
+<p>Using your newly trained Ansible Automation Platform (AAP) resource woul=
+d be highly beneficial:</p>
+<ul>
+<li>
+<p>AAP can automate file movement and deployments.</p></li>
+<li>
+<p>MoveIT can be leveraged for secure, auditable file transfers.</p></li>
+</ul></li>
+</ul>
+<hr>
+<h3 id=3D"SolutionsArchitectureDocument:LoanProcessAutomationServiceModerni=
+zationwithNotes-7.GovernanceStandards(UnansweredQuestion)">7. <strong>Gover=
+nance Standards (Unanswered Question)</strong></h3>
+<p>You didn't explicitly address governance. Typically, credit unions have =
+specific internal IT standards or compliance standards beyond NCUA (e.g., C=
+IS controls, internal audit compliance, Sarbanes-Oxley controls).</p>
+<ul>
+<li>
+<p>Verify if such internal standards or audits apply. Ensure alignment in y=
+our action plan.</p></li>
+</ul>
+<hr>
+<h2 id=3D"SolutionsArchitectureDocument:LoanProcessAutomationServiceModerni=
+zationwithNotes-StructuredProblemSpace(Summary):">Structured Problem Space =
+(Summary):</h2>
+<h3 id=3D"SolutionsArchitectureDocument:LoanProcessAutomationServiceModerni=
+zationwithNotes-CurrentIssues">Current Issues</h3>
+<ul>
+<li>
+<p>Lack of defined SDLC.</p></li>
+<li>
+<p>No version control for critical software.</p></li>
+<li>
+<p>Insecure/unstructured production file access.</p></li>
+<li>
+<p>Uncontrolled prod data in non-prod environments.</p></li>
+<li>
+<p>Developers directly accessing production databases.</p></li>
+</ul>
+<h3 id=3D"SolutionsArchitectureDocument:LoanProcessAutomationServiceModerni=
+zationwithNotes-FutureStateGoals">Future State Goals</h3>
+<ul>
+<li>
+<p>Established, simple SDLC with clear separation of duties.</p></li>
+<li>
+<p>Version-controlled Launcher app on GitHub.</p></li>
+<li>
+<p>Secure fileshare structures with clear access management.</p></li>
+<li>
+<p>Sanitized, safe datasets for development environments.</p></li>
+<li>
+<p>Removal of direct developer prod DB access, replaced with controlled ser=
+vice accounts.</p></li>
+<li>
+<p>Enterprise App Support managing deployments via automation (Ansible).</p=
+></li>
+</ul>
+<hr>
+<h2 id=3D"SolutionsArchitectureDocument:LoanProcessAutomationServiceModerni=
+zationwithNotes-NextSteps&amp;ActionableQuestionsforDevelopers:">Next Steps=
+ &amp; Actionable Questions for Developers:</h2>
+<p>Use the questions below to clarify technical details explicitly:</p>
+<ul>
+<li>
+<p><strong>Launcher:</strong></p>
+<ol start=3D"1">
+<li>
+<p>Does the launcher handle any authentication or authorization itself?</p>=
+</li>
+<li>
+<p>Does the launcher contain hard-coded connection strings or configuration=
+s?</p></li>
+</ol></li>
+<li>
+<p><strong>Excel/Access Files:</strong></p>
+<ol start=3D"1">
+<li>
+<p>Are Excel/Access files just data containers, or do they have embedded lo=
+gic (macros/forms)?</p></li>
+<li>
+<p>What exactly happens when a user opens an Access DB=E2=80=94do lock file=
+s appear in the folder?</p></li>
+<li>
+<p>Why specifically do you claim you need write permissions=E2=80=94can you=
+ explain/show the exact error or limitation?</p></li>
+</ol></li>
+<li>
+<p><strong>Visual Studio &amp; DB:</strong></p>
+<ol start=3D"1">
+<li>
+<p>Does your <a href=3D"http://VB.NET" data-card-appearance=3D"inline" clas=
+s=3D"external-link" rel=3D"nofollow">http://VB.NET</a> code directly query/=
+update production databases?</p></li>
+<li>
+<p>Can we use non-prod databases with masked data to perform your day-to-da=
+y tasks?</p></li>
+</ol></li>
+<li>
+<p><strong>Data Handling:</strong></p>
+<ol start=3D"1">
+<li>
+<p>What sensitive data (PII) resides in your files, and how do you currentl=
+y handle this data moving down environments?</p></li>
+</ol></li>
+<li>
+<p><strong>Governance:</strong></p>
+<ol start=3D"1">
+<li>
+<p>What compliance or audit standards does your team currently need to foll=
+ow? (NCUA, internal policies, etc.)</p></li>
+</ol></li>
+</ul>
+<hr>
+<h2 id=3D"SolutionsArchitectureDocument:LoanProcessAutomationServiceModerni=
+zationwithNotes-ImmediateNextAction:">Immediate Next Action:</h2>
+<ul>
+<li>
+<p><strong>Discuss these specific clarifying questions</strong> directly wi=
+th the dev team to get definitive answers.</p></li>
+<li>
+<p><strong>After you confirm these details</strong>, I'll help you create t=
+he structured recommendation document, including a phased action plan.</p><=
+/li>
+</ul>
+<p>Let me know if any additional clarifications are needed!</p>
+<p><br><br><br><strong>Simplified Slide Deck</strong></p>
+<hr>
+<h3 id=3D"SolutionsArchitectureDocument:LoanProcessAutomationServiceModerni=
+zationwithNotes-Slide1:Title&amp;Kickoff"><strong>Slide 1: Title &amp; Kick=
+off</strong></h3>
+<p><strong>Loan Process Automation: Dev Team Alignment</strong><br><em>Date=
+ | Your Name/Role</em></p>
+<blockquote>
+<p><em>=E2=80=9CMoving from ad-hoc to governed SDLC=E2=80=9D</em></p>
+</blockquote>
+<hr>
+<h3 id=3D"SolutionsArchitectureDocument:LoanProcessAutomationServiceModerni=
+zationwithNotes-Slide2:WhyWe=E2=80=99reHere"><strong>Slide 2: Why We=E2=80=
+=99re Here</strong></h3>
+<ul>
+<li>
+<p>Align on what we know &amp; clarify what we don=E2=80=99t</p></li>
+<li>
+<p>Set immediate priorities for Launcher, Artifacts, DBs</p></li>
+<li>
+<p>Agree on next steps toward SDLC &amp; compliance</p></li>
+</ul>
+<hr>
+<h3 id=3D"SolutionsArchitectureDocument:LoanProcessAutomationServiceModerni=
+zationwithNotes-Slide3:WhereWeStandNow"><strong>Slide 3: Where We Stand Now=
+</strong></h3>
+<ul>
+<li>
+<p><strong>Launcher:</strong> Single dev, manual builds, no Git</p></li>
+<li>
+<p><strong>Artifacts:</strong> Excel/Access in one share, devs copy/play in=
+ Prod</p></li>
+<li>
+<p><strong>DBs:</strong> Direct Prod connections, no data sanitization</p><=
+/li>
+</ul>
+<blockquote>
+<p><em>(Add a small visual/flowchart if you have time)</em></p>
+</blockquote>
+<hr>
+<h3 id=3D"SolutionsArchitectureDocument:LoanProcessAutomationServiceModerni=
+zationwithNotes-Slide4:What=E2=80=99sBroken"><strong>Slide 4: What=E2=80=99=
+s Broken</strong></h3>
+<ul>
+<li>
+<p>No version control =E2=86=92 untraceable changes</p></li>
+<li>
+<p>Over-privileged access =E2=86=92 security &amp; audit risks</p></li>
+<li>
+<p>PII in non-prod =E2=86=92 compliance gaps</p></li>
+<li>
+<p>Manual, error-prone deployments</p></li>
+</ul>
+<hr>
+<h3 id=3D"SolutionsArchitectureDocument:LoanProcessAutomationServiceModerni=
+zationwithNotes-Slide5:WhereWe=E2=80=99reGoing"><strong>Slide 5: Where We=
+=E2=80=99re Going</strong></h3>
+<ul>
+<li>
+<p>Version control (Git) for Launcher</p></li>
+<li>
+<p>RBAC with new AD groups and environment splits</p></li>
+<li>
+<p>Sanitized, safe data in non-prod</p></li>
+<li>
+<p>Automated, auditable deployments</p></li>
+</ul>
+<hr>
+<h3 id=3D"SolutionsArchitectureDocument:LoanProcessAutomationServiceModerni=
+zationwithNotes-Slide6:WhatChangesforYou"><strong>Slide 6: What Changes for=
+ You</strong></h3>
+<ul>
+<li>
+<p>Dev work (incl. Visual Studio) moves to Dev/UAT, not Prod</p></li>
+<li>
+<p>New AD groups =3D permissions based on environment</p></li>
+<li>
+<p>Fresh, sanitized test data in lower environments</p></li>
+<li>
+<p>Code and artifacts go through App Support for Prod</p></li>
+<li>
+<p>All changes are tracked, reviewable, and auditable</p></li>
+</ul>
+<hr>
+<h3 id=3D"SolutionsArchitectureDocument:LoanProcessAutomationServiceModerni=
+zationwithNotes-Slide7:File-Share&amp;PermissionsPreview"><strong>Slide 7: =
+File-Share &amp; Permissions Preview</strong></h3>
+<div class=3D"table-wrap">
+<table data-layout=3D"default" data-local-id=3D"65ad295d-b47e-44d1-a985-69f=
+41198af7e" class=3D"confluenceTable">
+<tbody>
+<tr>
+<th class=3D"confluenceTh">
+<p>Environment</p></th>
+<th class=3D"confluenceTh">
+<p>App Support</p></th>
+<th class=3D"confluenceTh">
+<p>Developers</p></th>
+<th class=3D"confluenceTh">
+<p>Business Users</p></th>
+</tr>
+<tr>
+<td class=3D"confluenceTd">
+<p><strong>Prod</strong></p></td>
+<td class=3D"confluenceTd">
+<p>RW</p></td>
+<td class=3D"confluenceTd">
+<p>R (strict)</p></td>
+<td class=3D"confluenceTd">
+<p>R</p></td>
+</tr>
+<tr>
+<td class=3D"confluenceTd">
+<p><strong>Non-Prod</strong></p></td>
+<td class=3D"confluenceTd">
+<p>RW</p></td>
+<td class=3D"confluenceTd">
+<p>RW</p></td>
+<td class=3D"confluenceTd">
+<p>R</p></td>
+</tr>
+<tr>
+<td class=3D"confluenceTd">
+<p><strong>Dev</strong></p></td>
+<td class=3D"confluenceTd">
+<p>RW</p></td>
+<td class=3D"confluenceTd">
+<p>RW</p></td>
+<td class=3D"confluenceTd">
+<p>=E2=80=93</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<blockquote>
+<p><em>(See guide for details; just highlight separation here.)</em></p>
+</blockquote>
+<hr>
+<h3 id=3D"SolutionsArchitectureDocument:LoanProcessAutomationServiceModerni=
+zationwithNotes-Slide8:KeyActionSteps"><strong>Slide 8: Key Action Steps</s=
+trong></h3>
+<ul>
+<li>
+<p><strong>0=E2=80=932 wks:</strong> Audit shares, code, connection strings=
+, AD groups</p></li>
+<li>
+<p><strong>2=E2=80=934 wks:</strong> Stand up new shares/permissions, restr=
+ict Prod</p></li>
+<li>
+<p><strong>3=E2=80=936 wks:</strong> Move Launcher to Git, define SDLC mode=
+l</p></li>
+<li>
+<p><strong>4=E2=80=938 wks:</strong> Automate data refresh/masking in non-p=
+rod</p></li>
+<li>
+<p><strong>6=E2=80=9310 wks:</strong> App Support pipelines, secrets manage=
+ment, training</p></li>
+</ul>
+<hr>
+<h3 id=3D"SolutionsArchitectureDocument:LoanProcessAutomationServiceModerni=
+zationwithNotes-Slide9:NextSteps&amp;Q&amp;A"><strong>Slide 9: Next Steps &=
+amp; Q&amp;A</strong></h3>
+<ul>
+<li>
+<p>Confirm assumptions and open questions</p></li>
+<li>
+<p>Schedule deep dive on connection strings, share mapping</p></li>
+<li>
+<p>Share companion guide for details</p></li>
+<li>
+<p>Q&amp;A</p></li>
+</ul>
+<hr>
+<p>**That=E2=80=99s it=E2=80=94**9 slides, every section actionable.<br>
+If you want, you can combine Slides 4 and 5 (=E2=80=9CWhat=E2=80=99s Broken=
+/Where We=E2=80=99re Going=E2=80=9D) into a =E2=80=9CChallenges &amp; Goals=
+=E2=80=9D slide to make it even shorter.<br>
+Let me know if you want it in outline, PowerPoint format, or with icon idea=
+s!</p>
+    </div>
+</body>
+</html>
+------=_Part_56_1981941104.1754331209510--
