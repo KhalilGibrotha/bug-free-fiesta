@@ -1,0 +1,172 @@
+# Standardized Image Build Process for Ansible Automation Platform
+
+**Author:** Alexander Gambino  
+**Team:** Server Engineering & Operations (Automation Platform)  
+**Date:** YYYY-MM-DD  
+**Version:** 1.0.0
+
+---
+
+## Overview
+
+This document defines the standardized process for building, versioning, and publishing container images that support the **Ansible Automation Platform (AAP)** ecosystem.
+
+The scope covers:
+- Execution Environments (EEs)
+- Dev Spaces workspace image
+- Supporting registries and build prerequisites
+
+These guidelines ensure images are **repeatable**, **scanned**, **auditable**, and **aligned** with AAP governance and organizational security policies.
+
+---
+
+## 1. Business Value
+
+- **Reduce drift** and runtime errors by baking dependencies into images.  
+- **Ensure compliance** with supply chain and vulnerability management controls.  
+- **Accelerate onboarding** by providing consistent dev and runtime environments.  
+- **Enable automation** for image builds, versioning, and promotion.
+
+---
+
+## 2. Scope
+
+- Standard build inputs, versioning, and promotion workflow.
+- Registries:
+  - **AAP Private Automation Hub (PAH / Quay)** – *System of Record*
+  - **OpenShift internal registry** – *Optional build target*
+- Images:
+  1. Core Execution Environment (EE)
+  2. Data / Documentation EE
+  3. Dev Spaces Workspace Image
+
+**Out of Scope:** Application team app images and non-Linux bases.
+
+---
+
+## 3. Success Metrics
+
+| Metric | Target |
+| ------- | ------- |
+| EE Coverage | 100% of AAP job templates mapped to versioned EEs |
+| Vulnerability Compliance | Zero critical vulnerabilities in PAH images |
+| Build Time | Dependency change → published image ≤ 1 business day |
+| CI Reliability | 100% successful builds, lint, and SBOM generation |
+
+---
+
+## 4. Acceptance Criteria
+
+- Documented build specifications and Makefile targets.
+- CI pipeline builds, scans, signs, and pushes to registries.
+- Promotion policy defined (dev → test → prod tags).
+- Runbook for local build (Dev Spaces) and off-platform build.
+- EEs validated in AAP by pilot job.
+- Dev Spaces workspace operational for developers.
+
+---
+
+## 5. Architecture & Standards
+
+- **Tagging:** `vMAJOR.MINOR.PATCH` + `YYYY.MM.DD`; optional `latest` for non-prod.
+- **Provenance:** Image signed (cosign or registry-native).
+- **SBOM:** Generated with `syft` or `cyclonedx`.
+- **Scanning:** Performed via CI or registry scan gate.
+- **Version Alignment:**  
+  EE `ansible-core` and `ansible-runner` match AAP 2.5 baseline.
+- **Dependency Sources:**  
+  Python → Solarplex Nexus  
+  Collections → Private Automation Hub / approved Galaxy proxies
+
+---
+
+## 6. Child Story 1 — OpenShift Prerequisites
+
+### Goal
+Ensure OpenShift (Dev Spaces and build pipelines) can produce and push container images.
+
+### Tasks
+1. **Dev Spaces workspace policy**
+   - Determine if workspace will support **nested containers** (Podman/Buildah).  
+   - If **immutable**, use `ansible-builder create` to generate the context and offload to OCP Build or CI.
+2. **Permissions**
+   - Grant push access to internal registry namespaces.
+   - Define minimal-scope service accounts for CI.
+3. **Networking & Mirrors**
+   - Verify egress to `registry.redhat.io` and Nexus endpoints.
+   - Apply ImageContentSourcePolicy or mirror configuration if required.
+4. **Storage**
+   - Right-size workspace PVC for build contexts and container layers.
+5. **Security**
+   - Integrate image scanning, signature policy, and admission controls.
+
+### Acceptance Criteria
+- Dev Spaces workspace template approved and available.
+- Successful authentication to OCP and PAH registries.
+- Immutable vs. nested policy documented and tested.
+
+---
+
+## 7. Child Story 2 — EE Build Process (ansible-builder)
+
+### Goal
+Define canonical workflow for building and publishing EEs (Dev Spaces or CI).
+
+### Process
+1. Author or update:
+   - `execution-environment.yml`
+   - `requirements.txt`
+   - `requirements.yml`
+   - `bindep.txt`
+2. Configure `additional_build_steps` to point `pip` to Nexus.
+3. Build:
+   - **Dev Spaces (runtime available):** `ansible-builder build`
+   - **Immutable Dev Spaces:** `ansible-builder create` → external builder
+4. Tag image as `vX.Y.Z` and with date.
+5. Push to **PAH**; verify scan and signature.
+6. Register EE in AAP and run pilot job.
+
+### Risks / Constraints
+- Building on AAP Controller without proxy access will fail for Python deps.  
+  Use Dev Spaces or CI with Nexus egress.
+
+### Acceptance Criteria
+- Successful builds from both Dev Spaces and CI.
+- Image present in PAH with SBOM and scan.
+- Job executes successfully in AAP using new EE.
+
+---
+
+## 8. Child Story 3 — Image Configuration
+
+### A) Core EE
+| Item | Description |
+| ---- | ------------ |
+| Base | `registry.redhat.io/ansible-automation-platform-25/ee-minimal-rhel9` |
+| Dependencies | baseline collections, minimal Python libs |
+| Policy | smallest viable runtime |
+| Key Versions | `ansible-core 2.16.*`, `ansible-runner 2.4.*` |
+
+### B) Data / Documentation EE
+| Item | Description |
+| ---- | ------------ |
+| Base | Core EE |
+| Dependencies | `pandas`, `pyyaml`, `pandoc`, etc. |
+| Policy | used for data & documentation builds |
+| Nexus Config | pip points to Solarplex Nexus |
+
+### C) Dev Spaces Workspace Image
+| Item | Description |
+| ---- | ------------ |
+| Base | UDI or approved enterprise image |
+| Tools | `ansible-navigator`, `ansible-lint`, `molecule`, `podman` or `buildah`, `pre-commit`, `gitleaks` |
+| Policy | Immutable by default; offload builds to CI if no runtime |
+
+### Acceptance Criteria
+- Three image definitions committed and reviewed.
+- SBOM and scan results approved by Security.
+- Tags released and referenced in AAP.
+
+---
+
+## 9. Repository Layout (Template)
