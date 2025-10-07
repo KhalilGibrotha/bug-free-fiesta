@@ -1,0 +1,62 @@
+---
+config:
+  look: neo
+---
+sequenceDiagram
+  actor Dev as Developer
+  participant Platform as Development Shell
+  participant Git as Git Repository
+  participant Navigator as Ansible Navigator
+  participant EE as Execution Environment
+  participant AAP as AAP Controller
+  autonumber
+  loop 
+    rect rgb(200, 0, 0, .5)
+      Note right of Dev: The core development loop is identical across platforms
+      alt Entry via OpenShift Dev Spaces
+        Note Over Platform: DevSpaces must allow nested containers '/dev/fuse'
+        Dev ->> Platform: Open workspace and obtain shell
+      else Entry via AAP Controller or jump host
+        Dev ->>+ Platform: SSH to controller and obtain shell
+      end
+    end
+    loop 
+      rect rgb(200, 150, 0, .10)
+      Note right of Dev: Developer works from standardised environment
+        Dev ->> Platform: git clone, git checkout
+        Platform ->> Git: Create feature branch
+        Git ->> Platform: 
+        loop 
+          rect rgb(200, 150, 0, .10)
+            loop 
+              rect rgb(200, 150, 0, .10)
+                Dev ->> Platform: VSC/vim - Edit config, roles, playbooks, inventories, scripts, variables
+                Dev ->> Platform: ansible-navgator lint site.yml --eei our-ee-image --pp missing
+                Platform ->> Navigator: Run lint and tests
+                Navigator ->> EE: prepare runtime & run container
+                EE ->> EE: ansible-lint code
+                EE -->> Navigator: return results
+                Navigator -->> Platform: 
+                Platform ->> Dev: Review results via navigator or stdout
+              end
+            end
+            Dev ->> Platform: ansible-navgator run site.yml --eei our-ee-image --pp missing
+            Platform ->> Navigator: Run playbook against test-inventory
+            Navigator ->> EE: prepare runtime & run container
+            EE ->> EE: 
+            EE -->> Navigator: return results
+            Navigator -->> Platform: 
+            Platform ->> Dev: Review results via navigator or stdout
+          end
+        end
+        Dev ->> Git: git commit and push chan
+        Dev ->> Git: Open pull request
+        Git ->> Git: FUTURE STATE - Run continuous integration checks
+        Git ->> Dev: Peer Review and approve
+      end
+    end
+    Dev ->> Git: Merge to main
+    Dev ->> AAP: Confirm job template uses expected execution environment
+    Dev ->> AAP: Promote to production according to process
+    AAP -->> Dev: Monitor results and iterate
+  end
