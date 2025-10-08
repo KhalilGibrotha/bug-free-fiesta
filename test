@@ -170,3 +170,298 @@ Define canonical workflow for building and publishing EEs (Dev Spaces or CI).
 ---
 
 ## 9. Repository Layout (Template)
+
+# Story: Validate and Document WinRM Connectivity from AAP to Windows Servers
+
+**Type:** Story  
+**Parent Epic:** Platform Connectivity Validation / AAP Infrastructure Validation  
+**Reporter:** Principal Infrastructure Engineer (Automation Platform)  
+**Assignee:** AAP Platform Engineer  
+**Priority:** High  
+**Status:** Ready for Development  
+**Version:** 1.0.0  
+**Date:** YYYY-MM-DD  
+
+---
+
+## Description
+
+Establish a validated, repeatable method to test and verify **WinRM connectivity** between the Ansible Automation Platform (AAP) execution nodes and managed Windows servers.  
+The goal is to confirm firewall, authentication, and encryption configurations are correct and compliant with security standards, enabling Windows automation through Ansible.
+
+Connectivity will be tested using **WinRM over HTTPS (port 5986)**, validating both functionality and certificate-based security.
+
+---
+
+## Objectives
+
+- Verify WinRM connectivity from AAP Execution Nodes to Windows targets.  
+- Validate authentication through approved credentials (CyberArk, AD service account, or local admin).  
+- Confirm use of secure WinRM HTTPS and proper TLS certificate validation.  
+- Document steps for troubleshooting common connectivity failures.
+
+---
+
+## Acceptance Criteria
+
+| # | Acceptance Criteria |
+|---|----------------------|
+| 1 | AAP execution node can reach Windows targets on TCP 5986 (WinRM over HTTPS). |
+| 2 | Authentication succeeds using approved credential method (CyberArk / AD). |
+| 3 | `ansible.windows.win_ping` succeeds against representative test hosts. |
+| 4 | TLS certificates trusted and validated by AAP EE (no self-signed certs in production). |
+| 5 | Firewall rules validated and documented with Network Engineering. |
+| 6 | Step-by-step test procedure documented in SEO Automation Hub (Reference & Troubleshooting). |
+| 7 | Logs and results available in Splunk for auditing. |
+
+---
+
+## Test Procedure
+
+### 1. Inventory Validation
+
+- Confirm Windows hosts are in the AAP inventory (e.g., `windows.yml`).  
+- Verify host variables:
+
+  ```yaml
+  ansible_connection: winrm
+  ansible_winrm_transport: kerberos    # or ntlm for testing
+  ansible_port: 5986
+  ansible_winrm_server_cert_validation: ignore  # test only
+Ensure inventory group windows is associated with correct credentials.
+
+### 2. Credential Validation
+
+- Verify WinRM connectivity from AAP Execution Nodes to Windows targets.  
+- Validate authentication through approved credentials (CyberArk, AD service account, or local admin).  
+- Confirm use of secure WinRM HTTPS and proper TLS certificate validation.  
+- Document steps for troubleshooting common connectivity failures.
+
+---
+
+## 3. Acceptance Criteria
+
+| # | Acceptance Criteria |
+|---|----------------------|
+| 1 | AAP execution node can reach Windows targets on TCP 5986 (WinRM over HTTPS). |
+| 2 | Authentication succeeds using approved credential method (CyberArk / AD). |
+| 3 | `ansible.windows.win_ping` succeeds against representative test hosts. |
+| 4 | TLS certificates trusted and validated by AAP EE (no self-signed certs in production). |
+| 5 | Firewall rules validated and documented with Network Engineering. |
+| 6 | Step-by-step test procedure documented in SEO Automation Hub (Reference & Troubleshooting). |
+| 7 | Logs and results available in Splunk for auditing. |
+
+---
+
+## 4. Test Procedure
+
+### 4.1 Inventory Validation
+
+---
+---
+
+# Story: Discovery and Feasibility – Automating Windows In-Place Upgrades (2016/2019 → 2022/2025)
+
+**Type:** Story  
+**Parent Epic:** Windows Automation Modernization  
+**Reporter:** Principal Infrastructure Engineer (Automation Platform)  
+**Assignee:** Windows Automation Engineer  
+**Priority:** Medium  
+**Status:** Ready for Discovery  
+**Date:** YYYY-MM-DD  
+
+---
+
+## Description
+
+Leadership has directed that, as an organization, we prioritize **in-place Windows Server upgrades** over full rebuilds to reduce operational overhead.  
+Server Operations currently maintains **manual PowerShell scripts** and a documented upgrade process using installation images stored on the **Enterprise File Share**, mounted during upgrade execution.
+
+This story initiates **discovery and feasibility analysis** to determine how these manual steps could be automated and orchestrated through **Ansible Automation Platform (AAP)**.
+
+The Windows Automation Engineer will pair with the **Server Operations team** to assess the process, dependencies, risks, and tooling needs for automating upgrades from **Windows Server 2016 and 2019** to **2022 or 2025**.
+
+---
+
+## Objectives
+
+- Review and document the existing PowerShell-based in-place upgrade workflow.  
+- Identify automation feasibility and integration points with AAP.  
+- Validate access and mounting methods for ISO images from the enterprise share.  
+- Stand up representative 2016 and 2019 servers for proof-of-concept testing.  
+- Define potential pre- and post-validation checks that could be automated.
+
+---
+
+## Acceptance Criteria
+
+| # | Acceptance Criteria |
+|---|----------------------|
+| 1 | Discovery session completed with Server Operations and process documented. |
+| 2 | Current manual steps and PowerShell scripts reviewed for automation fit. |
+| 3 | Access to enterprise image share validated for automated mounting. |
+| 4 | Test lab with 2016 and 2019 hosts available for upgrade feasibility testing. |
+| 5 | Initial feasibility summary documented and shared with Platform Engineering leadership. |
+
+---
+
+## Deliverables
+
+- Meeting notes and process map of current upgrade workflow.  
+- Summary of automation opportunities, blockers, and dependencies.  
+- Recommendation on next steps for proof-of-concept automation.  
+- Draft Jira sub-tasks for PoC and subsequent automation story.  
+
+---
+
+## Dependencies
+
+- Availability of Windows Server 2016 and 2019 VMs for testing.  
+- Access to enterprise file share hosting installation images.  
+- Coordination with Server Operations and Platform Engineering.  
+
+---
+
+## Risks / Considerations
+
+| Risk | Impact | Mitigation |
+|------|---------|------------|
+| Upgrade process differs between 2016, 2019, and 2022/2025 | Medium | Test each version path separately |
+| ISO share permissions restrict automation | Medium | Coordinate with Storage / Security teams |
+| Long upgrade runtime impacting CI resources | Low | Perform testing in isolated environment |
+
+---
+
+## Definition of Done
+
+- Discovery and feasibility session completed and documented.  
+- Initial recommendations approved by leadership for next phase.  
+- Jira sub-tasks created for prototype automation work.
+
+---
+
+## Notes
+
+This is a **discovery-only** story. No production changes will occur.  
+Outputs will inform a subsequent **PoC automation story** that formalizes workflow design, pre-checks, rollback handling, and validation automation.
+
+---
+
+## Revision History
+
+| Version | Date | Author | Notes |
+| -------- | ---- | ------- | ------ |
+| 1.0.0 | YYYY-MM-DD | A. Gambino | Initial creation |
+
+---
+
+# Story: Proof of Concept – Automating Windows Server In-Place Upgrades (2016/2019 → 2022/2025)
+
+**Type:** Story  
+**Parent Epic:** Windows Automation Modernization  
+**Parent Story:** Discovery and Feasibility – Automating Windows In-Place Upgrades  
+**Reporter:** Principal Infrastructure Engineer (Automation Platform)  
+**Assignee:** Windows Automation Engineer  
+**Priority:** High  
+**Status:** Ready for Development  
+**Date:** YYYY-MM-DD  
+
+---
+
+## Description
+
+Following the completion of discovery and feasibility, this story will prototype **automated in-place upgrades** of Windows Server 2016 and 2019 to 2022 or 2025 using **Ansible Automation Platform (AAP)**.
+
+The proof of concept (PoC) will leverage the existing **Server Operations PowerShell pre-check scripts** and Enterprise File Share–based installation media.  
+The goal is to validate the **end-to-end upgrade workflow**, confirm reliability across test hosts, and capture any automation blockers for production rollout.
+
+This PoC represents the foundation for future scalable upgrade playbooks and workflows in AAP.
+
+---
+
+## Objectives
+
+- Develop an AAP workflow or playbook to orchestrate upgrade steps using PowerShell modules.  
+- Integrate with enterprise share for image mounting and validation.  
+- Automate pre-checks, upgrade execution, and post-upgrade validation.  
+- Validate rollback and logging strategies.  
+- Document and demonstrate successful upgrade of test hosts.
+
+---
+
+## Acceptance Criteria
+
+| # | Acceptance Criteria |
+|---|----------------------|
+| 1 | Playbook or workflow developed that automates the full in-place upgrade process end-to-end. |
+| 2 | Automation executes successfully against Windows Server 2016 and 2019 test hosts. |
+| 3 | Pre- and post-upgrade checks integrated (using existing PowerShell pre-checks where applicable). |
+| 4 | Image mounting via enterprise share automated and verified. |
+| 5 | Job output, logs, and artifacts available in Splunk for audit. |
+| 6 | Results documented, reviewed, and approved by Server Operations and Platform Engineering. |
+
+---
+
+## Deliverables
+
+- Working **AAP playbook or workflow** for in-place upgrade automation.  
+- Supporting scripts or modules stored in source control.  
+- Updated documentation outlining workflow logic, variables, and rollback steps.  
+- Demonstration of automated upgrade process on test servers.  
+- Recommendation and next steps for production pilot rollout.
+
+---
+
+## Dependencies
+
+- Completion and review of discovery story documentation.  
+- Access to enterprise image share and permissions for automation account.  
+- Availability of test servers (2016 and 2019).  
+- EE or controller node configured with `winrm` connectivity and WinRM libraries.  
+
+---
+
+## Risks / Considerations
+
+| Risk | Impact | Mitigation |
+|------|---------|------------|
+| Upgrade failures could render hosts unbootable | High | Conduct testing only on non-prod clones or lab servers |
+| Long upgrade durations | Medium | Schedule during maintenance windows; parallelize where feasible |
+| PowerShell pre-checks may require modification | Medium | Pair with Server Ops to adapt scripts |
+| Storage or share access interruptions | Medium | Validate connectivity before each run |
+| Need for reboots and post-validation delays | Low | Include reboot handling in playbook logic |
+
+---
+
+## Definition of Done
+
+- Successful execution of upgrade automation against lab Windows servers.  
+- Pre- and post-validation results captured and validated.  
+- All scripts and playbooks stored in Git and reviewed by Server Ops.  
+- Summary of PoC outcomes delivered to leadership with recommendations.  
+- Jira child stories created for:
+  - Productionization of playbooks
+  - RBAC and credential integration (CyberArk)
+  - Workflow scheduling and rollout planning
+
+---
+
+## Notes
+
+This PoC focuses on **end-to-end technical validation**.  
+Subsequent efforts will handle:
+- Integration into AAP production workflows  
+- Secrets and credential management via CyberArk  
+- Rollback automation and monitoring enhancements
+
+---
+
+## Revision History
+
+| Version | Date | Author | Notes |
+| -------- | ---- | ------- | ------ |
+| 1.0.0 | YYYY-MM-DD | A. Gambino | Initial creation |
+
+---
+---
+
