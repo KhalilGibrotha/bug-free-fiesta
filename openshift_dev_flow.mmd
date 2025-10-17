@@ -1,0 +1,71 @@
+flowchart LR
+  %% ===== LAYERS / CLUSTERS =====
+  subgraph OCP["OpenShift Cluster — Control Plane (AAP Services)"]
+    direction TB
+    AAP[Automation Controller (UI/API)]
+    AH[Automation Hub / Quay (EE & Collections)]
+    OCPNote[/"Tech Preview: Nested virt\n(avoid running EEs inside OCP)"/]
+  end
+
+  subgraph EXT["External Execution Plane — RHEL VMs / Bare Metal"]
+    direction TB
+    MESH[Execution Mesh Router]
+    EN1[Execution Node 1 (RHEL)]
+    EN2[Execution Node 2 (RHEL)]
+    ENn[Execution Node N (RHEL)]
+  end
+
+  subgraph ENT["Enterprise Services (Shared)"]
+    direction TB
+    SAT[Red Hat Satellite (Inventory & Content)]
+    CYB[CyberArk (Credentials)]
+    VEN[Venafi (Certificates)]
+    F5[F5 Big-IP (LB/HA)]
+    INFO[Infoblox (DNS/IPAM)]
+    SPL[Splunk / BMC Helix (Logs/Events)]
+  end
+
+  %% ===== FLOWS =====
+  F5 --> AAP
+  AAP -->|Projects / Job Templates| AAP
+  AAP -->|EE Pull (images/tags)| AH
+  AAP -->|Dispatch Jobs| MESH
+  MESH --> EN1
+  MESH --> EN2
+  MESH --> ENn
+
+  %% Runtime pulls of EE images happen on Execution Nodes
+  EN1 -. pulls EE/images .-> AH
+  EN2 -. pulls EE/images .-> AH
+  ENn -. pulls EE/images .-> AH
+
+  %% Inventories / creds / certs / DNS
+  AAP -->|Inventory Sync| SAT
+  EN1 -->|Package/Content| SAT
+  EN2 -->|Package/Content| SAT
+  ENn -->|Package/Content| SAT
+
+  AAP -->|Request Secrets at runtime| CYB
+  EN1 -->|Use Short-lived Creds| CYB
+  EN2 -->|Use Short-lived Creds| CYB
+  ENn -->|Use Short-lived Creds| CYB
+
+  AAP -->|TLS/CA| VEN
+  EN1 -->|TLS/CA| VEN
+  EN2 -->|TLS/CA| VEN
+  ENn -->|TLS/CA| VEN
+
+  AAP -->|DNS lookups| INFO
+  EN1 -->|DNS lookups| INFO
+  EN2 -->|DNS lookups| INFO
+  ENn -->|DNS lookups| INFO
+
+  %% Logging / events
+  AAP -->|Job/Controller Logs| SPL
+  EN1 -->|Execution Logs| SPL
+  EN2 -->|Execution Logs| SPL
+  ENn -->|Execution Logs| SPL
+
+  %% ===== NOTES / STYLE =====
+  classDef hdr fill:#0b7,stroke:#066,color:#fff
+  class OCP,EXT,ENT hdr
