@@ -1,0 +1,17 @@
+{
+  "recommendations": [
+    "redhat.ansible",
+    "redhat.vscode-yaml",
+    "DavidAnson.vscode-markdownlint",
+    "yzhang.markdown-all-in-one",
+    "bierner.markdown-mermaid",
+    "streetsidesoftware.code-spell-checker",
+    "ChrisChinchilla.vale-vscode",
+    "GitHub.copilot",
+    "GitHub.copilot-chat",
+    "ms-vscode.vscode-ai"
+  ],
+  "unwantedRecommendations": [
+    "ms-vscode.PowerShell"
+  ]
+}

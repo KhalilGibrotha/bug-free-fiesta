@@ -1,0 +1,32 @@
+{
+  "name": "Bug Free Fiesta Workspace",
+  "image": "mcr.microsoft.com/devcontainers/universal:2-linux",
+  "features": {
+    "ghcr.io/devcontainers/features/github-cli:1": {},
+    "ghcr.io/devcontainers/features/node:1": {}
+  },
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "redhat.ansible",
+        "redhat.vscode-yaml",
+        "DavidAnson.vscode-markdownlint",
+        "yzhang.markdown-all-in-one",
+        "bierner.markdown-mermaid",
+        "streetsidesoftware.code-spell-checker",
+        "ChrisChinchilla.vale-vscode",
+        "GitHub.copilot",
+        "GitHub.copilot-chat",
+        "ms-vscode.vscode-ai"
+      ],
+      "settings": {
+        "ansible.python.interpreterPath": "/usr/bin/python3",
+        "github.copilot.enable": {
+          "*": true
+        }
+      }
+    }
+  },
+  "postCreateCommand": "pip3 install --user ansible ansible-lint yamllint",
+  "remoteUser": "codespace"
+}

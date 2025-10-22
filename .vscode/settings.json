@@ -1,6 +1,64 @@
 {
-    "cSpell.words": [
-        "Gibrotha",
-        "Khalil"
+  "cSpell.words": [
+    "Gibrotha",
+    "Khalil",
+    "ansible",
+    "playbook",
+    "yamllint",
+    "jinja",
+    "codespace",
+    "devcontainer"
+  ],
+  "github.copilot.enable": {
+    "*": true,
+    "yaml": true,
+    "markdown": true,
+    "json": true,
+    "plaintext": true
+  },
+  "github.copilot.advanced": {
+    "debug.overrideEngine": "copilot-codex",
+    "debug.testOverrideProxyUrl": "",
+    "debug.overrideProxyUrl": ""
+  },
+  "vscode-ai.enabled": true,
+  "ansible.python.interpreterPath": "/usr/bin/python3",
+  "ansible.validation.enabled": true,
+  "ansible.validation.lint.enabled": true,
+  "ansible.validation.lint.path": "ansible-lint",
+  "yaml.schemas": {
+    "https://raw.githubusercontent.com/ansible/ansible-lint/main/src/ansiblelint/schemas/ansible.json#/$defs/playbook": [
+      "playbooks/*.yml",
+      "playbooks/*.yaml",
+      "**/playbooks/*.yml",
+      "**/playbooks/*.yaml"
+    ],
+    "https://raw.githubusercontent.com/ansible/ansible-lint/main/src/ansiblelint/schemas/ansible.json#/$defs/tasks": [
+      "tasks/*.yml",
+      "tasks/*.yaml",
+      "**/tasks/*.yml",
+      "**/tasks/*.yaml"
     ]
+  },
+  "yaml.customTags": [
+    "!vault"
+  ],
+  "markdown.preview.breaks": true,
+  "markdown.preview.linkify": true,
+  "markdownlint.config": {
+    "MD013": false,
+    "MD033": false,
+    "MD041": false
+  },
+  "files.associations": {
+    "*.j2": "jinja",
+    "*.yml": "yaml",
+    "*.yaml": "yaml"
+  },
+  "editor.formatOnSave": true,
+  "editor.codeActionsOnSave": {
+    "source.fixAll": "explicit"
+  },
+  "files.trimTrailingWhitespace": true,
+  "files.insertFinalNewline": true
 }
